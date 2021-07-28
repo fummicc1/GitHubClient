@@ -1,0 +1,21 @@
+query MyProfile($getFollowerCount: Int, $getFolloweeCount: Int) {
+    viewer {
+        login
+        bio
+        avatarUrl(size: 56)
+        followers(first: $getFollowerCount) {
+            totalCount
+            nodes {
+                avatarUrl(size: 44)
+                login
+            }
+        }
+        following(first: $getFolloweeCount) {
+            totalCount
+            nodes {
+                avatarUrl(size: 44)
+                login
+            }  
+        }
+    }
+}  

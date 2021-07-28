@@ -1,0 +1,6 @@
+query Profile($login: String!) {
+    user(login: $login) {
+        login
+        avatarUrl(size: 44)
+    }
+}
