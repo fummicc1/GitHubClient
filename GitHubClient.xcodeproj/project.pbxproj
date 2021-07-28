@@ -33,6 +33,8 @@
 		D3C460C226B1119A00DF4B1F /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460C126B1119A00DF4B1F /* Repository.swift */; };
 		D3C460C526B1183200DF4B1F /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460C426B1183200DF4B1F /* String+Ex.swift */; };
 		D3C460C726B11A1500DF4B1F /* SpecificRepositoryApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460C626B11A1500DF4B1F /* SpecificRepositoryApiClient.swift */; };
+		D3C460C926B120E800DF4B1F /* RepositoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460C826B120E800DF4B1F /* RepositoryUseCase.swift */; };
+		D3C460CB26B1214A00DF4B1F /* RepositoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460CA26B1214A00DF4B1F /* RepositoryInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		D3C460C126B1119A00DF4B1F /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		D3C460C426B1183200DF4B1F /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
 		D3C460C626B11A1500DF4B1F /* SpecificRepositoryApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificRepositoryApiClient.swift; sourceTree = "<group>"; };
+		D3C460C826B120E800DF4B1F /* RepositoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryUseCase.swift; sourceTree = "<group>"; };
+		D3C460CA26B1214A00DF4B1F /* RepositoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,8 @@
 			children = (
 				D33A100326B10E51002DA455 /* ProfileUseCase.swift */,
 				D33A100426B10E51002DA455 /* ProfileInteractor.swift */,
+				D3C460C826B120E800DF4B1F /* RepositoryUseCase.swift */,
+				D3C460CA26B1214A00DF4B1F /* RepositoryInteractor.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -381,10 +387,12 @@
 				D33A0FE226B10D62002DA455 /* GitHubClientApp.swift in Sources */,
 				D33A101626B10E51002DA455 /* Me.swift in Sources */,
 				D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */,
+				D3C460C926B120E800DF4B1F /* RepositoryUseCase.swift in Sources */,
 				D33A101826B10E51002DA455 /* MyProfileApiClient.swift in Sources */,
 				D3C460C526B1183200DF4B1F /* String+Ex.swift in Sources */,
 				D3C460C226B1119A00DF4B1F /* Repository.swift in Sources */,
 				D3C460BB26B110CF00DF4B1F /* RootView.swift in Sources */,
+				D3C460CB26B1214A00DF4B1F /* RepositoryInteractor.swift in Sources */,
 				D33A101326B10E51002DA455 /* API.swift in Sources */,
 				D33A101426B10E51002DA455 /* PrivateKey.swift in Sources */,
 				D33A101A26B10E51002DA455 /* ProfileApiClient.swift in Sources */,

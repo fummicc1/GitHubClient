@@ -19,7 +19,7 @@ struct Repository {
 }
 
 extension Repository {
-    static func from(repository: SearchRepositoryQuery.Data.Search.Edge.Node.AsRepository) {
+    static func from(repository: SearchRepositoryQuery.Data.Search.Edge.Node.AsRepository) -> Self {
         let ret = Repository(
             id: repository.id,
             url: repository.url,
@@ -29,5 +29,19 @@ extension Repository {
             name: repository.name,
             owner: GitHubUserModel.from(response: repository.owner)
         )
+        return ret
+    }
+    
+    static func from(repository: SpecificRepositoryQuery.Data.Repository) -> Self {
+        let ret = Repository(
+            id: repository.id,
+            url: repository.url,
+            createdAt: repository.createdAt.convert(formatter: ISO8601DateFormatter()),
+            description: repository.description,
+            isPrivate: repository.isPrivate,
+            name: repository.name,
+            owner: GitHubUserModel.from(response: repository.owner)
+        )
+        return ret
     }
 }
