@@ -1,0 +1,40 @@
+query SpecificRepository($owner: String!, $name: String!) {
+    repository(name: $name, owner: $owner) {
+        id
+        url
+        createdAt
+        description
+        isPrivate
+        name
+        owner {
+            login
+            avatarUrl(size: 44)
+        }
+    }
+}
+
+query SearchRepository($query: String!, $count: Int) {
+  search(query: $query, type: REPOSITORY, last: $count) {
+    edges {
+      node {
+        ... on User {
+          id
+          avatarUrl(size: 44)
+          login
+        }
+        ... on Repository {
+          id
+          name
+          createdAt
+          description
+          isPrivate
+          url
+          owner {
+            avatarUrl(size: 44)
+            login
+          }
+        }
+      }
+    }
+  }
+}
