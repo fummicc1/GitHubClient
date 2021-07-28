@@ -25,4 +25,12 @@ extension GitHubUserModel {
     static func from(response: ProfileQuery.Data.User) -> Self {
         GitHubUserModel(login: response.login, avatarUrl: response.avatarUrl)
     }
+    
+    static func from(response: SearchRepositoryQuery.Data.Search.Edge.Node.AsRepository.Owner) -> Self {
+        GitHubUserModel(login: response.login, avatarUrl: response.avatarUrl)
+    }
+    
+    static func from(response: SpecificRepositoryQuery.Data.Repository.Owner) -> Self {
+        GitHubUserModel(login: response.login, avatarUrl: response.avatarUrl)
+    }
 }
