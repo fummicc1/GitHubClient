@@ -31,7 +31,7 @@ class APIClient {
             interceptorProvider: DefaultInterceptorProvider(store: store),
             endpointURL: URL(string: "https://api.github.com/graphql")!,
             additionalHeaders: ["Authorization": "Bearer \(PrivateKey.gitHubAuthToken)"],
-            autoPersistQueries: true,
+            autoPersistQueries: false,
             requestBodyCreator: ApolloRequestBodyCreator(),
             useGETForQueries: false,
             useGETForPersistedQueryRetry: false
