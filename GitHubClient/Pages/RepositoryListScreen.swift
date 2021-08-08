@@ -8,13 +8,26 @@
 import SwiftUI
 
 struct RepositoryListScreen: View {
+    
+    @ObservedObject var viewModel: RepositoryListViewModelImpl
+    
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(viewModel.repositories.indices) { index in
+                        let repository = $viewModel.repositories[index]
+                        RepositoryCardView(repository: repository)
+                    }
+                }
+            }.ignoresSafeArea()
+            .navigationTitle("Search List")
+        }
     }
 }
 
 struct RepositoryListScreen_Previews: PreviewProvider {
     static var previews: some View {
-        RepositoryListScreen()
+        RepositoryListScreen(viewModel: RepositoryListViewModelImpl(interactor: RepositoryInteractor(searchClient: SearchRepositoryApiClient(apollo: APIClient.gitHubClient), specificClient: SpecificRepositoryApiClient(apollo: APIClient.gitHubClient))))
     }
 }

@@ -27,6 +27,7 @@
 		D33A102326B10EE2002DA455 /* ProfileInteractorFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A101E26B10EE2002DA455 /* ProfileInteractorFake.swift */; };
 		D33A102426B10EE2002DA455 /* ProfileRequestableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A102026B10EE2002DA455 /* ProfileRequestableMock.swift */; };
 		D33A102526B10EE2002DA455 /* MyProfileRequestableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A102126B10EE2002DA455 /* MyProfileRequestableMock.swift */; };
+		D360117326C01ADA008C37FD /* RepositoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D360117226C01ADA008C37FD /* RepositoryCardView.swift */; };
 		D3C460BB26B110CF00DF4B1F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BA26B110CF00DF4B1F /* RootView.swift */; };
 		D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */; };
 		D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */; };
@@ -72,6 +73,7 @@
 		D33A101E26B10EE2002DA455 /* ProfileInteractorFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInteractorFake.swift; sourceTree = "<group>"; };
 		D33A102026B10EE2002DA455 /* ProfileRequestableMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRequestableMock.swift; sourceTree = "<group>"; };
 		D33A102126B10EE2002DA455 /* MyProfileRequestableMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileRequestableMock.swift; sourceTree = "<group>"; };
+		D360117226C01ADA008C37FD /* RepositoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCardView.swift; sourceTree = "<group>"; };
 		D3C460BA26B110CF00DF4B1F /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListScreen.swift; sourceTree = "<group>"; };
 		D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		D33A0FE026B10D62002DA455 /* GitHubClient */ = {
 			isa = PBXGroup;
 			children = (
+				D360117126C01ACB008C37FD /* Views */,
 				D3C460C326B1182900DF4B1F /* Ex */,
 				D33A0FEA26B10D63002DA455 /* Info.plist */,
 				D33A0FE326B10D62002DA455 /* ContentView.swift */,
@@ -233,6 +236,14 @@
 				D33A102126B10EE2002DA455 /* MyProfileRequestableMock.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		D360117126C01ACB008C37FD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D360117226C01ADA008C37FD /* RepositoryCardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D3C460BC26B110E100DF4B1F /* Pages */ = {
@@ -407,6 +418,7 @@
 				D33A101326B10E51002DA455 /* API.swift in Sources */,
 				D33A101426B10E51002DA455 /* PrivateKey.swift in Sources */,
 				D33A101A26B10E51002DA455 /* ProfileApiClient.swift in Sources */,
+				D360117326C01ADA008C37FD /* RepositoryCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
