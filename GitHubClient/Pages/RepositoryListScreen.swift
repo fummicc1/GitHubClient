@@ -28,6 +28,6 @@ struct RepositoryListScreen: View {
 
 struct RepositoryListScreen_Previews: PreviewProvider {
     static var previews: some View {
-        RepositoryListScreen(viewModel: RepositoryListViewModelImpl(interactor: RepositoryInteractor(searchClient: SearchRepositoryApiClient(apollo: APIClient.gitHubClient), specificClient: SpecificRepositoryApiClient(apollo: APIClient.gitHubClient))))
+        RepositoryListScreen(viewModel: RepositoryListViewModelImpl(useCase: RepositoryInteractor(searchClient: SearchRepositoryApiClient(apollo: APIClient.gitHubClient), specificClient: SpecificRepositoryApiClient(apollo: APIClient.gitHubClient))))
     }
 }

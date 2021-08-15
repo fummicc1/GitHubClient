@@ -22,8 +22,9 @@ class ProfileInteractorTests: XCTestCase {
     }
 
     func test_GetMe() throws {
-        let requestable = MyProfileRequestableMock()
-        let interactor = ProfileInteractor(profileClient: requestable)
+        let requestable = ProfileRequestableMock()
+        let myRequestable = MyProfileRequestableMock()
+        let interactor = ProfileInteractor(profileClient: requestable, myProfileClient: myRequestable)
         XCTAssertFalse(requestable.isCalledFetch)
         XCTAssertEqual(requestable.numberOfCall, 0)
         
@@ -33,8 +34,8 @@ class ProfileInteractorTests: XCTestCase {
             .sink(receiveCompletion: { result in
                 switch result {
                 case .finished:
-                    XCTAssertTrue(requestable.isCalledFetch)
-                    XCTAssertEqual(requestable.numberOfCall, 1)
+                    XCTAssertTrue(myRequestable.isCalledFetch)
+                    XCTAssertEqual(myRequestable.numberOfCall, 1)
                     expectation.fulfill()
                 case .failure(let error):
                     XCTFail(error.localizedDescription)

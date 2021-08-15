@@ -14,5 +14,5 @@ protocol GetMyProfileUseCase {
 }
 
 protocol GetOtherProfileUseCase {
-    func getProfile(of loginId: String)
+    func execute(of loginId: String) -> AnyPublisher<GitHubUser, Error>
 }

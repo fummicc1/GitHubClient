@@ -11,21 +11,24 @@ import SwiftUI
 
 protocol RepositoryListViewModel: ObservableObject {
     var repositories: [Repository] { get }
+    var query: String { get }
     func fetch(query: String)
 }
 
 final class RepositoryListViewModelImpl: ObservableObject, RepositoryListViewModel {
     
     @Published var repositories: [Repository] = []
+    @Published var query: String = "fummicc1"
     
-    init(interactor: GetRepositoryUseCase) {
-        self.interactor = interactor
+    init(useCase: GetRepositoryUseCase) {
+        self.useCase = useCase
+        fetch(query: query)
     }
     
-    private let interactor: GetRepositoryUseCase
+    private let useCase: GetRepositoryUseCase
     
     func fetch(query: String) {
-        interactor.execute(query: query)
+        useCase.execute(query: query)
             .replaceError(with: [])
             .assign(to: &$repositories)
     }
