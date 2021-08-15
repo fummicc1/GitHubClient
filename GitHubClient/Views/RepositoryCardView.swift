@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RepositoryCardView: View {
     
-    @Binding var repository: Repository
+    let repository: Repository
     
     var body: some View {
         VStack {
@@ -22,19 +22,20 @@ struct RepositoryCardView: View {
 
 struct RepositoryCardView_Previews: PreviewProvider {
     static var previews: some View {
-        RepositoryCardView(repository: .constant(
-            Repository(
-                id: "",
-                url: "https://github.com/fummicc1/fummicc1",
-                createdAt: Date(),
-                description: nil,
-                isPrivate: false,
-                name: "fummicc1",
-                owner: GitHubUserModel(
-                    login: "fummicc1",
-                    avatarUrl: ""
-                )
-            )
-        ))
+        RepositoryCardView(repository:
+                            Repository(
+                                id: "",
+                                url: "https://github.com/fummicc1/fummicc1",
+                                createdAt: Date(),
+                                description: nil,
+                                isPrivate: false,
+                                name: "fummicc1",
+                                owner: GitHubUserModel(
+                                    login: "fummicc1",
+                                    avatarUrl: ""
+                                )
+                                
+                            )
+        )
     }
 }

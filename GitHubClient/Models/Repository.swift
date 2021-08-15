@@ -45,3 +45,5 @@ extension Repository {
         return ret
     }
 }
+
+extension Repository: Identifiable { }

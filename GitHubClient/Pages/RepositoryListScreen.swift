@@ -15,8 +15,7 @@ struct RepositoryListScreen: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(viewModel.repositories.indices) { index in
-                        let repository = $viewModel.repositories[index]
+                    ForEach(viewModel.repositories) { repository in
                         RepositoryCardView(repository: repository)
                     }
                 }
