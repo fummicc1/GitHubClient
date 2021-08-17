@@ -16,8 +16,16 @@ struct RootView: View {
     var body: some View {
         TabView(selection: $selectIndex,
                 content:  {
-                    RepositoryListScreen(viewModel: RepositoryListViewModelImpl(useCase: repositoryUseCase)).tabItem { Text("Tab Label 1") }.tag(1)
-                    Text("Tab Content 2").tabItem { Text("Tab Label 2") }.tag(2)
+                    RepositoryListScreen(
+                        viewModel: RepositoryListViewModelImpl(
+                            useCase: repositoryUseCase
+                        )
+                    )
+                    .tabItem { Text("Tab Label 1") }
+                    .tag(1)
+                    Text("Tab Content 2")
+                        .tabItem { Text("Tab Label 2") }
+                        .tag(2)
                 })
     }
 }

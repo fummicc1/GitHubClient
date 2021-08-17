@@ -9,18 +9,40 @@ import SwiftUI
 
 struct RepositoryListScreen: View {
     
+    @StateObject var viewModel: RepositoryListViewModelImpl
+    
+    var configuration: NavigationViewWithSearchBar<RepositoryListView>.Configuration {
+        .init(
+            title: "Search List",
+            prefersLargeTitle: true,
+            searchBarPlaceholder: "Search"
+        )
+    }
+    
+    var body: some View {
+        NavigationViewWithSearchBar<RepositoryListView>(
+            view: RepositoryListView(viewModel: viewModel),
+            configuration: configuration,
+            onSearchChangeCommit: {
+                viewModel.fetch()
+            },
+            searchText: $viewModel.query
+        )
+        .ignoresSafeArea()
+    }
+}
+
+struct RepositoryListView: View {
+    
     @ObservedObject var viewModel: RepositoryListViewModelImpl
     
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    ForEach(viewModel.repositories) { repository in
-                        RepositoryCardView(repository: repository)
-                    }
+        VStack {
+            List {
+                ForEach(viewModel.repositories) { repository in
+                    RepositoryCardView(repository: repository)
                 }
-            }.ignoresSafeArea()
-            .navigationTitle("Search List")
+            }
         }
     }
 }

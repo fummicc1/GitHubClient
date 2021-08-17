@@ -12,7 +12,7 @@ import SwiftUI
 protocol RepositoryListViewModel: ObservableObject {
     var repositories: [Repository] { get }
     var query: String { get }
-    func fetch(query: String)
+    func fetch()
 }
 
 final class RepositoryListViewModelImpl: ObservableObject, RepositoryListViewModel {
@@ -22,12 +22,12 @@ final class RepositoryListViewModelImpl: ObservableObject, RepositoryListViewMod
     
     init(useCase: GetRepositoryUseCase) {
         self.useCase = useCase
-        fetch(query: query)
+        fetch()
     }
     
     private let useCase: GetRepositoryUseCase
     
-    func fetch(query: String) {
+    func fetch() {
         useCase.execute(query: query)
             .replaceError(with: [])
             .assign(to: &$repositories)

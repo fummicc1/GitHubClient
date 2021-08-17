@@ -38,6 +38,7 @@
 		D3C460D026B1253600DF4B1F /* SearchRepositoryClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460CF26B1253600DF4B1F /* SearchRepositoryClientTests.swift */; };
 		D3D9CF8726C90FFD0044921E /* Interactors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D9CF8626C90FFD0044921E /* Interactors.swift */; };
 		D3D9CF8A26C910DB0044921E /* APIRequestables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D9CF8926C910DB0044921E /* APIRequestables.swift */; };
+		D3EFED6E26CB895200592804 /* NavigationViewWithSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EFED6D26CB895200592804 /* NavigationViewWithSearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		D3C460CF26B1253600DF4B1F /* SearchRepositoryClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryClientTests.swift; sourceTree = "<group>"; };
 		D3D9CF8626C90FFD0044921E /* Interactors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactors.swift; sourceTree = "<group>"; };
 		D3D9CF8926C910DB0044921E /* APIRequestables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestables.swift; sourceTree = "<group>"; };
+		D3EFED6D26CB895200592804 /* NavigationViewWithSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewWithSearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				D360117226C01ADA008C37FD /* RepositoryCardView.swift */,
+				D3EFED6D26CB895200592804 /* NavigationViewWithSearchBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				D33A101226B10E51002DA455 /* MyProfileInteractor.swift in Sources */,
 				D33A101926B10E51002DA455 /* APIClient.swift in Sources */,
 				D33A0FE226B10D62002DA455 /* GitHubClientApp.swift in Sources */,
+				D3EFED6E26CB895200592804 /* NavigationViewWithSearchBar.swift in Sources */,
 				D33A101626B10E51002DA455 /* Me.swift in Sources */,
 				D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */,
 				D3C460C926B120E800DF4B1F /* RepositoryUseCase.swift in Sources */,
