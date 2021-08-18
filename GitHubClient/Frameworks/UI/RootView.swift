@@ -11,15 +11,13 @@ struct RootView: View {
     
     @State private var selectIndex: Int = 0
     
-    @Environment(\.repositoryUseCase) var repositoryUseCase: GetRepositoryUseCase
+    @Environment(\.repositoryUseCase) var repositoryUseCase: RepositoryUseCaseProtocol
     
     var body: some View {
         TabView(selection: $selectIndex,
                 content:  {
                     RepositoryListScreen(
-                        viewModel: RepositoryListViewModelImpl(
-                            useCase: repositoryUseCase
-                        )
+                        viewModel: RepositoryListViewModel(useCase: repositoryUseCase)
                     )
                     .tabItem { Text("Tab Label 1") }
                     .tag(1)

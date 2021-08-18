@@ -13,15 +13,13 @@
 		D33A0FF726B10D75002DA455 /* GitHubClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A0FF626B10D75002DA455 /* GitHubClientTests.swift */; };
 		D33A100026B10DE7002DA455 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = D33A0FFF26B10DE7002DA455 /* Apollo */; };
 		D33A101126B10E51002DA455 /* ProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100326B10E51002DA455 /* ProfileUseCase.swift */; };
-		D33A101226B10E51002DA455 /* MyProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100426B10E51002DA455 /* MyProfileInteractor.swift */; };
+		D33A101226B10E51002DA455 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100426B10E51002DA455 /* ProfileInteractor.swift */; };
 		D33A101326B10E51002DA455 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100626B10E51002DA455 /* API.swift */; };
 		D33A101426B10E51002DA455 /* PrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100826B10E51002DA455 /* PrivateKey.swift */; };
 		D33A101526B10E51002DA455 /* GitHubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100A26B10E51002DA455 /* GitHubUser.swift */; };
 		D33A101626B10E51002DA455 /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100B26B10E51002DA455 /* Me.swift */; };
 		D33A101726B10E51002DA455 /* ApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100D26B10E51002DA455 /* ApiErrors.swift */; };
-		D33A101826B10E51002DA455 /* MyProfileApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100E26B10E51002DA455 /* MyProfileApiClient.swift */; };
 		D33A101926B10E51002DA455 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100F26B10E51002DA455 /* APIClient.swift */; };
-		D33A101A26B10E51002DA455 /* ProfileApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A101026B10E51002DA455 /* ProfileApiClient.swift */; };
 		D33A102226B10EE2002DA455 /* ProfileInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A101C26B10EE2002DA455 /* ProfileInteractorTests.swift */; };
 		D33A102326B10EE2002DA455 /* ProfileInteractorFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A101E26B10EE2002DA455 /* ProfileInteractorFake.swift */; };
 		D33A102426B10EE2002DA455 /* ProfileRequestableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A102026B10EE2002DA455 /* ProfileRequestableMock.swift */; };
@@ -30,15 +28,20 @@
 		D3C460BB26B110CF00DF4B1F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BA26B110CF00DF4B1F /* RootView.swift */; };
 		D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */; };
 		D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */; };
-		D3C460C226B1119A00DF4B1F /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460C126B1119A00DF4B1F /* Repository.swift */; };
+		D3C460C226B1119A00DF4B1F /* GitHubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460C126B1119A00DF4B1F /* GitHubRepository.swift */; };
 		D3C460C526B1183200DF4B1F /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460C426B1183200DF4B1F /* String+Ex.swift */; };
-		D3C460C726B11A1500DF4B1F /* SpecificRepositoryApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460C626B11A1500DF4B1F /* SpecificRepositoryApiClient.swift */; };
 		D3C460C926B120E800DF4B1F /* RepositoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460C826B120E800DF4B1F /* RepositoryUseCase.swift */; };
 		D3C460CB26B1214A00DF4B1F /* RepositoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460CA26B1214A00DF4B1F /* RepositoryInteractor.swift */; };
 		D3C460D026B1253600DF4B1F /* SearchRepositoryClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460CF26B1253600DF4B1F /* SearchRepositoryClientTests.swift */; };
-		D3D9CF8726C90FFD0044921E /* Interactors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D9CF8626C90FFD0044921E /* Interactors.swift */; };
-		D3D9CF8A26C910DB0044921E /* APIRequestables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D9CF8926C910DB0044921E /* APIRequestables.swift */; };
+		D3D9CF8726C90FFD0044921E /* InteractorEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D9CF8626C90FFD0044921E /* InteractorEnvironment.swift */; };
+		D3D9CF8A26C910DB0044921E /* WebClientEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D9CF8926C910DB0044921E /* WebClientEnvironment.swift */; };
 		D3EFED6E26CB895200592804 /* NavigationViewWithSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EFED6D26CB895200592804 /* NavigationViewWithSearchBar.swift */; };
+		D3F1BAB526CCF72B00046689 /* UserGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BAB426CCF72B00046689 /* UserGateway.swift */; };
+		D3F1BAB726CD05CA00046689 /* GatewayEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BAB626CD05CA00046689 /* GatewayEnvironment.swift */; };
+		D3F1BAB926CD081300046689 /* GitHubUserViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BAB826CD081300046689 /* GitHubUserViewData.swift */; };
+		D3F1BABB26CD082200046689 /* GitHubRepositoryViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BABA26CD082200046689 /* GitHubRepositoryViewData.swift */; };
+		D3F1BABE26CD114400046689 /* ErrorMessageViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BABD26CD114400046689 /* ErrorMessageViewData.swift */; };
+		D3F1BAC226CD347400046689 /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = D3F1BAC126CD347400046689 /* Cuckoo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,15 +64,13 @@
 		D33A0FF626B10D75002DA455 /* GitHubClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubClientTests.swift; sourceTree = "<group>"; };
 		D33A0FF826B10D75002DA455 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D33A100326B10E51002DA455 /* ProfileUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileUseCase.swift; sourceTree = "<group>"; };
-		D33A100426B10E51002DA455 /* MyProfileInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileInteractor.swift; sourceTree = "<group>"; };
+		D33A100426B10E51002DA455 /* ProfileInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		D33A100626B10E51002DA455 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		D33A100826B10E51002DA455 /* PrivateKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateKey.swift; sourceTree = "<group>"; };
 		D33A100A26B10E51002DA455 /* GitHubUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubUser.swift; sourceTree = "<group>"; };
 		D33A100B26B10E51002DA455 /* Me.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		D33A100D26B10E51002DA455 /* ApiErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiErrors.swift; sourceTree = "<group>"; };
-		D33A100E26B10E51002DA455 /* MyProfileApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileApiClient.swift; sourceTree = "<group>"; };
 		D33A100F26B10E51002DA455 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		D33A101026B10E51002DA455 /* ProfileApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileApiClient.swift; sourceTree = "<group>"; };
 		D33A101C26B10EE2002DA455 /* ProfileInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInteractorTests.swift; sourceTree = "<group>"; };
 		D33A101E26B10EE2002DA455 /* ProfileInteractorFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInteractorFake.swift; sourceTree = "<group>"; };
 		D33A102026B10EE2002DA455 /* ProfileRequestableMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRequestableMock.swift; sourceTree = "<group>"; };
@@ -78,15 +79,19 @@
 		D3C460BA26B110CF00DF4B1F /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListScreen.swift; sourceTree = "<group>"; };
 		D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
-		D3C460C126B1119A00DF4B1F /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		D3C460C126B1119A00DF4B1F /* GitHubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepository.swift; sourceTree = "<group>"; };
 		D3C460C426B1183200DF4B1F /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
-		D3C460C626B11A1500DF4B1F /* SpecificRepositoryApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificRepositoryApiClient.swift; sourceTree = "<group>"; };
 		D3C460C826B120E800DF4B1F /* RepositoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryUseCase.swift; sourceTree = "<group>"; };
 		D3C460CA26B1214A00DF4B1F /* RepositoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInteractor.swift; sourceTree = "<group>"; };
 		D3C460CF26B1253600DF4B1F /* SearchRepositoryClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryClientTests.swift; sourceTree = "<group>"; };
-		D3D9CF8626C90FFD0044921E /* Interactors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactors.swift; sourceTree = "<group>"; };
-		D3D9CF8926C910DB0044921E /* APIRequestables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestables.swift; sourceTree = "<group>"; };
+		D3D9CF8626C90FFD0044921E /* InteractorEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorEnvironment.swift; sourceTree = "<group>"; };
+		D3D9CF8926C910DB0044921E /* WebClientEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebClientEnvironment.swift; sourceTree = "<group>"; };
 		D3EFED6D26CB895200592804 /* NavigationViewWithSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewWithSearchBar.swift; sourceTree = "<group>"; };
+		D3F1BAB426CCF72B00046689 /* UserGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGateway.swift; sourceTree = "<group>"; };
+		D3F1BAB626CD05CA00046689 /* GatewayEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayEnvironment.swift; sourceTree = "<group>"; };
+		D3F1BAB826CD081300046689 /* GitHubUserViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserViewData.swift; sourceTree = "<group>"; };
+		D3F1BABA26CD082200046689 /* GitHubRepositoryViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepositoryViewData.swift; sourceTree = "<group>"; };
+		D3F1BABD26CD114400046689 /* ErrorMessageViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageViewData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3F1BAC226CD347400046689 /* Cuckoo in Frameworks */,
 				D33A100026B10DE7002DA455 /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,20 +135,17 @@
 		D33A0FE026B10D62002DA455 /* GitHubClient */ = {
 			isa = PBXGroup;
 			children = (
-				D3D9CF8526C90EDD0044921E /* Environments */,
-				D360117126C01ACB008C37FD /* Views */,
-				D3C460C326B1182900DF4B1F /* Ex */,
 				D33A0FEA26B10D63002DA455 /* Info.plist */,
 				D33A0FE126B10D62002DA455 /* GitHubClientApp.swift */,
-				D3C460BA26B110CF00DF4B1F /* RootView.swift */,
 				D33A0FE526B10D63002DA455 /* Assets.xcassets */,
-				D33A100526B10E51002DA455 /* API */,
-				D33A100926B10E51002DA455 /* Models */,
-				D33A100226B10E51002DA455 /* Domain */,
-				D33A100C26B10E51002DA455 /* Network */,
-				D3C460BC26B110E100DF4B1F /* Pages */,
+				D3F1BAAF26CCC45600046689 /* Entity */,
+				D3D9CF8526C90EDD0044921E /* Environments */,
+				D3C460C326B1182900DF4B1F /* Ex */,
+				D3F1BAB026CCC46200046689 /* Frameworks */,
+				D3F1BAB126CCC48000046689 /* InterfaceAdapters */,
 				D33A0FE726B10D63002DA455 /* Preview Content */,
 				D33A100726B10E51002DA455 /* Secrets */,
+				D33A100226B10E51002DA455 /* UseCase */,
 			);
 			path = GitHubClient;
 			sourceTree = "<group>";
@@ -168,15 +171,16 @@
 			path = GitHubClientTests;
 			sourceTree = "<group>";
 		};
-		D33A100226B10E51002DA455 /* Domain */ = {
+		D33A100226B10E51002DA455 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				D3F1BABF26CD136600046689 /* Mock */,
 				D33A100326B10E51002DA455 /* ProfileUseCase.swift */,
-				D33A100426B10E51002DA455 /* MyProfileInteractor.swift */,
+				D33A100426B10E51002DA455 /* ProfileInteractor.swift */,
 				D3C460C826B120E800DF4B1F /* RepositoryUseCase.swift */,
 				D3C460CA26B1214A00DF4B1F /* RepositoryInteractor.swift */,
 			);
-			path = Domain;
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		D33A100526B10E51002DA455 /* API */ = {
@@ -198,9 +202,9 @@
 		D33A100926B10E51002DA455 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D33A100A26B10E51002DA455 /* GitHubUser.swift */,
-				D33A100B26B10E51002DA455 /* Me.swift */,
-				D3C460C126B1119A00DF4B1F /* Repository.swift */,
+				D3F1BAB826CD081300046689 /* GitHubUserViewData.swift */,
+				D3F1BABA26CD082200046689 /* GitHubRepositoryViewData.swift */,
+				D3F1BABD26CD114400046689 /* ErrorMessageViewData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,11 +212,9 @@
 		D33A100C26B10E51002DA455 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D33A100526B10E51002DA455 /* API */,
 				D33A100D26B10E51002DA455 /* ApiErrors.swift */,
-				D33A100E26B10E51002DA455 /* MyProfileApiClient.swift */,
 				D33A100F26B10E51002DA455 /* APIClient.swift */,
-				D33A101026B10E51002DA455 /* ProfileApiClient.swift */,
-				D3C460C626B11A1500DF4B1F /* SpecificRepositoryApiClient.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -251,13 +253,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D3C460BC26B110E100DF4B1F /* Pages */ = {
+		D3C460BC26B110E100DF4B1F /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */,
-				D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */,
+				D3C460BA26B110CF00DF4B1F /* RootView.swift */,
+				D3F1BAB226CCC4B900046689 /* Pages */,
+				D360117126C01ACB008C37FD /* Views */,
 			);
-			path = Pages;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		D3C460C326B1182900DF4B1F /* Ex */ = {
@@ -279,10 +282,71 @@
 		D3D9CF8526C90EDD0044921E /* Environments */ = {
 			isa = PBXGroup;
 			children = (
-				D3D9CF8626C90FFD0044921E /* Interactors.swift */,
-				D3D9CF8926C910DB0044921E /* APIRequestables.swift */,
+				D3D9CF8626C90FFD0044921E /* InteractorEnvironment.swift */,
+				D3D9CF8926C910DB0044921E /* WebClientEnvironment.swift */,
+				D3F1BAB626CD05CA00046689 /* GatewayEnvironment.swift */,
 			);
 			path = Environments;
+			sourceTree = "<group>";
+		};
+		D3F1BAAF26CCC45600046689 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				D33A100A26B10E51002DA455 /* GitHubUser.swift */,
+				D33A100B26B10E51002DA455 /* Me.swift */,
+				D3C460C126B1119A00DF4B1F /* GitHubRepository.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		D3F1BAB026CCC46200046689 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3C460BC26B110E100DF4B1F /* UI */,
+				D33A100C26B10E51002DA455 /* Network */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		D3F1BAB126CCC48000046689 /* InterfaceAdapters */ = {
+			isa = PBXGroup;
+			children = (
+				D33A100926B10E51002DA455 /* Models */,
+				D3F1BABC26CD099300046689 /* ViewModels */,
+				D3F1BAB326CCF71400046689 /* Gateways */,
+			);
+			path = InterfaceAdapters;
+			sourceTree = "<group>";
+		};
+		D3F1BAB226CCC4B900046689 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		D3F1BAB326CCF71400046689 /* Gateways */ = {
+			isa = PBXGroup;
+			children = (
+				D3F1BAB426CCF72B00046689 /* UserGateway.swift */,
+			);
+			path = Gateways;
+			sourceTree = "<group>";
+		};
+		D3F1BABC26CD099300046689 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D3F1BABF26CD136600046689 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +368,7 @@
 			name = GitHubClient;
 			packageProductDependencies = (
 				D33A0FFF26B10DE7002DA455 /* Apollo */,
+				D3F1BAC126CD347400046689 /* Cuckoo */,
 			);
 			productName = GitHubClient;
 			productReference = D33A0FDE26B10D62002DA455 /* GitHubClient.app */;
@@ -356,6 +421,7 @@
 			mainGroup = D33A0FD526B10D62002DA455;
 			packageReferences = (
 				D33A0FFE26B10DE6002DA455 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				D3F1BAC026CD347300046689 /* XCRemoteSwiftPackageReference "Cuckoo" */,
 			);
 			productRefGroup = D33A0FDF26B10D62002DA455 /* Products */;
 			projectDirPath = "";
@@ -403,7 +469,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"graphql/schema.json\" API.swift\n\nmv API.swift ./API/API.swift\n";
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"graphql/schema.json\" API.swift\n\nmv API.swift ./Frameworks/Network/API/API.swift\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -412,29 +478,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3D9CF8A26C910DB0044921E /* APIRequestables.swift in Sources */,
+				D3D9CF8A26C910DB0044921E /* WebClientEnvironment.swift in Sources */,
 				D33A101526B10E51002DA455 /* GitHubUser.swift in Sources */,
 				D33A101726B10E51002DA455 /* ApiErrors.swift in Sources */,
 				D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */,
 				D33A101126B10E51002DA455 /* ProfileUseCase.swift in Sources */,
-				D3C460C726B11A1500DF4B1F /* SpecificRepositoryApiClient.swift in Sources */,
-				D33A101226B10E51002DA455 /* MyProfileInteractor.swift in Sources */,
+				D3F1BAB526CCF72B00046689 /* UserGateway.swift in Sources */,
+				D33A101226B10E51002DA455 /* ProfileInteractor.swift in Sources */,
 				D33A101926B10E51002DA455 /* APIClient.swift in Sources */,
+				D3F1BAB726CD05CA00046689 /* GatewayEnvironment.swift in Sources */,
 				D33A0FE226B10D62002DA455 /* GitHubClientApp.swift in Sources */,
 				D3EFED6E26CB895200592804 /* NavigationViewWithSearchBar.swift in Sources */,
 				D33A101626B10E51002DA455 /* Me.swift in Sources */,
+				D3F1BABB26CD082200046689 /* GitHubRepositoryViewData.swift in Sources */,
 				D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */,
 				D3C460C926B120E800DF4B1F /* RepositoryUseCase.swift in Sources */,
-				D33A101826B10E51002DA455 /* MyProfileApiClient.swift in Sources */,
-				D3D9CF8726C90FFD0044921E /* Interactors.swift in Sources */,
+				D3D9CF8726C90FFD0044921E /* InteractorEnvironment.swift in Sources */,
 				D3C460C526B1183200DF4B1F /* String+Ex.swift in Sources */,
-				D3C460C226B1119A00DF4B1F /* Repository.swift in Sources */,
+				D3C460C226B1119A00DF4B1F /* GitHubRepository.swift in Sources */,
+				D3F1BABE26CD114400046689 /* ErrorMessageViewData.swift in Sources */,
 				D3C460BB26B110CF00DF4B1F /* RootView.swift in Sources */,
 				D3C460CB26B1214A00DF4B1F /* RepositoryInteractor.swift in Sources */,
 				D33A101326B10E51002DA455 /* API.swift in Sources */,
 				D33A101426B10E51002DA455 /* PrivateKey.swift in Sources */,
-				D33A101A26B10E51002DA455 /* ProfileApiClient.swift in Sources */,
 				D360117326C01ADA008C37FD /* RepositoryCardView.swift in Sources */,
+				D3F1BAB926CD081300046689 /* GitHubUserViewData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +771,14 @@
 				minimumVersion = 0.45.0;
 			};
 		};
+		D3F1BAC026CD347300046689 /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Brightify/Cuckoo";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -710,6 +786,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D33A0FFE26B10DE6002DA455 /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = Apollo;
+		};
+		D3F1BAC126CD347400046689 /* Cuckoo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3F1BAC026CD347300046689 /* XCRemoteSwiftPackageReference "Cuckoo" */;
+			productName = Cuckoo;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
