@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 struct RepositoryListScreen: View {
     
@@ -20,19 +21,23 @@ struct RepositoryListScreen: View {
     @ObservedObject var viewModel: RepositoryListViewModel
     
     var body: some View {
-        VStack {
-            RepositoryListView(repositories: $viewModel.repositories)
-            Text(viewModel.repositories.isEmpty ? "未検索" : "\(viewModel.repositories.count)の検索結果")
-            Spacer()
-        }.background(NavigationViewWithSearchBar(
-            configuration: configuration,
-            onSearchChangeCommit: {
-                viewModel.fetch()
-            },
-            viewModel: viewModel
-        ))
-        .ignoresSafeArea(.all, edges: .top)
-        
+        NavigationView {
+            VStack {
+                RepositoryListView(repositories: $viewModel.repositories)
+                Text(viewModel.repositories.isEmpty ? "未検索" : "\(viewModel.repositories.count)の検索結果")
+                Spacer()
+            }
+            .navigationSearchBar({
+                SearchBar(
+                    "Search Repository",
+                    text: $viewModel.query,
+                    onCommit: {
+                        viewModel.fetch()
+                    }
+                )
+            })
+            .navigationTitle("Search Repository List")
+        }
         .alert(isPresented: $viewModel.shouldShowErrorMessage) {
             let message = viewModel.errorMessage!
             return Alert(

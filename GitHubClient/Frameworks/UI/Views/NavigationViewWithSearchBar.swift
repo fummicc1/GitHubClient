@@ -35,6 +35,8 @@ struct NavigationViewWithSearchBar: UIViewControllerRepresentable {
         navigationController.navigationBar.topItem?.searchController = searchController
         navigationController.navigationBar.topItem?.hidesSearchBarWhenScrolling = true
         
+        navigationController.navigationBar.sizeToFit()
+        
         return navigationController
     }
     
