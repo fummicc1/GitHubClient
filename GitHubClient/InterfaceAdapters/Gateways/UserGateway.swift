@@ -11,12 +11,11 @@ import Apollo
 
 protocol WebClientRequestable {
     associatedtype Query: GraphQLQuery
-    associatedtype Response
     func build() -> Query
 }
 
-protocol WebClientProtocol {
-    func request<Request: WebClientRequestable>(with request: Request) -> AnyPublisher<Request.Response, Error>
+protocol WebClientProtocol: AnyObject {
+    func request<Request: WebClientRequestable>(with request: Request) -> AnyPublisher<Request.Query.Data, Error>
 }
 
 struct UserRequestable: WebClientRequestable {
@@ -54,32 +53,43 @@ struct MeRequestable: WebClientRequestable {
     }
 }
 
+enum GatewayGenericError: Swift.Error {
+    case failedToGetResult(data: [String: Any?])
+}
+
 class UserGateway: UserGatewayProtocol {
     
-    private weak var useCase: ProfileUseCaseProtocol!
     private var webClient: WebClientProtocol!
     
-    init(
-        useCase: ProfileUseCaseProtocol?
-    ) {
-        self.useCase = useCase
+    internal init(webClient: WebClientProtocol) {
+        self.webClient = webClient
     }
     
     func fetch(id: GitHubUserLoginID) -> AnyPublisher<GitHubUser, Error> {
         let request = UserRequestable(id: id.id)
-        return webClient.request(with: request).map({ user in
-            GitHubUser(
-                login: GitHubUserLoginID(
-                    id: user.login
-                ),
-                avatarUrl: user.avatarUrl
-            )
-        }).eraseToAnyPublisher()
+        return webClient.request(with: request).flatMap({ data in
+            Future<GitHubUser, Error> { promise in
+                guard let queryUser = data.user else {
+                    promise(.failure(GatewayGenericError.failedToGetResult(data: data.resultMap)))
+                    return
+                }
+                let githubUser = GitHubUser(
+                    login: GitHubUserLoginID(
+                        id: queryUser.login
+                    ),
+                    avatarUrl: queryUser.avatarUrl
+                )
+                promise(.success(githubUser))
+            }
+        })
+        .eraseToAnyPublisher()
     }
     
     func fetchMe() -> AnyPublisher<MeEntity, Error> {
         let request = MeRequestable()
-        return webClient.request(with: request).map({ me in
+        return webClient.request(with: request).compactMap({ data in
+            
+            let me = data.viewer
             
             let followers = me.followers.nodes?
                 .compactMap({ $0 })
@@ -102,6 +112,7 @@ class UserGateway: UserGatewayProtocol {
             return MeEntity(
                 login: GitHubUserLoginID(id: me.login),
                 avatarUrl: me.avatarUrl,
+                name: me.name,
                 bio: me.bio,
                 followers: followers,
                 followersCount: me.followers.totalCount,
@@ -110,5 +121,4 @@ class UserGateway: UserGatewayProtocol {
             )
         }).eraseToAnyPublisher()
     }
-    
 }

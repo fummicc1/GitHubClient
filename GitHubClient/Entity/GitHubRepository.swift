@@ -9,6 +9,7 @@ import Foundation
 import Apollo
 
 struct GitHubRepository {
+    
     let id: GitHubRepositoryID
     let url: String
     let createdAt: Date
@@ -16,6 +17,58 @@ struct GitHubRepository {
     let isPrivate: Bool
     let name: String
     let owner: GitHubUser
+    
+    init(
+        id: GitHubRepositoryID,
+        url: String,
+        createdAt: Date,
+        description: String?,
+        isPrivate: Bool,
+        name: String,
+        owner: GitHubUser
+    ) {
+        self.id = id
+        self.url = url
+        self.createdAt = createdAt
+        self.description = description
+        self.isPrivate = isPrivate
+        self.name = name
+        self.owner = owner
+    }
+    
+    static func makeWithISO8601DateFormatter(
+        id: GitHubRepositoryID,
+        url: String,
+        createdAt: String,
+        description: String?,
+        isPrivate: Bool,
+        name: String,
+        owner: GitHubUser
+    ) throws -> GitHubRepository {
+        
+        let dateFormatter = ISO8601DateFormatter()
+        guard let createdAt = dateFormatter.date(from: createdAt) else {
+            let error = Error.failedToFormatDate(text: createdAt)
+            throw error
+        }
+        
+        return GitHubRepository(
+            id: id,
+            url: url,
+            createdAt: createdAt,
+            description: description,
+            isPrivate: isPrivate,
+            name: name,
+            owner: owner
+        )
+        
+    }
+}
+
+extension GitHubRepository {
+    enum Error: Swift.Error {
+        case failedToFormatDate(text: String)
+    }
 }
 
 struct GitHubRepositoryID: Equatable {

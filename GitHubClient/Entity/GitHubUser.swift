@@ -15,3 +15,12 @@ struct GitHubUser {
     let login: GitHubUserLoginID
     let avatarUrl: String
 }
+
+extension GitHubUser {
+    static func stub() -> GitHubUser {
+        GitHubUser(
+            login: GitHubUserLoginID(id: "fummicc1"),
+            avatarUrl: "https://avatars.githubusercontent.com/u/44002126?v=4"
+        )
+    }
+}

@@ -15,25 +15,27 @@ protocol RepositoryUseCaseOutput {
 
 protocol RepositoryGatewayProtocol {
     func search(of owner: String, repoName: String) -> AnyPublisher<GitHubRepository, Error>
-    func search(with words: [String]) -> AnyPublisher<GitHubRepositoryList, Error>
-    func search(with query: String) -> AnyPublisher<GitHubRepositoryList, Error>
+    func search(with query: String, count: Int) -> AnyPublisher<GitHubRepositoryList, Error>
 }
 
-class RepositoryUseCase {
+class RepositoryInteractor {
+    
+    init(
+        repositoryGateway: RepositoryGatewayProtocol?,
+        output: RepositoryUseCaseOutput?
+    ) {
+        self.repositoryGateway = repositoryGateway
+        self.output = output
+    }
+    
     
     private var repositoryGateway: RepositoryGatewayProtocol!
-    
-    private var cancellables: Set<AnyCancellable> = Set()
-    
     private var output: RepositoryUseCaseOutput!
     
-    func inject(output: RepositoryUseCaseOutput, gateway: RepositoryGatewayProtocol) {
-        self.output = output
-        self.repositoryGateway = gateway
-    }
+    private var cancellables: Set<AnyCancellable> = Set()
 }
 
-extension RepositoryUseCase: RepositoryUseCaseProtocol {
+extension RepositoryInteractor: RepositoryUseCaseProtocol {
     func search(of owner: String, repoName: String) {
         var repositories = GitHubRepositoryList(repositories: [])
         repositoryGateway.search(of: owner, repoName: repoName)
@@ -54,7 +56,7 @@ extension RepositoryUseCase: RepositoryUseCaseProtocol {
     
     func search(with query: String) {
         var repositories: GitHubRepositoryList = GitHubRepositoryList(repositories: [])
-        repositoryGateway.search(with: query)
+        repositoryGateway.search(with: query, count: 10)
             .sink { [weak self] completion in
                 
                 switch completion {

@@ -9,11 +9,10 @@ import Foundation
 
 struct GitHubUserViewData {
     let loginID: String
-    let name: String
     let avatarURL: String
 }
 
-extension GitHubUserViewData: Identifiable {
+extension GitHubUserViewData: Hashable, Identifiable {
     var id: String {
         loginID
     }

@@ -11,16 +11,15 @@ struct RootView: View {
     
     @State private var selectIndex: Int = 0
     
-    @Environment(\.repositoryUseCase) var repositoryUseCase: RepositoryUseCaseProtocol
+    @Environment(\.repositoryListRouter) var router: RepositoryListRouterProtocol
     
     var body: some View {
         TabView(selection: $selectIndex,
                 content:  {
-                    RepositoryListScreen(
-                        viewModel: RepositoryListViewModel(useCase: repositoryUseCase)
-                    )
+                    router.assemble()
                     .tabItem { Text("Tab Label 1") }
                     .tag(1)
+                    
                     Text("Tab Content 2")
                         .tabItem { Text("Tab Label 2") }
                         .tag(2)

@@ -9,19 +9,16 @@ import Foundation
 import SwiftUI
 import UIKit
 
-struct NavigationViewWithSearchBar<Root: View>: UIViewControllerRepresentable {
+struct NavigationViewWithSearchBar: UIViewControllerRepresentable {
     
-    let view: Root
     let configuration: Configuration
     let onSearchChangeCommit: () -> Void
     
-    @Binding var searchText: String
+    @ObservedObject var viewModel: RepositoryListViewModel
     
     func makeUIViewController(context: Context) -> UINavigationController {
         
-        let rootViewController = UIHostingController(rootView: view)
-        
-        let navigationController = UINavigationController(rootViewController: rootViewController)
+        let navigationController = UINavigationController()
         
         navigationController.navigationBar.topItem?.title = configuration.title
         navigationController.navigationBar.prefersLargeTitles = configuration.prefersLargeTitle
@@ -30,7 +27,7 @@ struct NavigationViewWithSearchBar<Root: View>: UIViewControllerRepresentable {
         let searchController = UISearchController()
         
         searchController.searchBar.delegate = context.coordinator
-        searchController.searchBar.text = searchText
+        searchController.searchBar.text = viewModel.query
         
         searchController.searchBar.placeholder = configuration.searchBarPlaceholder
         searchController.obscuresBackgroundDuringPresentation = false
@@ -42,7 +39,6 @@ struct NavigationViewWithSearchBar<Root: View>: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
-        uiViewController.navigationBar.topItem?.searchController?.searchBar.text = searchText
     }
     
     func makeCoordinator() -> Coordinator {
@@ -61,7 +57,7 @@ extension NavigationViewWithSearchBar {
         }
         
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            parent.searchText = searchText
+            parent.viewModel.query = searchText
         }
         
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -72,7 +68,7 @@ extension NavigationViewWithSearchBar {
             guard let text = searchBar.text else {
                 return
             }
-            parent.searchText = text
+            parent.viewModel.query = text
         }
     }
     

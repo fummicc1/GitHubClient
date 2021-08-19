@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-struct RepositoryListScreen: View, RepositoryListViewModelOutput {
+struct RepositoryListScreen: View {
     
-    let viewModel: RepositoryListViewModelProtocol
-    
-    var configuration: NavigationViewWithSearchBar<RepositoryListView>.Configuration {
+    var configuration: NavigationViewWithSearchBar.Configuration {
         .init(
             title: "Search List",
             prefersLargeTitle: true,
@@ -19,39 +17,33 @@ struct RepositoryListScreen: View, RepositoryListViewModelOutput {
         )
     }
     
-    @State private var repositories: [GitHubRepositoryViewData] = []
-    @State private var query: String = ""
-    
-    @State private var errorMessage: ErrorMessageViewData?
+    @ObservedObject var viewModel: RepositoryListViewModel
     
     var body: some View {
-        NavigationViewWithSearchBar<RepositoryListView>(
-            view: RepositoryListView(repositories: $repositories),
+        VStack {
+            RepositoryListView(repositories: $viewModel.repositories)
+            Text(viewModel.repositories.isEmpty ? "未検索" : "\(viewModel.repositories.count)の検索結果")
+            Spacer()
+        }.background(NavigationViewWithSearchBar(
             configuration: configuration,
             onSearchChangeCommit: {
-                viewModel.fetch(with: query)
+                viewModel.fetch()
             },
-            searchText: $query
-        )
-        .ignoresSafeArea()
-        .alert(item: $errorMessage) { message in
-            Alert(
-                title: Text("エラーは発生しました"),
+            viewModel: viewModel
+        ))
+        .ignoresSafeArea(.all, edges: .top)
+        
+        .alert(isPresented: $viewModel.shouldShowErrorMessage) {
+            let message = viewModel.errorMessage!
+            return Alert(
+                title: Text("エラーが発生しました"),
                 message: Text(message.message),
                 dismissButton: Alert.Button.default(Text("閉じる"), action: {
-                    errorMessage = nil
+                    viewModel.errorMessage = nil
+                    viewModel.shouldShowErrorMessage = false
                 })
             )
-
         }
-    }
-    
-    func didUpdateRepositories(_ repositories: [GitHubRepositoryViewData]) {
-        self.repositories = repositories
-    }
-    
-    func showErrorMessage(_ message: ErrorMessageViewData) {
-        
     }
 }
 

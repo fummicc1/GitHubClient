@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 
 protocol RepositoryListViewModelProtocol {
-    func fetch(with query: String)
+    func fetch()
 }
 
 protocol RepositoryListViewModelOutput {
@@ -20,18 +20,18 @@ protocol RepositoryListViewModelOutput {
 
 final class RepositoryListViewModel: ObservableObject, RepositoryListViewModelProtocol {
     
-    init(useCase: RepositoryUseCaseProtocol) {
+    private var useCase: RepositoryUseCaseProtocol!
+    
+    @Published var repositories: [GitHubRepositoryViewData] = [GitHubRepositoryViewData.stub()]
+    @Published var shouldShowErrorMessage: Bool = false
+    @Published var errorMessage: ErrorMessageViewData?
+    @Published var query: String = ""
+    
+    func inject(useCase: RepositoryUseCaseProtocol) {
         self.useCase = useCase
     }
     
-    private var output: RepositoryListViewModelOutput!
-    private weak var useCase: RepositoryUseCaseProtocol!
-    
-    func inject(output: RepositoryListViewModelOutput) {
-        self.output = output
-    }
-    
-    func fetch(with query: String) {
+    func fetch() {
         useCase.search(with: query)
     }
 }
@@ -55,11 +55,15 @@ extension RepositoryListViewModel: RepositoryUseCaseOutput {
                 url: repo.url
             )
         })
-        output.didUpdateRepositories(reposViewData)
+        objectWillChange.send()
+        self.repositories = reposViewData
     }
     
     func didFailToSearch(error: Error) {
         let errorMessage = "エラー: \(error.localizedDescription)"
-        output.showErrorMessage(ErrorMessageViewData(error: error, message: errorMessage))
+        self.errorMessage = ErrorMessageViewData(
+            error: error,
+            message: errorMessage
+        )
     }
 }

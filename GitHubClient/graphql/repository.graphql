@@ -7,13 +7,13 @@ query SpecificRepository($owner: String!, $name: String!) {
         isPrivate
         name
         owner {
-            login
+            login            
             avatarUrl(size: 44)
         }
     }
 }
 
-query SearchRepository($query: String!, $count: Int) {
+query SearchRepository($query: String!, $count: Int!) {
   search(query: $query, type: REPOSITORY, last: $count) {
     edges {
       node {

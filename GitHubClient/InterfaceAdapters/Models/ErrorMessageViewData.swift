@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct ErrorMessageViewData: Identifiable {
-    
-    let error: Error
+struct ErrorMessageViewData: Hashable, Identifiable {
     
     let message: String
+    var id: String
     
-    var id: String {
-        error.localizedDescription
+    internal init(error: Error, message: String) {
+        self.id = error.localizedDescription
+        self.message = message
     }
 }

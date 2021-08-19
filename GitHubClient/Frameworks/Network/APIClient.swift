@@ -41,7 +41,7 @@ extension APIClient {
 }
 
 extension APIClient: WebClientProtocol {
-    func request<Request>(with request: Request) -> AnyPublisher<Request.Response, Error> where Request : WebClientRequestable {
+    func request<Request>(with request: Request) -> AnyPublisher<Request.Query.Data, Error> where Request : WebClientRequestable {
         if let task = task {
             task.cancel()
         }
@@ -58,8 +58,11 @@ extension APIClient: WebClientProtocol {
                         return
                     }
                     
-                    let json = response.data.jsonValue
-                    print(json)
+                    guard let data = response.data else {
+                        return
+                    }
+                    
+                    promise(.success(data))
                     
                 case .failure(let error):
                     promise(.failure(error))

@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 protocol ProfileUseCaseProtocol: AnyObject {
-    
-    func getMe() -> AnyPublisher<MeEntity, Error>
-    func get(with id: GitHubUserLoginID) -> AnyPublisher<GitHubUser, Error>
+    func getMe()
+    func get(with id: GitHubUserLoginID)
 }

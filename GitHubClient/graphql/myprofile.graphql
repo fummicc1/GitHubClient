@@ -1,6 +1,7 @@
 query MyProfile($getFollowerCount: Int, $getFolloweeCount: Int) {
     viewer {
         login
+        name
         bio
         avatarUrl(size: 56)
         followers(first: $getFollowerCount) {

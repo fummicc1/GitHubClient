@@ -12,6 +12,7 @@ public final class MyProfileQuery: GraphQLQuery {
       viewer {
         __typename
         login
+        name
         bio
         avatarUrl(size: 56)
         followers(first: $getFollowerCount) {
@@ -86,6 +87,7 @@ public final class MyProfileQuery: GraphQLQuery {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("login", type: .nonNull(.scalar(String.self))),
+          GraphQLField("name", type: .scalar(String.self)),
           GraphQLField("bio", type: .scalar(String.self)),
           GraphQLField("avatarUrl", arguments: ["size": 56], type: .nonNull(.scalar(String.self))),
           GraphQLField("followers", arguments: ["first": GraphQLVariable("getFollowerCount")], type: .nonNull(.object(Follower.selections))),
@@ -99,8 +101,8 @@ public final class MyProfileQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(login: String, bio: String? = nil, avatarUrl: String, followers: Follower, following: Following) {
-        self.init(unsafeResultMap: ["__typename": "User", "login": login, "bio": bio, "avatarUrl": avatarUrl, "followers": followers.resultMap, "following": following.resultMap])
+      public init(login: String, name: String? = nil, bio: String? = nil, avatarUrl: String, followers: Follower, following: Following) {
+        self.init(unsafeResultMap: ["__typename": "User", "login": login, "name": name, "bio": bio, "avatarUrl": avatarUrl, "followers": followers.resultMap, "following": following.resultMap])
       }
 
       public var __typename: String {
@@ -119,6 +121,16 @@ public final class MyProfileQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "login")
+        }
+      }
+
+      /// The user's public profile name.
+      public var name: String? {
+        get {
+          return resultMap["name"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "name")
         }
       }
 
@@ -377,6 +389,7 @@ public final class ProfileQuery: GraphQLQuery {
       user(login: $login) {
         __typename
         login
+        name
         avatarUrl(size: 44)
       }
     }
@@ -430,6 +443,7 @@ public final class ProfileQuery: GraphQLQuery {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("login", type: .nonNull(.scalar(String.self))),
+          GraphQLField("name", type: .scalar(String.self)),
           GraphQLField("avatarUrl", arguments: ["size": 44], type: .nonNull(.scalar(String.self))),
         ]
       }
@@ -440,8 +454,8 @@ public final class ProfileQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(login: String, avatarUrl: String) {
-        self.init(unsafeResultMap: ["__typename": "User", "login": login, "avatarUrl": avatarUrl])
+      public init(login: String, name: String? = nil, avatarUrl: String) {
+        self.init(unsafeResultMap: ["__typename": "User", "login": login, "name": name, "avatarUrl": avatarUrl])
       }
 
       public var __typename: String {
@@ -460,6 +474,16 @@ public final class ProfileQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "login")
+        }
+      }
+
+      /// The user's public profile name.
+      public var name: String? {
+        get {
+          return resultMap["name"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "name")
         }
       }
 
@@ -707,7 +731,7 @@ public final class SearchRepositoryQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query SearchRepository($query: String!, $count: Int) {
+    query SearchRepository($query: String!, $count: Int!) {
       search(query: $query, type: REPOSITORY, last: $count) {
         __typename
         edges {
@@ -741,9 +765,9 @@ public final class SearchRepositoryQuery: GraphQLQuery {
   public let operationName: String = "SearchRepository"
 
   public var query: String
-  public var count: Int?
+  public var count: Int
 
-  public init(query: String, count: Int? = nil) {
+  public init(query: String, count: Int) {
     self.query = query
     self.count = count
   }
