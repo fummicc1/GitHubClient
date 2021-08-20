@@ -17,6 +17,10 @@ jobs:
           xcode-version: "12.5.1"
       - name: Install xcpretty
         run: gem install xcpretty
+      - name: Setup Secret
+        run: scripts/private_key.sh
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       - name: Build and test
         run: xcodebuild -scheme GitHubClient clean build test -destination "name=iPhone 12" -enableCodeCoverage YES | xcpretty
       - uses: codecov/codecov-action@v2
