@@ -28,6 +28,12 @@ extension GitHubRepository: Stub {
     }
 }
 
+extension GitHubRepositoryList: Stub {
+    static func stub() -> GitHubRepositoryList {
+        GitHubRepositoryList(repositories: [.stub()])
+    }
+}
+
 extension GitHubUser: Stub {
     static func stub() -> GitHubUser {
         GitHubUser(

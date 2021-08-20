@@ -11,7 +11,7 @@ struct GitHubUserLoginID: Equatable {
     let id: String
 }
 
-struct GitHubUser {
+struct GitHubUser: Equatable {
     let login: GitHubUserLoginID
     let avatarUrl: String
 }
