@@ -20,18 +20,3 @@ struct MeEntity {
     let followees: [GitHubUser]
     let followeesCount: Int
 }
-
-extension MeEntity {
-    static func stub() -> MeEntity {
-        MeEntity(
-            login: GitHubUserLoginID(id: "fummicc1"),
-            avatarUrl: "https://avatars.githubusercontent.com/u/44002126?v=4",
-            name: "Fumiya",
-            bio: "iOS Engineer",
-            followers: [],
-            followersCount: 0,
-            followees: [],
-            followeesCount: 0
-        )
-    }
-}

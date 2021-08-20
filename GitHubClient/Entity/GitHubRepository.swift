@@ -73,6 +73,10 @@ extension GitHubRepository {
 
 struct GitHubRepositoryID: Equatable {
     let id: String
+    
+    func validateLength() -> Bool {
+        id.count == 32
+    }
 }
 
 extension GitHubRepository: Equatable {

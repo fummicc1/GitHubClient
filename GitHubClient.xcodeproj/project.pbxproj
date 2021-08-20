@@ -23,6 +23,9 @@
 		D34D209F26CE376C006B86EF /* RepositoryListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D209E26CE376C006B86EF /* RepositoryListRouter.swift */; };
 		D34D20A226CE640A006B86EF /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D34D20A126CE640A006B86EF /* SwiftUIX */; };
 		D360117326C01ADA008C37FD /* RepositoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D360117226C01ADA008C37FD /* RepositoryCardView.swift */; };
+		D365EAC226CF76F9001F9332 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAC126CF76F9001F9332 /* Mock.swift */; };
+		D365EAC526CF771D001F9332 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAC426CF771D001F9332 /* Stub.swift */; };
+		D365EAC626CF78C5001F9332 /* ProfileUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BAC726CD474B00046689 /* ProfileUseCaseMock.swift */; };
 		D3C460BB26B110CF00DF4B1F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BA26B110CF00DF4B1F /* RootView.swift */; };
 		D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */; };
 		D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */; };
@@ -36,7 +39,6 @@
 		D3F1BABB26CD082200046689 /* GitHubRepositoryViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BABA26CD082200046689 /* GitHubRepositoryViewData.swift */; };
 		D3F1BABE26CD114400046689 /* ErrorMessageViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BABD26CD114400046689 /* ErrorMessageViewData.swift */; };
 		D3F1BAC426CD361400046689 /* RepositoryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BAC326CD361400046689 /* RepositoryGateway.swift */; };
-		D3F1BAC826CD474B00046689 /* ProfileUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BAC726CD474B00046689 /* ProfileUseCaseMock.swift */; };
 		D3F1BACB26CD478700046689 /* ProfileViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BACA26CD478700046689 /* ProfileViewModelMock.swift */; };
 		D3F1BAD026CD551600046689 /* MeViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BACF26CD551600046689 /* MeViewData.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +72,8 @@
 		D33A100F26B10E51002DA455 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		D34D209E26CE376C006B86EF /* RepositoryListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListRouter.swift; sourceTree = "<group>"; };
 		D360117226C01ADA008C37FD /* RepositoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCardView.swift; sourceTree = "<group>"; };
+		D365EAC126CF76F9001F9332 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
+		D365EAC426CF771D001F9332 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		D3C460BA26B110CF00DF4B1F /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListScreen.swift; sourceTree = "<group>"; };
 		D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 		D33A0FF526B10D75002DA455 /* GitHubClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				D365EAC326CF7715001F9332 /* Stub */,
+				D365EAC026CF7668001F9332 /* Mock */,
 				D33A0FF626B10D75002DA455 /* GitHubClientTests.swift */,
 				D33A0FF826B10D75002DA455 /* Info.plist */,
 			);
@@ -163,7 +169,6 @@
 		D33A100226B10E51002DA455 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				D3F1BABF26CD136600046689 /* Mock */,
 				D33A100326B10E51002DA455 /* ProfileUseCase.swift */,
 				D33A100426B10E51002DA455 /* ProfileInteractor.swift */,
 				D3C460C826B120E800DF4B1F /* RepositoryUseCase.swift */,
@@ -224,6 +229,23 @@
 				D3EFED6D26CB895200592804 /* NavigationViewWithSearchBar.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D365EAC026CF7668001F9332 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				D3F1BAC726CD474B00046689 /* ProfileUseCaseMock.swift */,
+				D365EAC126CF76F9001F9332 /* Mock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		D365EAC326CF7715001F9332 /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+				D365EAC426CF771D001F9332 /* Stub.swift */,
+			);
+			path = Stub;
 			sourceTree = "<group>";
 		};
 		D3C460BC26B110E100DF4B1F /* UI */ = {
@@ -298,14 +320,6 @@
 				D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */,
 			);
 			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		D3F1BABF26CD136600046689 /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				D3F1BAC726CD474B00046689 /* ProfileUseCaseMock.swift */,
-			);
-			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,7 +463,6 @@
 				D33A101226B10E51002DA455 /* ProfileInteractor.swift in Sources */,
 				D33A101926B10E51002DA455 /* APIClient.swift in Sources */,
 				D3F1BAD026CD551600046689 /* MeViewData.swift in Sources */,
-				D3F1BAC826CD474B00046689 /* ProfileUseCaseMock.swift in Sources */,
 				D33A0FE226B10D62002DA455 /* GitHubClientApp.swift in Sources */,
 				D3EFED6E26CB895200592804 /* NavigationViewWithSearchBar.swift in Sources */,
 				D33A101626B10E51002DA455 /* Me.swift in Sources */,
@@ -475,6 +488,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33A0FF726B10D75002DA455 /* GitHubClientTests.swift in Sources */,
+				D365EAC526CF771D001F9332 /* Stub.swift in Sources */,
+				D365EAC226CF76F9001F9332 /* Mock.swift in Sources */,
+				D365EAC626CF78C5001F9332 /* ProfileUseCaseMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
