@@ -9,7 +9,7 @@ import XCTest
 @testable import GitHubClient
 
 protocol Mock: AnyObject {
-    associatedtype Function: Equatable
+    associatedtype Function: MockFunction
     var expected: [Function] { get set }
     var actual: [Function] { get set }
     
@@ -17,9 +17,21 @@ protocol Mock: AnyObject {
     func validate(file: StaticString, line: UInt)
 }
 
+protocol MockFunction: Equatable {
+    var action: Action { get }
+    var numberOfCall: Int { get set }
+    
+    associatedtype Action: Equatable
+}
+
 extension Mock {
     func register(_ function: Function) {
-        actual.append(function)
+        var f = function
+        if var old = actual.first(where: { $0.action == function.action }) {
+            old.numberOfCall += 1
+            f = old
+        }
+        actual.append(f)
     }
     
     func validate(file: StaticString, line: UInt) {

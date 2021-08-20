@@ -10,23 +10,27 @@ import Foundation
 
 class ProfileInteractorMock: Mock, ProfileUseCaseProtocol {
     
-    var expected: [Functions] = []
-    var actual: [Functions] = []
+    var expected: [Function] = []
+    var actual: [Function] = []
     
-    enum Functions: Equatable {
-        case getMe
-        case get
+    struct Function: MockFunction {
+        var numberOfCall: Int = 0
+        var action: Action
+        
+        enum Action: Equatable {
+            case getMe
+            case get
+        }
     }
     
-    typealias Function = Functions
-    
-    
     func getMe() {
-        register(.getMe)
+        let function = Function(action: .getMe)
+        register(function)
     }
     
     func get(with id: GitHubUserLoginID) {
-        register(.get)
+        let function = Function(action: .get)
+        register(function)
     }
     
 }
