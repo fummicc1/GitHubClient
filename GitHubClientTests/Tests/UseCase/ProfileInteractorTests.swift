@@ -56,8 +56,7 @@ class ProfileInteractorTests: XCTestCase {
         
         // Validate
         gateway.validate(file: #file, line: #line)
-        output.validate(file: #file, line: #line)
-        
+        output.validate(file: #file, line: #line)        
     }
 
     func testPerformanceExample() throws {
