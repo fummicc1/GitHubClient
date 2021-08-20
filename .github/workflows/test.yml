@@ -17,10 +17,14 @@ jobs:
           xcode-version: "12.5.1"
       - name: Install xcpretty
         run: gem install xcpretty
+      - name: Install Slather
+        run: gem install slather
       - name: Setup Secret
         run: scripts/private_key.sh
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       - name: Build and test
         run: xcodebuild -scheme GitHubClient clean build test -destination "name=iPhone 12" -enableCodeCoverage YES | xcpretty
-      - uses: codecov/codecov-action@v2
+      - name: Run Slather
+        run: slather
+      - run: bash <(curl -s https://codecov.io/bash) -f Reports/cobertura.xml -X coveragepy -X gcov -X xcode

@@ -1,0 +1,8 @@
+coverage_service: cobertura_xml
+xcodeproj: GitHubClient.xcodeproj
+scheme: GitHubClient
+source_directory: GitHubClient
+output_directory: Reports/
+ignore:
+  - "**/API.swift"
+  - "GitHubClientTests/"
