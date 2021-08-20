@@ -24,10 +24,11 @@ class ProfileInteractorTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test_findMe() throws {
+    func test_getMe() throws {
+        
+        // Configure
         let meStub = MeEntity.stub()
         
-        // Configure        
         gateway.registerExpected(.init(action: .fetchMe))
         output.registerExpected(.init(action: .didFindMe(meStub)))
         
@@ -39,6 +40,24 @@ class ProfileInteractorTests: XCTestCase {
         // Validate
         gateway.validate(file: #file, line: #line)
         output.validate(file: #file, line: #line)
+    }
+    
+    func test_get() throws {
+        // Configure
+        let userStub = GitHubUser.stub()
+        
+        gateway.registerExpected(.init(action: .fetchWithID(userStub.login)))
+        output.registerExpected(.init(action: .didFindUser(userStub)))
+        
+        gateway.fetchWithIDResponse = .success(userStub)
+        
+        // Execute
+        target.get(with: userStub.login)
+        
+        // Validate
+        gateway.validate(file: #file, line: #line)
+        output.validate(file: #file, line: #line)
+        
     }
 
     func testPerformanceExample() throws {
