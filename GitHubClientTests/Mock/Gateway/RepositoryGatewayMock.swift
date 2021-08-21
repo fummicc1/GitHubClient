@@ -16,8 +16,8 @@ class RepositoryGatewayMock: Mock, RepositoryGatewayProtocol {
         var action: Action
         
         enum Action: Equatable {
-            case searchSpecificRepository
-            case searchWithQuery
+            case searchSpecificRepository(owner: String, repoName: String)
+            case searchWithQuery(query: String, count: Int)
         }
     }
     
@@ -28,12 +28,16 @@ class RepositoryGatewayMock: Mock, RepositoryGatewayProtocol {
     var searchWithQueryResponse: Result<GitHubRepositoryList, Error> = .failure(GatewayMockError.notConfigured)
     
     func search(of owner: String, repoName: String) -> AnyPublisher<GitHubRepository, Error> {
-        registerActual(.init(action: .searchSpecificRepository))
+        registerActual(
+            .init(action: .searchSpecificRepository(owner: owner, repoName: repoName))
+        )
         return searchSpecificResponse.publisher.eraseToAnyPublisher()
     }
     
     func search(with query: String, count: Int) -> AnyPublisher<GitHubRepositoryList, Error> {
-        registerActual(.init(action: .searchWithQuery))
+        registerActual(
+            .init(action: .searchWithQuery(query: query, count: count))
+        )
         return searchWithQueryResponse.publisher.eraseToAnyPublisher()
     }
 }

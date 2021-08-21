@@ -27,12 +27,14 @@ final class RepositoryListViewModel: ObservableObject, RepositoryListViewModelPr
     @Published var errorMessage: ErrorMessageViewData?
     @Published var query: String = ""
     
+    private let searchCount: Int = 10
+    
     func inject(useCase: RepositoryUseCaseProtocol) {
         self.useCase = useCase
     }
     
     func fetch() {
-        useCase.search(with: query)
+        useCase.search(with: query, count: searchCount)
     }
 }
 

@@ -24,7 +24,7 @@ class ProfileInteractorTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test_getMe() throws {
+    func test_getMe_canSucceed() throws {
         
         // Configure
         let meStub = MeEntity.stub()
@@ -42,7 +42,7 @@ class ProfileInteractorTests: XCTestCase {
         output.validate(file: #file, line: #line)
     }
     
-    func test_get() throws {
+    func test_get_canSucceed() throws {
         // Configure
         let userStub = GitHubUser.stub()
         

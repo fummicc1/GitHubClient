@@ -54,9 +54,9 @@ extension RepositoryInteractor: RepositoryUseCaseProtocol {
 
     }
     
-    func search(with query: String) {
+    func search(with query: String, count: Int) {
         var repositories: GitHubRepositoryList = GitHubRepositoryList(repositories: [])
-        repositoryGateway.search(with: query, count: 10)
+        repositoryGateway.search(with: query, count: count)
             .sink { [weak self] completion in
                 
                 switch completion {

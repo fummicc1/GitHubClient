@@ -44,7 +44,7 @@ extension Mock {
         expected.append(f)
     }
     
-    func validate(file: StaticString, line: UInt) {
+    func validate(file: StaticString = #file, line: UInt = #line) {
         if actual == expected {
             return
         }

@@ -10,5 +10,5 @@ import Combine
 
 protocol RepositoryUseCaseProtocol: AnyObject {
     func search(of owner: String, repoName: String)
-    func search(with query: String)
+    func search(with query: String, count: Int)
 }

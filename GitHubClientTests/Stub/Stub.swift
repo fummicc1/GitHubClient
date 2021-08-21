@@ -41,6 +41,13 @@ extension GitHubUser: Stub {
             avatarUrl: "https://avatars.githubusercontent.com/u/44002126?v=4"
         )
     }
+    
+    static func github() -> GitHubUser {
+        GitHubUser(
+            login: GitHubUserLoginID(id: "github"),
+            avatarUrl: "https://avatars.githubusercontent.com/u/9919?s=200&v=4"
+        )
+    }
 }
 
 extension MeEntity: Stub {
@@ -48,6 +55,19 @@ extension MeEntity: Stub {
         MeEntity(
             login: GitHubUserLoginID(id: "fummicc1"),
             avatarUrl: "https://avatars.githubusercontent.com/u/44002126?v=4",
+            name: "Fumiya",
+            bio: "iOS Engineer",
+            followers: [],
+            followersCount: 0,
+            followees: [],
+            followeesCount: 0
+        )
+    }
+    
+    static func github() -> MeEntity {
+        MeEntity(
+            login: GitHubUserLoginID(id: "github"),
+            avatarUrl: "https://avatars.githubusercontent.com/u/9919?s=200&v=4",
             name: "Fumiya",
             bio: "iOS Engineer",
             followers: [],

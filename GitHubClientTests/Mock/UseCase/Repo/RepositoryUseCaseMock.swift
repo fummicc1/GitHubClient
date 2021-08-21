@@ -18,19 +18,23 @@ class RepositoryUseCaseMock: Mock, RepositoryUseCaseProtocol {
         var numberOfCall: Int = 0
         var action: Action
         
-        enum Action {
-            case searchSpecificRepository
-            case searchWithQuery
+        enum Action: Equatable {
+            case searchSpecificRepository(owner: String, repoName: String)
+            case searchWithQuery(query: String, count: Int)
         }
     }
     
     func search(of owner: String, repoName: String) {
-        let f = Function(action: .searchSpecificRepository)
+        let f = Function(
+            action: .searchSpecificRepository(owner: owner, repoName: repoName)
+        )
         registerActual(f)
     }
     
-    func search(with query: String) {
-        let f = Function(action: .searchWithQuery)
+    func search(with query: String, count: Int) {
+        let f = Function(
+            action: .searchWithQuery(query: query, count: count)
+        )
         registerActual(f)
     }
     
