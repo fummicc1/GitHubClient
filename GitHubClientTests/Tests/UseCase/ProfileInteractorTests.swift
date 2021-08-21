@@ -75,6 +75,55 @@ class ProfileInteractorTests: XCTestCase {
         output.validate()
         
     }
+    
+    func test_getMyRepoList_canSuccess() throws {
+        
+        // Configure
+        let me = MeEntity.stub()
+        let myRepoList = GitHubRepositoryList.stub()
+        
+        let getMeExpectation = XCTestExpectation(description: "Wait for getMe()")
+        
+        profileGateway.registerExpected(
+            .init(
+                action: .fetchMe
+            )
+        )
+        
+        repoGateway.registerExpected(
+            .init(
+                action: .searchRepoListOfUser(userID: me.login)
+            )
+        )
+        
+        output.registerExpected(
+            .init(
+                action: .didFindMe(me)
+            )
+        )
+        output.registerExpected(
+            .init(
+                action: .didFindRepoList(repoList: myRepoList)
+            )
+        )
+        
+        output.relate(exp: getMeExpectation, to: .didFindMe(me))
+        
+        repoGateway.searchRepoListResponse = .success(myRepoList)
+        profileGateway.fetchMeResponse = .success(me)
+        
+        // Execute
+        target.getMe()
+        
+        wait(for: [getMeExpectation], timeout: 2)
+        
+        target.getMyRepoList()
+        
+        // Validate
+        profileGateway.validate()
+        output.validate()
+        
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

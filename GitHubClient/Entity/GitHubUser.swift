@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct GitHubUserLoginID: Equatable {
+struct GitHubUserLoginID: Hashable {
     let id: String
 }
 
-struct GitHubUser: Equatable {
+struct GitHubUser: Hashable {
     let login: GitHubUserLoginID
     let avatarUrl: String
 }

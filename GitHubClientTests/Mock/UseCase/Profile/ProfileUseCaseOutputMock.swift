@@ -5,22 +5,23 @@
 //  Created by Fumiya Tanaka on 2021/08/21.
 //
 
-import Foundation
+import XCTest
 @testable import GitHubClient
 
-class ProfileUseCaseOutputMock: Mock, ProfileUseCaseOutput {
+class ProfileUseCaseOutputMock: DelegateMock, ProfileUseCaseOutput {
     
     struct Function: MockFunction {
         var numberOfCall: Int = 0
         var action: Action
         
-        enum Action: Equatable {
+        enum Action: Hashable {
             case didFindRepoList(repoList: GitHubRepositoryList)
             case didFindMe(MeEntity)
             case didOccureError(message: String)
         }
     }
     
+    var expectations: [Function.Action : XCTestExpectation] = [:]
     var expected: [Function] = []
     var actual: [Function] = []
     
@@ -34,5 +35,9 @@ class ProfileUseCaseOutputMock: Mock, ProfileUseCaseOutput {
     
     func didFind(repoList: GitHubRepositoryList) {
         registerActual(.init(action: .didFindRepoList(repoList: repoList)))
+    }
+    
+    func relate(exp: XCTestExpectation, to action: Function.Action) {
+        expectations[action] = exp
     }
 }

@@ -14,7 +14,7 @@ class ProfileGatewayMock: Mock, UserGatewayProtocol {
         var numberOfCall: Int = 0
         var action: Action
         
-        enum Action: Equatable {
+        enum Action: Hashable {
             case fetchWithID(GitHubUserLoginID)
             case fetchMe
         }

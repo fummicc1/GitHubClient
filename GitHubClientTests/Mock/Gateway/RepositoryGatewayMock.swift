@@ -15,7 +15,7 @@ class RepositoryGatewayMock: Mock, RepositoryGatewayProtocol {
         var numberOfCall: Int = 0
         var action: Action
         
-        enum Action: Equatable {
+        enum Action: Hashable {
             case searchRepoListOfUser(userID: GitHubUserLoginID)
             case searchSpecificRepository(owner: GitHubUserLoginID, repoName: String)
             case searchWithQuery(query: String, count: Int)

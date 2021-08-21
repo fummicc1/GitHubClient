@@ -71,7 +71,7 @@ extension GitHubRepository {
     }
 }
 
-struct GitHubRepositoryID: Equatable {
+struct GitHubRepositoryID: Hashable {
     let id: String
     
     func validateLength() -> Bool {
@@ -79,13 +79,13 @@ struct GitHubRepositoryID: Equatable {
     }
 }
 
-extension GitHubRepository: Equatable {
+extension GitHubRepository: Hashable {
     static func ==(lhs: GitHubRepository, rhs: GitHubRepository) -> Bool {
         lhs.id == rhs.id
     }
 }
 
-struct GitHubRepositoryList: Equatable {
+struct GitHubRepositoryList: Hashable {
     
     private(set) var repositories: [GitHubRepository]
     

@@ -93,7 +93,5 @@ extension ProfileInteractor: ProfileUseCaseProtocol {
                 self.repoList.send(repoList)
             }
             .store(in: &cancellables)
-        
-        
     }
 }

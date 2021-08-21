@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MeEntity: Equatable {
+struct MeEntity: Hashable {
     let login: GitHubUserLoginID
     let avatarUrl: String
     

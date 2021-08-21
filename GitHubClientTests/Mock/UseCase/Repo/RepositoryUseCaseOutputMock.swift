@@ -5,20 +5,21 @@
 //  Created by Fumiya Tanaka on 2021/08/21.
 //
 
-import Foundation
+import XCTest
 @testable import GitHubClient
 
-class RepositoryUseCaseOutputMock: Mock, RepositoryUseCaseOutput {
+class RepositoryUseCaseOutputMock: DelegateMock, RepositoryUseCaseOutput {
     
     var expected: [Function] = []
     var actual: [Function] = []
+    var expectations: [Function.Action : XCTestExpectation] = [:]
     
     struct Function: MockFunction {
         
         var numberOfCall: Int = 0
         var action: Action
         
-        enum Action: Equatable {
+        enum Action: Hashable {
             case didCompleteSearch(GitHubRepositoryList)
             case didFail(errorMessage: String)
         }
@@ -40,4 +41,7 @@ class RepositoryUseCaseOutputMock: Mock, RepositoryUseCaseOutput {
         )
     }
     
+    func relate(exp: XCTestExpectation, to action: Function.Action) {
+        expectations[action] = exp
+    }
 }

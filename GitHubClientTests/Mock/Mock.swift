@@ -22,7 +22,7 @@ protocol MockFunction: Equatable {
     var action: Action { get }
     var numberOfCall: Int { get set }
     
-    associatedtype Action: Equatable
+    associatedtype Action: Hashable
 }
 
 extension Mock {
