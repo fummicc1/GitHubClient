@@ -50,7 +50,7 @@ class RepositoryInteractorTests: XCTestCase {
         let repo = GitHubRepository.stub()
         let repoList = GitHubRepositoryList(repositories: [repo])
         
-        let owner = "fummicc1"
+        let owner = GitHubUserLoginID(id: "fummicc1")
         
         let repoName = "fummicc1"
         

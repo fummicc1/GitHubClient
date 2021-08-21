@@ -48,9 +48,9 @@ class RepositoryGateway: RepositoryGatewayProtocol {
         self.webClient = webClient
     }
     
-    func search(of owner: String, repoName: String) -> AnyPublisher<GitHubRepository, Error> {
+    func search(of owner: GitHubUserLoginID, repoName: String) -> AnyPublisher<GitHubRepository, Error> {
         let requestable = SpecificRepositoryRequestable(
-            owner: owner,
+            owner: owner.id,
             repoName: repoName
         )
         return webClient.request(with: requestable)
@@ -58,7 +58,11 @@ class RepositoryGateway: RepositoryGatewayProtocol {
                 Future { promise in
                     
                     guard let repository = data.repository else {
-                        promise(.failure(GatewayGenericError.failedToGetResult(data: data.resultMap)))
+                        promise(
+                            .failure(
+                                GatewayGenericError.failedToGetResult(data: data.resultMap)
+                            )
+                        )
                         return
                     }
                     
@@ -125,5 +129,9 @@ class RepositoryGateway: RepositoryGatewayProtocol {
                     }
                 }
             }.eraseToAnyPublisher()
+    }
+    
+    func searchRepoList(of id: GitHubUserLoginID) -> AnyPublisher<GitHubRepositoryList, Error> {
+        fatalError()
     }
 }

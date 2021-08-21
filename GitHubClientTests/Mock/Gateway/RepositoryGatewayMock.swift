@@ -16,7 +16,8 @@ class RepositoryGatewayMock: Mock, RepositoryGatewayProtocol {
         var action: Action
         
         enum Action: Equatable {
-            case searchSpecificRepository(owner: String, repoName: String)
+            case searchRepoListOfUser(userID: GitHubUserLoginID)
+            case searchSpecificRepository(owner: GitHubUserLoginID, repoName: String)
             case searchWithQuery(query: String, count: Int)
         }
     }
@@ -26,12 +27,13 @@ class RepositoryGatewayMock: Mock, RepositoryGatewayProtocol {
     
     var searchSpecificResponse: Result<GitHubRepository, Error> = .failure(GatewayMockError.notConfigured)
     var searchWithQueryResponse: Result<GitHubRepositoryList, Error> = .failure(GatewayMockError.notConfigured)
+    var searchRepoListResponse: Result<GitHubRepositoryList, Error> = .failure(GatewayMockError.notConfigured)
     
-    func search(of owner: String, repoName: String) -> AnyPublisher<GitHubRepository, Error> {
-        registerActual(
-            .init(action: .searchSpecificRepository(owner: owner, repoName: repoName))
-        )
-        return searchSpecificResponse.publisher.eraseToAnyPublisher()
+    func search(of owner: GitHubUserLoginID, repoName: String) -> AnyPublisher<GitHubRepository, Error> {
+            registerActual(
+                .init(action: .searchSpecificRepository(owner: owner, repoName: repoName))
+            )
+            return searchSpecificResponse.publisher.eraseToAnyPublisher()
     }
     
     func search(with query: String, count: Int) -> AnyPublisher<GitHubRepositoryList, Error> {
@@ -39,5 +41,10 @@ class RepositoryGatewayMock: Mock, RepositoryGatewayProtocol {
             .init(action: .searchWithQuery(query: query, count: count))
         )
         return searchWithQueryResponse.publisher.eraseToAnyPublisher()
+    }
+    
+    func searchRepoList(of id: GitHubUserLoginID) -> AnyPublisher<GitHubRepositoryList, Error> {
+        registerActual(.init(action: .searchRepoListOfUser(userID: id)))
+        return searchRepoListResponse.publisher.eraseToAnyPublisher()
     }
 }

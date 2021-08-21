@@ -8,22 +8,38 @@
 import Foundation
 
 protocol ProfileViewModelProtocol {
-}
-
-protocol ProfileViewModelOutput {
-    func didUpdateMe(_ me: MeViewData)
-    func showErrorMessage(_ message: ErrorMessageViewData)
-    
+    func findMe()
+    func findMyRepoList()
 }
 
 class ProfileViewModel: ObservableObject, ProfileViewModelProtocol {
+    
+    @Published var me: MeViewData?
+    @Published var error: ErrorMessageViewData?
+    
+    private var useCase: ProfileUseCaseProtocol!
+    
+    func inject(useCase: ProfileUseCaseProtocol) {
+        self.useCase = useCase
+    }
+    
+    func findMyRepoList() {        
+        useCase.getMyRepoList()
+    }
+    
+    func findMe() {
+        useCase.getMe()
+    }
+    
 }
 
 extension ProfileViewModel: ProfileUseCaseOutput {
-    func didFindUser(_ user: GitHubUser) {
+    
+    func didFind(repoList: GitHubRepositoryList) {
+        fatalError()
     }
     
-    func didFindMe(_ me: MeEntity) {
+    func didFind(me: MeEntity) {
         let meViewData = MeViewData(
             login: me.login.id,
             avatarUrl: me.avatarUrl,
@@ -43,26 +59,20 @@ extension ProfileViewModel: ProfileUseCaseOutput {
             }),
             followeesCount: me.followersCount
         )
-        didUpdateMe(meViewData)
+        self.me = meViewData
     }
     
-    func didOccureError(_ error: Error) {
+    func didOccureError(_ error: Swift.Error) {
         let errorMessage = ErrorMessageViewData(
             error: error,
             message: "エラー: \(error.localizedDescription)"
         )
-        showErrorMessage(errorMessage)
+        self.error = errorMessage
     }
 }
 
-extension ProfileViewModel: ProfileViewModelOutput {
-    func didUpdateMe(_ me: MeViewData) {
-        
+extension ProfileViewModel {
+    enum Error: Swift.Error {
+        case didNotFoundMe
     }
-    
-    func showErrorMessage(_ message: ErrorMessageViewData) {
-        
-    }
-    
-    
 }

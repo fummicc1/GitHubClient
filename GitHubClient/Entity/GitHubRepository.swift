@@ -100,4 +100,6 @@ struct GitHubRepositoryList: Equatable {
     subscript(id: GitHubRepositoryID) -> GitHubRepository? {
         repositories.first(where: { $0.id == id })
     }
+    
+    static let empty: Self = .init(repositories: [])
 }

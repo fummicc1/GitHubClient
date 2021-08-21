@@ -12,12 +12,18 @@ class ProfileInteractorTests: XCTestCase {
     
     var target: ProfileInteractor!
     var output: ProfileUseCaseOutputMock!
-    var gateway: ProfileGatewayMock!
+    var repoGateway: RepositoryGatewayMock!
+    var profileGateway: ProfileGatewayMock!
 
     override func setUpWithError() throws {
-        gateway = ProfileGatewayMock()
+        profileGateway = ProfileGatewayMock()
+        repoGateway = RepositoryGatewayMock()
         output = ProfileUseCaseOutputMock()
-        target = ProfileInteractor(userGateway: gateway, output: output)
+        target = ProfileInteractor(
+            userGateway: profileGateway,
+            repoGateway: repoGateway,
+            output: output
+        )
     }
 
     override func tearDownWithError() throws {
@@ -29,34 +35,45 @@ class ProfileInteractorTests: XCTestCase {
         // Configure
         let meStub = MeEntity.stub()
         
-        gateway.registerExpected(.init(action: .fetchMe))
+        profileGateway.registerExpected(.init(action: .fetchMe))
         output.registerExpected(.init(action: .didFindMe(meStub)))
         
-        gateway.fetchMeResponse = .success(meStub)
+        profileGateway.fetchMeResponse = .success(meStub)
         
         // Execute
         target.getMe()
-                
+        
         // Validate
-        gateway.validate(file: #file, line: #line)
-        output.validate(file: #file, line: #line)
+        profileGateway.validate()
+        output.validate()
     }
     
-    func test_get_canSucceed() throws {
+    func test_getMyRepoList_canFail() throws {
+        
         // Configure
-        let userStub = GitHubUser.stub()
+        let me = MeEntity.stub()
+        let myRepoList = GitHubRepositoryList.stub()
         
-        gateway.registerExpected(.init(action: .fetchWithID(userStub.login)))
-        output.registerExpected(.init(action: .didFindUser(userStub)))
+        let outputError = ProfileInteractor.Error.didNotFoundMe
         
-        gateway.fetchWithIDResponse = .success(userStub)
+        repoGateway.registerExpected(.init(action: .searchRepoListOfUser(userID: me.login)))
+        output.registerExpected(
+            .init(
+                action: .didOccureError(
+                    message: outputError.localizedDescription
+                )
+            )
+        )
+        
+        repoGateway.searchRepoListResponse = .success(myRepoList)
         
         // Execute
-        target.get(with: userStub.login)
+        target.getMyRepoList()
         
         // Validate
-        gateway.validate(file: #file, line: #line)
-        output.validate(file: #file, line: #line)        
+        profileGateway.validate()
+        output.validate()
+        
     }
 
     func testPerformanceExample() throws {

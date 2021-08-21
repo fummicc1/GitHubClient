@@ -15,9 +15,9 @@ class ProfileUseCaseOutputMock: Mock, ProfileUseCaseOutput {
         var action: Action
         
         enum Action: Equatable {
-            case didFindUser(GitHubUser)
+            case didFindRepoList(repoList: GitHubRepositoryList)
             case didFindMe(MeEntity)
-            case didOccureError
+            case didOccureError(message: String)
         }
     }
     
@@ -25,14 +25,14 @@ class ProfileUseCaseOutputMock: Mock, ProfileUseCaseOutput {
     var actual: [Function] = []
     
     func didOccureError(_ error: Error) {
-        registerActual(.init(action: .didOccureError))
+        registerActual(.init(action: .didOccureError(message: error.localizedDescription)))
     }
     
-    func didFindMe(_ me: MeEntity) {
+    func didFind(me: MeEntity) {
         registerActual(.init(action: .didFindMe(me)))
     }
     
-    func didFindUser(_ user: GitHubUser) {
-        registerActual(.init(action: .didFindUser(user)))
+    func didFind(repoList: GitHubRepositoryList) {
+        registerActual(.init(action: .didFindRepoList(repoList: repoList)))
     }
 }

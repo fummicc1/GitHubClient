@@ -34,6 +34,7 @@
 		D3ABFFE626D0E6860048875B /* ProfileUseCaseOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFE526D0E6860048875B /* ProfileUseCaseOutputMock.swift */; };
 		D3ABFFE826D0E9690048875B /* RepositoryInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFE726D0E9690048875B /* RepositoryInteractorTests.swift */; };
 		D3ABFFEA26D0E9FF0048875B /* RepositoryUseCaseOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFE926D0E9FF0048875B /* RepositoryUseCaseOutputMock.swift */; };
+		D3ABFFEC26D0FAA20048875B /* Publisher+DelegateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFEB26D0FAA20048875B /* Publisher+DelegateError.swift */; };
 		D3C460BB26B110CF00DF4B1F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BA26B110CF00DF4B1F /* RootView.swift */; };
 		D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */; };
 		D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */; };
@@ -47,7 +48,7 @@
 		D3F1BABB26CD082200046689 /* GitHubRepositoryViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BABA26CD082200046689 /* GitHubRepositoryViewData.swift */; };
 		D3F1BABE26CD114400046689 /* ErrorMessageViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BABD26CD114400046689 /* ErrorMessageViewData.swift */; };
 		D3F1BAC426CD361400046689 /* RepositoryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BAC326CD361400046689 /* RepositoryGateway.swift */; };
-		D3F1BACB26CD478700046689 /* ProfileViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BACA26CD478700046689 /* ProfileViewModelMock.swift */; };
+		D3F1BACB26CD478700046689 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BACA26CD478700046689 /* ProfileViewModel.swift */; };
 		D3F1BAD026CD551600046689 /* MeViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BACF26CD551600046689 /* MeViewData.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		D3ABFFE526D0E6860048875B /* ProfileUseCaseOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCaseOutputMock.swift; sourceTree = "<group>"; };
 		D3ABFFE726D0E9690048875B /* RepositoryInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInteractorTests.swift; sourceTree = "<group>"; };
 		D3ABFFE926D0E9FF0048875B /* RepositoryUseCaseOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryUseCaseOutputMock.swift; sourceTree = "<group>"; };
+		D3ABFFEB26D0FAA20048875B /* Publisher+DelegateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+DelegateError.swift"; sourceTree = "<group>"; };
 		D3C460BA26B110CF00DF4B1F /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListScreen.swift; sourceTree = "<group>"; };
 		D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
@@ -104,7 +106,7 @@
 		D3F1BABD26CD114400046689 /* ErrorMessageViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageViewData.swift; sourceTree = "<group>"; };
 		D3F1BAC326CD361400046689 /* RepositoryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryGateway.swift; sourceTree = "<group>"; };
 		D3F1BAC726CD474B00046689 /* ProfileUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCaseMock.swift; sourceTree = "<group>"; };
-		D3F1BACA26CD478700046689 /* ProfileViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelMock.swift; sourceTree = "<group>"; };
+		D3F1BACA26CD478700046689 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		D3F1BACF26CD551600046689 /* MeViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -334,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				D3C460C426B1183200DF4B1F /* String+Ex.swift */,
+				D3ABFFEB26D0FAA20048875B /* Publisher+DelegateError.swift */,
 			);
 			path = Ex;
 			sourceTree = "<group>";
@@ -388,7 +391,7 @@
 		D3F1BABC26CD099300046689 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				D3F1BACA26CD478700046689 /* ProfileViewModelMock.swift */,
+				D3F1BACA26CD478700046689 /* ProfileViewModel.swift */,
 				D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */,
 			);
 			path = ViewModels;
@@ -529,10 +532,11 @@
 				D33A101526B10E51002DA455 /* GitHubUser.swift in Sources */,
 				D33A101726B10E51002DA455 /* ApiErrors.swift in Sources */,
 				D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */,
-				D3F1BACB26CD478700046689 /* ProfileViewModelMock.swift in Sources */,
+				D3F1BACB26CD478700046689 /* ProfileViewModel.swift in Sources */,
 				D33A101126B10E51002DA455 /* ProfileUseCase.swift in Sources */,
 				D3F1BAB526CCF72B00046689 /* UserGateway.swift in Sources */,
 				D33A101226B10E51002DA455 /* ProfileInteractor.swift in Sources */,
+				D3ABFFEC26D0FAA20048875B /* Publisher+DelegateError.swift in Sources */,
 				D33A101926B10E51002DA455 /* APIClient.swift in Sources */,
 				D3F1BAD026CD551600046689 /* MeViewData.swift in Sources */,
 				D33A0FE226B10D62002DA455 /* GitHubClientApp.swift in Sources */,

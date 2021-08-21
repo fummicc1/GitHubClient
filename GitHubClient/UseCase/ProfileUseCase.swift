@@ -10,5 +10,5 @@ import Combine
 
 protocol ProfileUseCaseProtocol: AnyObject {
     func getMe()
-    func get(with id: GitHubUserLoginID)
+    func getMyRepoList()
 }

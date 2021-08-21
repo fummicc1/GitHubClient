@@ -14,8 +14,9 @@ protocol RepositoryUseCaseOutput {
 }
 
 protocol RepositoryGatewayProtocol {
-    func search(of owner: String, repoName: String) -> AnyPublisher<GitHubRepository, Error>
+    func search(of owner: GitHubUserLoginID, repoName: String) -> AnyPublisher<GitHubRepository, Error>
     func search(with query: String, count: Int) -> AnyPublisher<GitHubRepositoryList, Error>
+    func searchRepoList(of id: GitHubUserLoginID) -> AnyPublisher<GitHubRepositoryList, Error>
 }
 
 class RepositoryInteractor {
@@ -36,7 +37,7 @@ class RepositoryInteractor {
 }
 
 extension RepositoryInteractor: RepositoryUseCaseProtocol {
-    func search(of owner: String, repoName: String) {
+    func search(of owner: GitHubUserLoginID, repoName: String) {
         var repositories = GitHubRepositoryList(repositories: [])
         repositoryGateway.search(of: owner, repoName: repoName)
             .sink { [weak self] completion in

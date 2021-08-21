@@ -19,7 +19,7 @@ class ProfileUseCaseMock: Mock, ProfileUseCaseProtocol {
         
         enum Action: Equatable {
             case getMe
-            case get
+            case getMyRepoList
         }
     }
     
@@ -28,9 +28,7 @@ class ProfileUseCaseMock: Mock, ProfileUseCaseProtocol {
         registerActual(function)
     }
     
-    func get(with id: GitHubUserLoginID) {
-        let function = Function(action: .get)
-        registerActual(function)
+    func getMyRepoList() {
+        registerActual(.init(action: .getMyRepoList))
     }
-    
 }

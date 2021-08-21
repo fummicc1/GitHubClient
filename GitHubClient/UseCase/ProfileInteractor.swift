@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 protocol ProfileUseCaseOutput {
-    func didFindUser(_ user: GitHubUser)
-    func didFindMe(_ me: MeEntity)
+    func didFind(repoList: GitHubRepositoryList)
+    func didFind(me: MeEntity)
     func didOccureError(_ error: Error)
 }
 
@@ -22,74 +22,78 @@ protocol UserGatewayProtocol {
 final class ProfileInteractor {
     
     internal init(
-        userGateway: UserGatewayProtocol?,
-        output: ProfileUseCaseOutput?,
+        userGateway: UserGatewayProtocol,
+        repoGateway: RepositoryGatewayProtocol,
+        output: ProfileUseCaseOutput,
         cancellables: Set<AnyCancellable> = Set()
     ) {
         self.userGateway = userGateway
+        self.repoGateway = repoGateway
         self.output = output
         self.cancellables = cancellables
+        
+        me.dropFirst().sink { [weak self] me in
+            guard let me = me else {
+                return
+            }
+            self?.output.didFind(me: me)
+        }
+        .store(in: &self.cancellables)
+        
+        repoList.dropFirst().sink { [weak self] repoList in
+            self?.output.didFind(repoList: repoList)
+        }
+        .store(in: &self.cancellables)
+        
+        errors.sink { [weak self] error in
+            self?.output.didOccureError(error)
+        }
+        .store(in: &self.cancellables)
+        
     }
     
     private var userGateway: UserGatewayProtocol!
+    private var repoGateway: RepositoryGatewayProtocol!
     
     private var output: ProfileUseCaseOutput!
     
     private var cancellables: Set<AnyCancellable>
+    
+    private var me: CurrentValueSubject<MeEntity?, Never> = .init(nil)
+    private var repoList: CurrentValueSubject<GitHubRepositoryList, Never> = .init(.empty)
+    private let errors: PassthroughSubject<Swift.Error, Never> = .init()
 }
 
 extension ProfileInteractor: ProfileUseCaseProtocol {
     
     enum Error: Swift.Error {
         case noGetResult
+        case didNotFoundMe
     }
     
     func getMe() {
-        var me: MeEntity?
         userGateway.fetchMe()
-            .sink { [weak self] completion in
-                guard let self = self else {
-                    return
-                }
-                switch completion {
-                case .finished:
-                    if let me = me {
-                        self.output.didFindMe(me)
-                    } else {
-                        self.output.didOccureError(Error.noGetResult)
-                    }
-                    
-                case .failure(let error):
-                    self.output.didOccureError(error)
-                }
-            } receiveValue: { response in
-                me = response
+            .delegateError(to: errors)
+            .sink { me in
+                self.me.send(me)
             }
             .store(in: &cancellables)
-
     }
     
-    func get(with id: GitHubUserLoginID) {
-        var user: GitHubUser?
-        userGateway.fetch(id: id)
-            .sink { [weak self] completion in
-                guard let self = self else {
-                    return
-                }
-                switch completion {
-                case .finished:
-                    if let user = user {
-                        self.output.didFindUser(user)
-                    } else {
-                        self.output.didOccureError(Error.noGetResult)
-                    }
-                    
-                case .failure(let error):
-                    self.output.didOccureError(error)
-                }
-            } receiveValue: { response in
-                user = response
+    func getMyRepoList() {
+        
+        guard let me = me.value else {
+            output.didOccureError(Error.didNotFoundMe)
+            return
+        }
+        
+        repoGateway.searchRepoList(of: me.login)
+            .delegateError(to: errors)
+            .sink { repoList in
+                self.repoList.send(repoList)
             }
             .store(in: &cancellables)
+        
+        
     }
 }
