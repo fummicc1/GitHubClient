@@ -12,13 +12,20 @@ protocol Stub {
     static func stub() -> Self
 }
 
+// MARK: Foundation
+extension Date: Stub {
+    static func stub() -> Date {
+        Date(timeIntervalSince1970: 0)
+    }
+}
+
 // MARK: Entities
 extension GitHubRepository: Stub {
     static func stub() -> GitHubRepository {
         let entity = GitHubRepository(
             id: GitHubRepositoryID(id: "MDEwOlJlcG9zaXRvcnkyODM2OTQ5MDA="),
             url: "https://github.com/fummicc1/fummicc1",
-            createdAt: Date(),
+            createdAt: Date.stub(),
             description: "fummicc1 profile repository",
             isPrivate: false,
             name: "fummicc1",
@@ -74,6 +81,22 @@ extension MeEntity: Stub {
             followersCount: 0,
             followees: [],
             followeesCount: 0
+        )
+    }
+}
+
+// MARK: ViewData
+extension GitHubRepositoryViewData: Stub {
+    static func stub() -> GitHubRepositoryViewData {
+        GitHubRepositoryViewData(
+            id: "fummicc1",
+            userName: "fummicc1",
+            avatarURL: "https://avatars.githubusercontent.com/u/44002126?v=4",
+            name: "https://github.com/fummicc1/EasyFirebaseSwift",
+            description: "An Easy Firebase (Auth / Firestore) Library written in Swift.",
+            isPrivate: false,
+            createDate: "2021/1/1",
+            url: "https://github.com/fummicc1/EasyFirebaseSwift"
         )
     }
 }

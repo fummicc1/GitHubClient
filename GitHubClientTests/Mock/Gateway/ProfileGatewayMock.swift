@@ -23,17 +23,23 @@ class ProfileGatewayMock: Mock, UserGatewayProtocol {
     var expected: [Function] = []
     var actual: [Function] = []
     
-    var fetchWithIDResponse: Result<GitHubUser, Error> = .failure(GatewayMockError.notConfigured)
-    
-    var fetchMeResponse: Result<MeEntity, Error> = .failure(GatewayMockError.notConfigured)
+    var dto: DTO = .init()
     
     func fetch(id: GitHubUserLoginID) -> AnyPublisher<GitHubUser, Error> {
         registerActual(.init(action: .fetchWithID(id)))
-        return fetchWithIDResponse.publisher.eraseToAnyPublisher()
+        return dto.withID.publisher.eraseToAnyPublisher()
     }
     
     func fetchMe() -> AnyPublisher<MeEntity, Error> {
         registerActual(.init(action: .fetchMe))
-        return fetchMeResponse.publisher.eraseToAnyPublisher()
+        return dto.me.publisher.eraseToAnyPublisher()
+    }
+}
+
+extension ProfileGatewayMock: MockOutput {
+    
+    struct DTO {
+        var withID: Result<GitHubUser, Error> = .failure(MockError.notConfigured)
+        var me: Result<MeEntity, Error> = .failure(MockError.notConfigured)
     }
 }

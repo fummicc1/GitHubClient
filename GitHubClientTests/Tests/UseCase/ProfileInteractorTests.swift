@@ -38,7 +38,7 @@ class ProfileInteractorTests: XCTestCase {
         profileGateway.registerExpected(.init(action: .fetchMe))
         output.registerExpected(.init(action: .didFindMe(meStub)))
         
-        profileGateway.fetchMeResponse = .success(meStub)
+        profileGateway.set(keyPath: \.me, value: .success(meStub))
         
         // Execute
         target.getMe()
@@ -65,7 +65,7 @@ class ProfileInteractorTests: XCTestCase {
             )
         )
         
-        repoGateway.searchRepoListResponse = .success(myRepoList)
+        repoGateway.set(keyPath: \.searchRepoList, value: .success(myRepoList))
         
         // Execute
         target.getMyRepoList()
@@ -109,8 +109,8 @@ class ProfileInteractorTests: XCTestCase {
         
         output.relate(exp: getMeExpectation, to: .didFindMe(me))
         
-        repoGateway.searchRepoListResponse = .success(myRepoList)
-        profileGateway.fetchMeResponse = .success(me)
+        repoGateway.set(keyPath: \.searchRepoList, value: .success(myRepoList))
+        profileGateway.set(keyPath: \.me, value: .success(me))
         
         // Execute
         target.getMe()

@@ -13,6 +13,10 @@ class RepositoryUseCaseMock: Mock, RepositoryUseCaseProtocol {
     var expected: [Function] = []
     var actual: [Function] = []
     
+    var output: RepositoryUseCaseOutput!
+    
+    var dto: DTO = .init()
+    
     struct Function: MockFunction {
         
         var numberOfCall: Int = 0
@@ -20,8 +24,12 @@ class RepositoryUseCaseMock: Mock, RepositoryUseCaseProtocol {
         
         enum Action: Hashable {
             case searchSpecificRepository(owner: GitHubUserLoginID, repoName: String)
-            case searchWithQuery(query: String, count: Int)            
+            case searchWithQuery(query: String, count: Int = 10)            
         }
+    }
+    
+    func inject(output: RepositoryUseCaseOutput) {
+        self.output = output
     }
     
     func search(with query: String, count: Int) {
@@ -29,6 +37,14 @@ class RepositoryUseCaseMock: Mock, RepositoryUseCaseProtocol {
             action: .searchWithQuery(query: query, count: count)
         )
         registerActual(f)
+        
+        let response = dto.searchWithQuery
+        switch response {
+        case .success(let data):
+            output.didCompleteSearch(repositories: data)
+        case .failure(let error):
+            output.didFailToSearch(error: error)
+        }
     }
     
     func search(of owner: GitHubUserLoginID, repoName: String) {
@@ -36,5 +52,20 @@ class RepositoryUseCaseMock: Mock, RepositoryUseCaseProtocol {
             action: .searchSpecificRepository(owner: owner, repoName: repoName)
         )
         registerActual(f)
+        
+        let response = dto.searchWithQuery
+        switch response {
+        case .success(let data):
+            output.didCompleteSearch(repositories: data)
+        case .failure(let error):
+            output.didFailToSearch(error: error)
+        }
+    }
+}
+
+extension RepositoryUseCaseMock: MockOutput {
+    struct DTO {
+        var searchWithQuery: Result<GitHubRepositoryList, Error> = .failure(MockError.notConfigured)
+        var searchSpecific: Result<GitHubRepositoryList, Error> = .failure(MockError.notConfigured)
     }
 }

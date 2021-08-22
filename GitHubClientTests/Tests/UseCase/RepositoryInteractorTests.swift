@@ -38,7 +38,7 @@ class RepositoryInteractorTests: XCTestCase {
         output.registerExpected(
             .init(action: .didCompleteSearch(repoList))
         )
-        gateway.searchWithQueryResponse = .success(repoList)
+        gateway.set(keyPath: \.searchWithQuery, value: .success(repoList))
         
         target.search(with: query, count: count)
         
@@ -61,7 +61,7 @@ class RepositoryInteractorTests: XCTestCase {
             .init(action: .didCompleteSearch(repoList))
         )
         
-        gateway.searchSpecificResponse = .success(repo)
+        gateway.set(keyPath: \.searchSpecific, value: .success(repo))
         
         target.search(of: owner, repoName: repoName)
         

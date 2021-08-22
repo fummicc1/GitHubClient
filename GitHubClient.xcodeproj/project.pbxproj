@@ -28,14 +28,17 @@
 		D365EAC626CF78C5001F9332 /* ProfileUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BAC726CD474B00046689 /* ProfileUseCaseMock.swift */; };
 		D365EAC826CF7FD1001F9332 /* RepositoryUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAC726CF7FD1001F9332 /* RepositoryUseCaseMock.swift */; };
 		D365EACC26CFA2A5001F9332 /* RepositoryGatewayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EACB26CFA2A5001F9332 /* RepositoryGatewayMock.swift */; };
-		D365EACE26CFACC6001F9332 /* GatewayMockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EACD26CFACC6001F9332 /* GatewayMockError.swift */; };
+		D365EACE26CFACC6001F9332 /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EACD26CFACC6001F9332 /* MockError.swift */; };
 		D365EAD626CFB82F001F9332 /* ProfileInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAD526CFB82F001F9332 /* ProfileInteractorTests.swift */; };
 		D365EAD826CFB9F7001F9332 /* ProfileGatewayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAD726CFB9F7001F9332 /* ProfileGatewayMock.swift */; };
+		D37F2CA326D2029E00C453BA /* RepositoryListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37F2CA226D2029E00C453BA /* RepositoryListViewModelTests.swift */; };
 		D3ABFFE626D0E6860048875B /* ProfileUseCaseOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFE526D0E6860048875B /* ProfileUseCaseOutputMock.swift */; };
 		D3ABFFE826D0E9690048875B /* RepositoryInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFE726D0E9690048875B /* RepositoryInteractorTests.swift */; };
 		D3ABFFEA26D0E9FF0048875B /* RepositoryUseCaseOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFE926D0E9FF0048875B /* RepositoryUseCaseOutputMock.swift */; };
 		D3ABFFEC26D0FAA20048875B /* Publisher+DelegateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFEB26D0FAA20048875B /* Publisher+DelegateError.swift */; };
 		D3ABFFEE26D106960048875B /* DelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFED26D106960048875B /* DelegateMock.swift */; };
+		D3B4D24826D24513008BBFC4 /* PublisherValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */; };
+		D3B4D24A26D24A2A008BBFC4 /* MockOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4D24926D24A2A008BBFC4 /* MockOutput.swift */; };
 		D3C460BB26B110CF00DF4B1F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BA26B110CF00DF4B1F /* RootView.swift */; };
 		D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */; };
 		D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */; };
@@ -86,14 +89,17 @@
 		D365EAC426CF771D001F9332 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		D365EAC726CF7FD1001F9332 /* RepositoryUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryUseCaseMock.swift; sourceTree = "<group>"; };
 		D365EACB26CFA2A5001F9332 /* RepositoryGatewayMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryGatewayMock.swift; sourceTree = "<group>"; };
-		D365EACD26CFACC6001F9332 /* GatewayMockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayMockError.swift; sourceTree = "<group>"; };
+		D365EACD26CFACC6001F9332 /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
 		D365EAD526CFB82F001F9332 /* ProfileInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractorTests.swift; sourceTree = "<group>"; };
 		D365EAD726CFB9F7001F9332 /* ProfileGatewayMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGatewayMock.swift; sourceTree = "<group>"; };
+		D37F2CA226D2029E00C453BA /* RepositoryListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModelTests.swift; sourceTree = "<group>"; };
 		D3ABFFE526D0E6860048875B /* ProfileUseCaseOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCaseOutputMock.swift; sourceTree = "<group>"; };
 		D3ABFFE726D0E9690048875B /* RepositoryInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInteractorTests.swift; sourceTree = "<group>"; };
 		D3ABFFE926D0E9FF0048875B /* RepositoryUseCaseOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryUseCaseOutputMock.swift; sourceTree = "<group>"; };
 		D3ABFFEB26D0FAA20048875B /* Publisher+DelegateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+DelegateError.swift"; sourceTree = "<group>"; };
 		D3ABFFED26D106960048875B /* DelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateMock.swift; sourceTree = "<group>"; };
+		D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherValidation.swift; sourceTree = "<group>"; };
+		D3B4D24926D24A2A008BBFC4 /* MockOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOutput.swift; sourceTree = "<group>"; };
 		D3C460BA26B110CF00DF4B1F /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListScreen.swift; sourceTree = "<group>"; };
 		D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
@@ -259,6 +265,7 @@
 				D365EAC926CFA287001F9332 /* UseCase */,
 				D365EAC126CF76F9001F9332 /* Mock.swift */,
 				D3ABFFED26D106960048875B /* DelegateMock.swift */,
+				D3B4D24926D24A2A008BBFC4 /* MockOutput.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -284,7 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				D365EACB26CFA2A5001F9332 /* RepositoryGatewayMock.swift */,
-				D365EACD26CFACC6001F9332 /* GatewayMockError.swift */,
+				D365EACD26CFACC6001F9332 /* MockError.swift */,
 				D365EAD726CFB9F7001F9332 /* ProfileGatewayMock.swift */,
 			);
 			path = Gateway;
@@ -293,6 +300,8 @@
 		D365EAD126CFB803001F9332 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				D3B4D24626D24502008BBFC4 /* Validate */,
+				D37F2CA126D2027500C453BA /* Presenter */,
 				D365EAD426CFB81A001F9332 /* UseCase */,
 			);
 			path = Tests;
@@ -305,6 +314,14 @@
 				D3ABFFE726D0E9690048875B /* RepositoryInteractorTests.swift */,
 			);
 			path = UseCase;
+			sourceTree = "<group>";
+		};
+		D37F2CA126D2027500C453BA /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D37F2CA226D2029E00C453BA /* RepositoryListViewModelTests.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		D3ABFFE226D0E6680048875B /* Profile */ = {
@@ -323,6 +340,14 @@
 				D3ABFFE926D0E9FF0048875B /* RepositoryUseCaseOutputMock.swift */,
 			);
 			path = Repo;
+			sourceTree = "<group>";
+		};
+		D3B4D24626D24502008BBFC4 /* Validate */ = {
+			isa = PBXGroup;
+			children = (
+				D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */,
+			);
+			path = Validate;
 			sourceTree = "<group>";
 		};
 		D3C460BC26B110E100DF4B1F /* UI */ = {
@@ -566,15 +591,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D37F2CA326D2029E00C453BA /* RepositoryListViewModelTests.swift in Sources */,
 				D33A0FF726B10D75002DA455 /* GitHubClientTests.swift in Sources */,
 				D365EAD626CFB82F001F9332 /* ProfileInteractorTests.swift in Sources */,
 				D3ABFFE626D0E6860048875B /* ProfileUseCaseOutputMock.swift in Sources */,
-				D365EACE26CFACC6001F9332 /* GatewayMockError.swift in Sources */,
+				D365EACE26CFACC6001F9332 /* MockError.swift in Sources */,
 				D365EAC526CF771D001F9332 /* Stub.swift in Sources */,
+				D3B4D24A26D24A2A008BBFC4 /* MockOutput.swift in Sources */,
 				D365EAC826CF7FD1001F9332 /* RepositoryUseCaseMock.swift in Sources */,
 				D3ABFFE826D0E9690048875B /* RepositoryInteractorTests.swift in Sources */,
 				D365EAC226CF76F9001F9332 /* Mock.swift in Sources */,
 				D3ABFFEA26D0E9FF0048875B /* RepositoryUseCaseOutputMock.swift in Sources */,
+				D3B4D24826D24513008BBFC4 /* PublisherValidation.swift in Sources */,
 				D365EACC26CFA2A5001F9332 /* RepositoryGatewayMock.swift in Sources */,
 				D365EAC626CF78C5001F9332 /* ProfileUseCaseMock.swift in Sources */,
 				D365EAD826CFB9F7001F9332 /* ProfileGatewayMock.swift in Sources */,
