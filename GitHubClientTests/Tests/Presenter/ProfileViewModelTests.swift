@@ -57,7 +57,9 @@ class ProfileViewModelTests: XCTestCase {
             type: MeViewData.self,
             streamCount: 1
         )
-        wait(for: [exp], timeout: 2)
+        let (exp2, _) = me.compactMap({ $0 })
+            .validate(timeout: 2, equals: [viewData])
+        wait(for: [exp, exp2], timeout: 2)
     }
 
     func testPerformanceExample() throws {

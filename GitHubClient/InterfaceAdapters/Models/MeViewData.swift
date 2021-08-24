@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MeViewData {
+struct MeViewData: Identifiable, Equatable {
     let login: String
     let avatarUrl: String
     
@@ -18,4 +18,8 @@ struct MeViewData {
     
     let followees: [GitHubUserViewData]
     let followeesCount: Int
+    
+    var id: String {
+        login
+    }
 }
