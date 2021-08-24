@@ -20,7 +20,6 @@
 		D33A101626B10E51002DA455 /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100B26B10E51002DA455 /* Me.swift */; };
 		D33A101726B10E51002DA455 /* ApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100D26B10E51002DA455 /* ApiErrors.swift */; };
 		D33A101926B10E51002DA455 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100F26B10E51002DA455 /* APIClient.swift */; };
-		D34D209F26CE376C006B86EF /* RepositoryListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D209E26CE376C006B86EF /* RepositoryListRouter.swift */; };
 		D34D20A226CE640A006B86EF /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D34D20A126CE640A006B86EF /* SwiftUIX */; };
 		D360117326C01ADA008C37FD /* RepositoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D360117226C01ADA008C37FD /* RepositoryCardView.swift */; };
 		D365EAC226CF76F9001F9332 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAC126CF76F9001F9332 /* Mock.swift */; };
@@ -39,6 +38,10 @@
 		D3ABFFEE26D106960048875B /* DelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFED26D106960048875B /* DelegateMock.swift */; };
 		D3B4D24826D24513008BBFC4 /* PublisherValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */; };
 		D3B4D24A26D24A2A008BBFC4 /* MockOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4D24926D24A2A008BBFC4 /* MockOutput.swift */; };
+		D3BC9A6026D3849C0063A9F5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D3BC9A5F26D3849C0063A9F5 /* Kingfisher */; };
+		D3BC9A6326D384CD0063A9F5 /* NetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */; };
+		D3BC9A6626D398C10063A9F5 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC9A6526D398C10063A9F5 /* DIContainer.swift */; };
+		D3BC9A6926D483AB0063A9F5 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = D3BC9A6826D483AB0063A9F5 /* Swinject */; };
 		D3C460BB26B110CF00DF4B1F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BA26B110CF00DF4B1F /* RootView.swift */; };
 		D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */; };
 		D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */; };
@@ -83,7 +86,6 @@
 		D33A100B26B10E51002DA455 /* Me.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		D33A100D26B10E51002DA455 /* ApiErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiErrors.swift; sourceTree = "<group>"; };
 		D33A100F26B10E51002DA455 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		D34D209E26CE376C006B86EF /* RepositoryListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListRouter.swift; sourceTree = "<group>"; };
 		D360117226C01ADA008C37FD /* RepositoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCardView.swift; sourceTree = "<group>"; };
 		D365EAC126CF76F9001F9332 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		D365EAC426CF771D001F9332 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
@@ -100,6 +102,9 @@
 		D3ABFFED26D106960048875B /* DelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateMock.swift; sourceTree = "<group>"; };
 		D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherValidation.swift; sourceTree = "<group>"; };
 		D3B4D24926D24A2A008BBFC4 /* MockOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOutput.swift; sourceTree = "<group>"; };
+		D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImage.swift; sourceTree = "<group>"; };
+		D3BC9A6526D398C10063A9F5 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		D3BC9A6A26D497580063A9F5 /* GitHubClient.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = GitHubClient.xctestplan; path = GitHubClientTests/GitHubClient.xctestplan; sourceTree = SOURCE_ROOT; };
 		D3C460BA26B110CF00DF4B1F /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListScreen.swift; sourceTree = "<group>"; };
 		D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
@@ -123,8 +128,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3BC9A6026D3849C0063A9F5 /* Kingfisher in Frameworks */,
 				D33A100026B10DE7002DA455 /* Apollo in Frameworks */,
 				D34D20A226CE640A006B86EF /* SwiftUIX in Frameworks */,
+				D3BC9A6926D483AB0063A9F5 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +166,7 @@
 		D33A0FE026B10D62002DA455 /* GitHubClient */ = {
 			isa = PBXGroup;
 			children = (
+				D3BC9A6426D398B70063A9F5 /* DI */,
 				D33A0FEA26B10D63002DA455 /* Info.plist */,
 				D33A0FE126B10D62002DA455 /* GitHubClientApp.swift */,
 				D33A0FE526B10D63002DA455 /* Assets.xcassets */,
@@ -184,6 +192,7 @@
 		D33A0FF526B10D75002DA455 /* GitHubClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				D3BC9A6A26D497580063A9F5 /* GitHubClient.xctestplan */,
 				D365EAD126CFB803001F9332 /* Tests */,
 				D365EAC326CF7715001F9332 /* Stub */,
 				D365EAC026CF7668001F9332 /* Mock */,
@@ -239,14 +248,6 @@
 				D33A100F26B10E51002DA455 /* APIClient.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		D34D209D26CE3761006B86EF /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				D34D209E26CE376C006B86EF /* RepositoryListRouter.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		D360117126C01ACB008C37FD /* Views */ = {
@@ -350,6 +351,14 @@
 			path = Validate;
 			sourceTree = "<group>";
 		};
+		D3BC9A6426D398B70063A9F5 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				D3BC9A6526D398C10063A9F5 /* DIContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
 		D3C460BC26B110E100DF4B1F /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,9 +391,9 @@
 		D3F1BAB026CCC46200046689 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D34D209D26CE3761006B86EF /* Router */,
 				D3C460BC26B110E100DF4B1F /* UI */,
 				D33A100C26B10E51002DA455 /* Network */,
+				D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -445,6 +454,8 @@
 			packageProductDependencies = (
 				D33A0FFF26B10DE7002DA455 /* Apollo */,
 				D34D20A126CE640A006B86EF /* SwiftUIX */,
+				D3BC9A5F26D3849C0063A9F5 /* Kingfisher */,
+				D3BC9A6826D483AB0063A9F5 /* Swinject */,
 			);
 			productName = GitHubClient;
 			productReference = D33A0FDE26B10D62002DA455 /* GitHubClient.app */;
@@ -501,6 +512,8 @@
 				D3F1BAC026CD347300046689 /* XCRemoteSwiftPackageReference "Cuckoo" */,
 				D3F1BACC26CD502B00046689 /* XCRemoteSwiftPackageReference "Resolver" */,
 				D34D20A026CE640A006B86EF /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				D3BC9A5E26D3849C0063A9F5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D3BC9A6726D483AA0063A9F5 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = D33A0FDF26B10D62002DA455 /* Products */;
 			projectDirPath = "";
@@ -557,12 +570,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3BC9A6626D398C10063A9F5 /* DIContainer.swift in Sources */,
 				D33A101526B10E51002DA455 /* GitHubUser.swift in Sources */,
 				D33A101726B10E51002DA455 /* ApiErrors.swift in Sources */,
 				D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */,
 				D3F1BACB26CD478700046689 /* ProfileViewModel.swift in Sources */,
 				D33A101126B10E51002DA455 /* ProfileUseCase.swift in Sources */,
 				D3F1BAB526CCF72B00046689 /* UserGateway.swift in Sources */,
+				D3BC9A6326D384CD0063A9F5 /* NetworkImage.swift in Sources */,
 				D33A101226B10E51002DA455 /* ProfileInteractor.swift in Sources */,
 				D3ABFFEC26D0FAA20048875B /* Publisher+DelegateError.swift in Sources */,
 				D33A101926B10E51002DA455 /* APIClient.swift in Sources */,
@@ -582,7 +597,6 @@
 				D33A101326B10E51002DA455 /* API.swift in Sources */,
 				D33A101426B10E51002DA455 /* PrivateKey.swift in Sources */,
 				D360117326C01ADA008C37FD /* RepositoryCardView.swift in Sources */,
-				D34D209F26CE376C006B86EF /* RepositoryListRouter.swift in Sources */,
 				D3F1BAB926CD081300046689 /* GitHubUserViewData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -874,6 +888,22 @@
 				minimumVersion = 0.0.8;
 			};
 		};
+		D3BC9A5E26D3849C0063A9F5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.1;
+			};
+		};
+		D3BC9A6726D483AA0063A9F5 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.0;
+			};
+		};
 		D3F1BAC026CD347300046689 /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Brightify/Cuckoo";
@@ -902,6 +932,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D34D20A026CE640A006B86EF /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
+		};
+		D3BC9A5F26D3849C0063A9F5 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3BC9A5E26D3849C0063A9F5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		D3BC9A6826D483AB0063A9F5 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3BC9A6726D483AA0063A9F5 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 		D3F1BAC526CD416300046689 /* Cuckoo */ = {
 			isa = XCSwiftPackageProductDependency;

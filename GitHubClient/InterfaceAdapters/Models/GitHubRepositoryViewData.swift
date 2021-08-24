@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GitHubRepositoryViewData: Identifiable, Equatable {
+struct GitHubRepositoryViewData: Identifiable, Hashable {
     let id: String
     let userName: String
     let avatarURL: String
@@ -16,4 +16,20 @@ struct GitHubRepositoryViewData: Identifiable, Equatable {
     let isPrivate: Bool
     let createDate: String
     let url: String
+    let languages: [Language]
+    let mostUsedLangauge: Language?
+}
+
+extension GitHubRepositoryViewData {
+    struct Language: Identifiable, Hashable {
+        let name: String
+        let color: String?
+        var hasColor: Bool {
+            color != nil
+        }
+        
+        var id: String {
+            name
+        }
+    }
 }

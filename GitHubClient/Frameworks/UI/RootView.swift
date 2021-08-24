@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct RootView: View {
     
     @State private var selectIndex: Int = 0
     
-    @Environment(\.repositoryListRouter) var router: RepositoryListRouterProtocol
+    @Environment(\.assembler) var assembler: Assembler
     
     var body: some View {
         TabView(selection: $selectIndex,
                 content:  {
-                    router.assemble()
+                    RepositoryListScreen(viewModel: assembler.resolver.resolve(RepositoryListViewModel.self)!)
                     .tabItem { Text("Tab Label 1") }
                     .tag(1)
                     
@@ -24,6 +25,7 @@ struct RootView: View {
                         .tabItem { Text("Tab Label 2") }
                         .tag(2)
                 })
+            .background(Color.clear)
     }
 }
 

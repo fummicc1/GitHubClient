@@ -22,18 +22,19 @@ protocol RepositoryGatewayProtocol {
 class RepositoryInteractor {
     
     init(
-        repositoryGateway: RepositoryGatewayProtocol?,
-        output: RepositoryUseCaseOutput?
+        repositoryGateway: RepositoryGatewayProtocol
     ) {
         self.repositoryGateway = repositoryGateway
-        self.output = output
     }
-    
     
     private var repositoryGateway: RepositoryGatewayProtocol!
     private var output: RepositoryUseCaseOutput!
     
     private var cancellables: Set<AnyCancellable> = Set()
+    
+    func inject(output: RepositoryUseCaseOutput) {
+        self.output = output
+    }
 }
 
 extension RepositoryInteractor: RepositoryUseCaseProtocol {

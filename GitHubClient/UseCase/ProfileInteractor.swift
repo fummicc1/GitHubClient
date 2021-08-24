@@ -24,12 +24,10 @@ final class ProfileInteractor {
     internal init(
         userGateway: UserGatewayProtocol,
         repoGateway: RepositoryGatewayProtocol,
-        output: ProfileUseCaseOutput,
         cancellables: Set<AnyCancellable> = Set()
     ) {
         self.userGateway = userGateway
         self.repoGateway = repoGateway
-        self.output = output
         self.cancellables = cancellables
         
         me.dropFirst().sink { [weak self] me in
@@ -62,6 +60,10 @@ final class ProfileInteractor {
     private var me: CurrentValueSubject<MeEntity?, Never> = .init(nil)
     private var repoList: CurrentValueSubject<GitHubRepositoryList, Never> = .init(.empty)
     private let errors: PassthroughSubject<Swift.Error, Never> = .init()
+    
+    func inject(output: ProfileUseCaseOutput) {
+        self.output = output
+    }
 }
 
 extension ProfileInteractor: ProfileUseCaseProtocol {

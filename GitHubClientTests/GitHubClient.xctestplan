@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "45ADDB04-2758-402F-B0B8-14CE9828D083",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:GitHubClient.xcodeproj",
+          "identifier" : "D33A0FDD26B10D62002DA455",
+          "name" : "GitHubClient"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:GitHubClient.xcodeproj",
+      "identifier" : "D33A0FDD26B10D62002DA455",
+      "name" : "GitHubClient"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:GitHubClient.xcodeproj",
+        "identifier" : "D33A0FF326B10D75002DA455",
+        "name" : "GitHubClientTests"
+      }
+    }
+  ],
+  "version" : 1
+}

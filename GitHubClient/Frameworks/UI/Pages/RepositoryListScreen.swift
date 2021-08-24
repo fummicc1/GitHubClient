@@ -10,22 +10,23 @@ import SwiftUIX
 
 struct RepositoryListScreen: View {
     
-    var configuration: NavigationViewWithSearchBar.Configuration {
-        .init(
-            title: "Search List",
-            prefersLargeTitle: true,
-            searchBarPlaceholder: "Search"
-        )
-    }
-    
     @ObservedObject var viewModel: RepositoryListViewModel
     
     var body: some View {
         NavigationView {
-            VStack {
+            ZStack {
                 RepositoryListView(repositories: $viewModel.repositories)
-                Text(viewModel.repositories.isEmpty ? "未検索" : "\(viewModel.repositories.count)の検索結果")
-                Spacer()
+                if viewModel.repositories.isEmpty {
+                    VStack {
+                        Spacer()
+                        Text("\(viewModel.repositories.count)の検索結果")
+                            .padding()
+                            .background(Color.systemBackground)
+                            .cornerRadius(8)
+                            .shadow(x: 0, y: 2, blur: 8)
+                        Spacer().frame(height: 24)
+                    }
+                }
             }
             .navigationSearchBar({
                 SearchBar(
@@ -36,7 +37,7 @@ struct RepositoryListScreen: View {
                     }
                 )
             })
-            .navigationTitle("Search Repository List")
+            .navigationTitle("Find")
         }
         .alert(isPresented: $viewModel.shouldShowErrorMessage) {
             let message = viewModel.errorMessage!
@@ -57,12 +58,21 @@ struct RepositoryListView: View {
     @Binding var repositories: [GitHubRepositoryViewData]
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(repositories) { repository in
-                    RepositoryCardView(repository: repository)
-                }
+        List {
+            ForEach(repositories) { repository in
+                RepositoryCardView(repository: repository)
             }
         }
+    }
+}
+
+struct RepositoryListScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        
+        let useCase = RepositoryInteractor(repositoryGateway: RepositoryGateway(webClient: APIClient.make()))
+        
+        let viewModel = RepositoryListViewModel(useCase: useCase)
+        
+        return RepositoryListScreen(viewModel: viewModel)
     }
 }

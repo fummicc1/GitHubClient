@@ -17,6 +17,7 @@ struct GitHubRepository {
     let isPrivate: Bool
     let name: String
     let owner: GitHubUser
+    let languages: [Language]
     
     init(
         id: GitHubRepositoryID,
@@ -25,7 +26,8 @@ struct GitHubRepository {
         description: String?,
         isPrivate: Bool,
         name: String,
-        owner: GitHubUser
+        owner: GitHubUser,
+        languages: [Language]
     ) {
         self.id = id
         self.url = url
@@ -34,6 +36,7 @@ struct GitHubRepository {
         self.isPrivate = isPrivate
         self.name = name
         self.owner = owner
+        self.languages = languages
     }
     
     static func makeWithISO8601DateFormatter(
@@ -43,7 +46,8 @@ struct GitHubRepository {
         description: String?,
         isPrivate: Bool,
         name: String,
-        owner: GitHubUser
+        owner: GitHubUser,
+        languages: [Language]
     ) throws -> GitHubRepository {
         
         let dateFormatter = ISO8601DateFormatter()
@@ -59,7 +63,8 @@ struct GitHubRepository {
             description: description,
             isPrivate: isPrivate,
             name: name,
-            owner: owner
+            owner: owner,
+            languages: languages
         )
         
     }
@@ -102,4 +107,11 @@ struct GitHubRepositoryList: Hashable {
     }
     
     static let empty: Self = .init(repositories: [])
+}
+
+extension GitHubRepository {
+    struct Language: Hashable {
+        let name: String
+        let colorCode: String?
+    }
 }

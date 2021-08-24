@@ -11,9 +11,10 @@ import SwiftUI
 
 struct SearchRepositoryRequestable: WebClientRequestable {
     
-    typealias Query = SearchRepositoryQuery
-    typealias Response = SearchRepositoryQuery.Data.Search
+    typealias Query = SearchQuery
+    typealias Response = SearchQuery.Data.Search.Edge.Node.AsRepository
     
+    let type: SearchType = .repository
     let query: String
     let count: Int
 
@@ -22,8 +23,8 @@ struct SearchRepositoryRequestable: WebClientRequestable {
         self.count = count
     }
     
-    func build() -> SearchRepositoryQuery {
-        SearchRepositoryQuery(query: query, count: count)
+    func build() -> SearchQuery {
+        SearchQuery(query: query, type: type, count: count)
     }
 }
 
@@ -67,18 +68,9 @@ class RepositoryGateway: RepositoryGatewayProtocol {
                     }
                     
                     do {
-                        let entity = try GitHubRepository.makeWithISO8601DateFormatter(
-                            id: GitHubRepositoryID(id: repository.id),
-                            url: repository.url,
-                            createdAt: repository.createdAt,
-                            description: repository.description,
-                            isPrivate: repository.isPrivate,
-                            name: repository.name,
-                            owner: GitHubUser(
-                                login: GitHubUserLoginID(id: repository.owner.login),
-                                avatarUrl: repository.owner.avatarUrl
-                            )
-                        )
+                        
+                        let entity = try self.convertToEntity(repository: repository)
+                        
                         promise(.success(entity))
                     } catch {
                         promise(.failure(error))
@@ -96,7 +88,7 @@ class RepositoryGateway: RepositoryGatewayProtocol {
                 let search = data.search
                 
                 let repositories = search.edges?
-                    .compactMap({ edge -> SearchRepositoryQuery.Data.Search.Edge.Node.AsRepository? in
+                    .compactMap({ edge -> SearchQuery.Data.Search.Edge.Node.AsRepository? in
                         guard let edge = edge else {
                             return nil
                         }
@@ -105,20 +97,10 @@ class RepositoryGateway: RepositoryGatewayProtocol {
                 
                 return Future { promise in
                     do {
-                        let entities = try repositories.map { repository in
-                            try GitHubRepository.makeWithISO8601DateFormatter(
-                                id: GitHubRepositoryID(id: repository.id),
-                                url: repository.url,
-                                createdAt: repository.createdAt,
-                                description: repository.description,
-                                isPrivate: repository.isPrivate,
-                                name: repository.name,
-                                owner: GitHubUser(
-                                    login: GitHubUserLoginID(id: repository.owner.login),
-                                    avatarUrl: repository.owner.avatarUrl
-                                )
-                            )
-                        }
+                        
+                        let entities = try repositories.map({ repo in
+                            try self.convertToEntity(repository: repo)
+                        })
                         
                         let listEntity = GitHubRepositoryList(repositories: entities)
                         
@@ -133,5 +115,52 @@ class RepositoryGateway: RepositoryGatewayProtocol {
     
     func searchRepoList(of id: GitHubUserLoginID) -> AnyPublisher<GitHubRepositoryList, Error> {
         fatalError()
+    }
+}
+
+extension RepositoryGateway {
+    /// Helper method to parse response
+    func convertToEntity(repository: SearchQuery.Data.Search.Edge.Node.AsRepository) throws -> GitHubRepository {
+        let languages = repository.languages?.edges?
+            .compactMap({ $0 })
+            .map({ edge in
+                GitHubRepository.Language(name: edge.node.name, colorCode: edge.node.color)
+            }) ?? []
+        let entity = try GitHubRepository.makeWithISO8601DateFormatter(
+            id: GitHubRepositoryID(id: repository.id),
+            url: repository.url,
+            createdAt: repository.createdAt,
+            description: repository.description,
+            isPrivate: repository.isPrivate,
+            name: repository.name,
+            owner: GitHubUser(
+                login: GitHubUserLoginID(id: repository.owner.login),
+                avatarUrl: repository.owner.avatarUrl
+            ),
+            languages: languages
+        )
+        return entity
+    }
+    
+    func convertToEntity(repository: SpecificRepositoryQuery.Data.Repository) throws -> GitHubRepository {
+        let languages = repository.languages?.edges?
+            .compactMap({ $0 })
+            .map({ edge in
+                GitHubRepository.Language(name: edge.node.name, colorCode: edge.node.color)
+            }) ?? []
+        let entity = try GitHubRepository.makeWithISO8601DateFormatter(
+            id: GitHubRepositoryID(id: repository.id),
+            url: repository.url,
+            createdAt: repository.createdAt,
+            description: repository.description,
+            isPrivate: repository.isPrivate,
+            name: repository.name,
+            owner: GitHubUser(
+                login: GitHubUserLoginID(id: repository.owner.login),
+                avatarUrl: repository.owner.avatarUrl
+            ),
+            languages: languages
+        )
+        return entity
     }
 }

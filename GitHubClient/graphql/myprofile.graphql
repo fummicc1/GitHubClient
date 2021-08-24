@@ -20,3 +20,32 @@ query MyProfile($getFollowerCount: Int, $getFolloweeCount: Int) {
         }
     }
 }  
+
+query GetMyRepositories($first: Int!, $last: Int!) {
+  viewer {
+    login
+    repositories(first: $first, last: $last) {
+      edges {
+        node {
+          id
+          url
+          createdAt
+          description
+          isPrivate
+          name
+          languages(orderBy: {field: SIZE, direction: DESC}, first: 1) {
+            edges {
+              node {
+                name
+                color
+              }
+            }
+          }
+          owner {
+            login
+          }
+        }
+      }
+    }
+  }
+}

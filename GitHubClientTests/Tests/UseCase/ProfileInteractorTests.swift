@@ -21,9 +21,9 @@ class ProfileInteractorTests: XCTestCase {
         output = ProfileUseCaseOutputMock()
         target = ProfileInteractor(
             userGateway: profileGateway,
-            repoGateway: repoGateway,
-            output: output
+            repoGateway: repoGateway
         )
+        target.inject(output: output)
     }
 
     override func tearDownWithError() throws {

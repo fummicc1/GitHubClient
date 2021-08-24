@@ -10,11 +10,19 @@ query SpecificRepository($owner: String!, $name: String!) {
             login            
             avatarUrl(size: 44)
         }
+        languages(orderBy: {field: SIZE, direction: DESC}, first: 1) {
+            edges {
+              node {
+                name
+                color
+              }
+            }
+          }
     }
 }
 
-query SearchRepository($query: String!, $count: Int!) {
-  search(query: $query, type: REPOSITORY, last: $count) {
+query Search($query: String!, $type: SearchType!, $count: Int!) {
+  search(query: $query, type: $type, last: $count) {
     edges {
       node {
         ... on User {
@@ -32,6 +40,14 @@ query SearchRepository($query: String!, $count: Int!) {
           owner {
             avatarUrl(size: 44)
             login
+          }
+          languages(orderBy: {field: SIZE, direction: DESC}, first: 1) {
+            edges {
+              node {
+                name
+                color
+              }
+            }
           }
         }
       }

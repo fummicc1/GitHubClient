@@ -17,7 +17,8 @@ class RepositoryInteractorTests: XCTestCase {
     override func setUpWithError() throws {
         gateway = RepositoryGatewayMock()
         output = RepositoryUseCaseOutputMock()
-        target = RepositoryInteractor(repositoryGateway: gateway, output: output)
+        target = RepositoryInteractor(repositoryGateway: gateway)
+        target.inject(output: output)
     }
 
     override func tearDownWithError() throws {

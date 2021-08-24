@@ -22,7 +22,7 @@ final class RepositoryListViewModel: ObservableObject, RepositoryListViewModelPr
     @Published var errorMessage: ErrorMessageViewData?
     @Published var query: String = ""
     
-    func inject(useCase: RepositoryUseCaseProtocol) {
+    init(useCase: RepositoryUseCaseProtocol) {
         self.useCase = useCase
     }
     
@@ -39,6 +39,10 @@ extension RepositoryListViewModel: RepositoryUseCaseOutput {
             formatter.dateStyle = .short
             formatter.timeStyle = .none
             
+            let languages = repo.languages.map({ lang in
+                GitHubRepositoryViewData.Language(name: lang.name, color: lang.colorCode)
+            })
+            
             return GitHubRepositoryViewData(
                 id: repo.id.id,
                 userName: repo.owner.login.id,
@@ -47,7 +51,9 @@ extension RepositoryListViewModel: RepositoryUseCaseOutput {
                 description: repo.description,
                 isPrivate: repo.isPrivate,
                 createDate: formatter.string(from: repo.createdAt),
-                url: repo.url
+                url: repo.url,
+                languages: languages,
+                mostUsedLangauge: languages.first
             )
         })
         objectWillChange.send()

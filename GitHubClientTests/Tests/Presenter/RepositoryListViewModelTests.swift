@@ -15,20 +15,26 @@ class RepositoryListViewModelTests: XCTestCase {
     
     override func setUpWithError() throws {
         useCase = RepositoryUseCaseMock()
-        target = RepositoryListViewModel()
-        target.inject(useCase: useCase)
+        target = RepositoryListViewModel(useCase: useCase)
         useCase.inject(output: target)
     }
 
     override func tearDownWithError() throws {
     }
 
-    func test_fetch_canSucceed_InJapan() throws {
+    func test_fetch_canSucceed() throws {
         
         // Config
         
         let repo = GitHubRepository.stub()
         let repositoryList = GitHubRepositoryList(repositories: [repo])
+        
+        // FIXME: Support Localized String
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .short
+        dateformatter.timeStyle = .none
+        dateformatter.locale = Locale.current
+        
         let viewData = GitHubRepositoryViewData(
             id: repo.id.id,
             userName: repo.owner.login.id,
@@ -36,8 +42,10 @@ class RepositoryListViewModelTests: XCTestCase {
             name: repo.name,
             description: repo.description,
             isPrivate: repo.isPrivate,
-            createDate: "1/1/70", // TODO: Test for other locales
-            url: repo.url
+            createDate: dateformatter.string(from: repo.createdAt), // TODO: Test for other locales
+            url: repo.url,
+            languages: [.stub()],
+            mostUsedLangauge: .stub()
         )
         let viewDataList = [viewData]
         target.query = "fummicc1"

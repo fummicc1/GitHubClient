@@ -29,9 +29,16 @@ extension GitHubRepository: Stub {
             description: "fummicc1 profile repository",
             isPrivate: false,
             name: "fummicc1",
-            owner: GitHubUser.stub()
+            owner: GitHubUser.stub(),
+            languages: [.stub()]
         )
         return entity
+    }
+}
+
+extension GitHubRepository.Language: Stub {
+    static func stub() -> GitHubRepository.Language {
+        .init(name: "Swift", colorCode: "F05138")
     }
 }
 
@@ -96,7 +103,15 @@ extension GitHubRepositoryViewData: Stub {
             description: "An Easy Firebase (Auth / Firestore) Library written in Swift.",
             isPrivate: false,
             createDate: "2021/1/1",
-            url: "https://github.com/fummicc1/EasyFirebaseSwift"
+            url: "https://github.com/fummicc1/EasyFirebaseSwift",
+            languages: [.stub()],
+            mostUsedLangauge: .stub()
         )
+    }
+}
+
+extension GitHubRepositoryViewData.Language: Stub {
+    static func stub() -> GitHubRepositoryViewData.Language {
+        .init(name: "Swift", color: "F05138")
     }
 }
