@@ -40,6 +40,25 @@ class ProfileViewModelTests: XCTestCase {
         wait(for: [exp], timeout: 2)
         useCase.validate()
     }
+    
+    func test_findMe_canSuccess() throws {
+        let viewData = MeViewData.stub()
+        let data = MeEntity.stub()
+        
+        useCase.registerExpected(.init(action: .getMe))
+        useCase.set(keyPath: \.me, value: .success(data))
+        
+        // Execute
+        target.findMe()
+        
+        // Validate
+        let me = target.$me
+        let (exp, _) = me.validateNotNil(
+            type: MeViewData.self,
+            streamCount: 1
+        )
+        wait(for: [exp], timeout: 2)
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

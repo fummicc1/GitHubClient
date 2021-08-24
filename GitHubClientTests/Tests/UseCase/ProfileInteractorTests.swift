@@ -32,7 +32,14 @@ class ProfileInteractorTests: XCTestCase {
         // Configure
         let meStub = MeEntity.stub()
         
-        profileGateway.registerExpected(.init(action: .fetchMe))
+        profileGateway.registerExpected(
+            .init(
+                action: .fetchMe(
+                    followerCount: ProfileInteractor.defaultFetchCount,
+                    followeeCount: ProfileInteractor.defaultFetchCount
+                )
+            )
+        )
         
         profileGateway.set(keyPath: \.me, value: .success(meStub))
         
@@ -55,7 +62,14 @@ class ProfileInteractorTests: XCTestCase {
         
         repoGateway.registerExpected(.init(action: .searchRepoListOfUser(userID: me.login)))        
         repoGateway.set(keyPath: \.searchRepoList, value: .success(myRepoList))
-        profileGateway.registerExpected(.init(action: .fetchMe))
+        profileGateway.registerExpected(
+            .init(
+                action: .fetchMe(
+                    followerCount: ProfileInteractor.defaultFetchCount,
+                    followeeCount: ProfileInteractor.defaultFetchCount
+                )
+            )
+        )
         profileGateway.set(keyPath: \.me, value: .success(me))
         
         // Execute

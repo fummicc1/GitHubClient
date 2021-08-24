@@ -115,3 +115,17 @@ extension GitHubRepositoryViewData.Language: Stub {
         .init(name: "Swift", color: "F05138")
     }
 }
+
+extension MeViewData: Stub {
+    static func stub() -> MeViewData {
+        MeViewData(
+            login: "github",
+            avatarUrl: "https://avatars.githubusercontent.com/u/9919?s=200&v=4",
+            bio: "iOS Engineer",
+            followers: [],
+            followersCount: 0,
+            followees: [],
+            followeesCount: 0
+        )
+    }
+}
