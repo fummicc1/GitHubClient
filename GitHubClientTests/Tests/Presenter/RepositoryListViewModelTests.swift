@@ -16,7 +16,6 @@ class RepositoryListViewModelTests: XCTestCase {
     override func setUpWithError() throws {
         useCase = RepositoryUseCaseMock()
         target = RepositoryListViewModel(useCase: useCase)
-        useCase.inject(output: target)
     }
 
     override func tearDownWithError() throws {

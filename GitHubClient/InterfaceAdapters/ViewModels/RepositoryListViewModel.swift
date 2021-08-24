@@ -16,6 +16,7 @@ protocol RepositoryListViewModelProtocol {
 final class RepositoryListViewModel: ObservableObject, RepositoryListViewModelProtocol {
     
     private var useCase: RepositoryUseCaseProtocol!
+    private var cancellables: Set<AnyCancellable> = []
     
     @Published var repositories: [GitHubRepositoryViewData] = []
     @Published var shouldShowErrorMessage: Bool = false
@@ -30,10 +31,18 @@ final class RepositoryListViewModel: ObservableObject, RepositoryListViewModelPr
     
     func fetch(count: Int = 10) {
         useCase.search(with: query, count: count)
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    self.didFailToSearch(error: error)
+                }
+            }) { repoList in
+                self.didCompleteSearch(repositories: repoList)
+            }
+            .store(in: &cancellables)
     }
 }
 
-extension RepositoryListViewModel: RepositoryUseCaseOutput {
+extension RepositoryListViewModel {
     func didCompleteSearch(repositories: GitHubRepositoryList) {
         let reposViewData = repositories.repositories.map({ repo -> GitHubRepositoryViewData in
             

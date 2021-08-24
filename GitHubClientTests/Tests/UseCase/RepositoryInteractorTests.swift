@@ -12,13 +12,10 @@ class RepositoryInteractorTests: XCTestCase {
     
     var target: RepositoryInteractor!
     var gateway: RepositoryGatewayMock!
-    var output: RepositoryUseCaseOutputMock!
     
     override func setUpWithError() throws {
         gateway = RepositoryGatewayMock()
-        output = RepositoryUseCaseOutputMock()
         target = RepositoryInteractor(repositoryGateway: gateway)
-        target.inject(output: output)
     }
 
     override func tearDownWithError() throws {
@@ -36,20 +33,19 @@ class RepositoryInteractorTests: XCTestCase {
         gateway.registerExpected(
             .init(action: .searchWithQuery(query: query, count: count))
         )
-        output.registerExpected(
-            .init(action: .didCompleteSearch(repoList))
-        )
         gateway.set(keyPath: \.searchWithQuery, value: .success(repoList))
         
-        target.search(with: query, count: count)
-        
-        output.validate()
+        let result = target.search(with: query, count: count)
+                
         gateway.validate()
+        
+        let (exp, _) = result.validate(timeout: 2, equals: [repoList])
+        wait(for: [exp], timeout: 2)
     }
     
     func test_searchSpecificRepo_canSuccess() {
+        // Config
         let repo = GitHubRepository.stub()
-        let repoList = GitHubRepositoryList(repositories: [repo])
         
         let owner = GitHubUserLoginID(id: "fummicc1")
         
@@ -58,16 +54,17 @@ class RepositoryInteractorTests: XCTestCase {
         gateway.registerExpected(
             .init(action: .searchSpecificRepository(owner: owner, repoName: repoName))
         )
-        output.registerExpected(
-            .init(action: .didCompleteSearch(repoList))
-        )
         
         gateway.set(keyPath: \.searchSpecific, value: .success(repo))
         
-        target.search(of: owner, repoName: repoName)
-        
-        output.validate()
+        // Execute
+        let result = target.search(of: owner, repoName: repoName)
+                  
+        // Validate
         gateway.validate()
+        
+        let (exp, _) = result.validate(timeout: 2, equals: [repo])
+        wait(for: [exp], timeout: 2)
     }
     
     func testPerformanceExample() throws {

@@ -9,6 +9,6 @@ import Foundation
 import Combine
 
 protocol RepositoryUseCaseProtocol: AnyObject {
-    func search(of owner: GitHubUserLoginID, repoName: String)
-    func search(with query: String, count: Int)
+    func search(of owner: GitHubUserLoginID, repoName: String) -> AnyPublisher<GitHubRepository, Error>
+    func search(with query: String, count: Int) -> AnyPublisher<GitHubRepositoryList, Error>
 }

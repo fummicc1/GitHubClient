@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol ProfileViewModelProtocol {
     func findMe()
@@ -14,6 +15,9 @@ protocol ProfileViewModelProtocol {
 
 class ProfileViewModel: ObservableObject, ProfileViewModelProtocol {
     
+    private var cancellable: Set<AnyCancellable> = []
+    
+    @Published var myRepoList: [GitHubRepositoryViewData] = []
     @Published var me: MeViewData?
     @Published var error: ErrorMessageViewData?
     
@@ -25,18 +29,60 @@ class ProfileViewModel: ObservableObject, ProfileViewModelProtocol {
     
     func findMyRepoList() {        
         useCase.getMyRepoList()
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    self.didOccureError(error)
+                }
+            } receiveValue: { repoList in
+                self.didFind(repoList: repoList)
+            }
+            .store(in: &cancellable)
+
     }
     
     func findMe() {
         useCase.getMe()
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    self.didOccureError(error)
+                }
+            } receiveValue: { me in
+                self.didFind(me: me)
+            }
+            .store(in: &cancellable)
+
     }
     
 }
 
-extension ProfileViewModel: ProfileUseCaseOutput {
+extension ProfileViewModel {
     
     func didFind(repoList: GitHubRepositoryList) {
-        fatalError()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        
+        let repoViewList = repoList.repositories.map({ repo in
+            GitHubRepositoryViewData(
+                id: repo.id.id,
+                userName: repo.owner.login.id,
+                avatarURL: repo.owner.avatarUrl,
+                name: repo.name,
+                description: repo.description,
+                isPrivate: repo.isPrivate,
+                createDate: dateFormatter.string(from: repo.createdAt),
+                url: repo.url,
+                languages: repo.languages.map({ lang in
+                    GitHubRepositoryViewData.Language(name: lang.name, color: lang.colorCode)
+                }),
+                mostUsedLangauge: repo.languages.map({ lang in
+                    GitHubRepositoryViewData.Language(name: lang.name, color: lang.colorCode)
+                }).first
+            )
+        })
+        
+        self.myRepoList = repoViewList
     }
     
     func didFind(me: MeEntity) {

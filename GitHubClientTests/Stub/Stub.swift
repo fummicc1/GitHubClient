@@ -96,14 +96,14 @@ extension MeEntity: Stub {
 extension GitHubRepositoryViewData: Stub {
     static func stub() -> GitHubRepositoryViewData {
         GitHubRepositoryViewData(
-            id: "fummicc1",
+            id: "MDEwOlJlcG9zaXRvcnkyODM2OTQ5MDA=",
             userName: "fummicc1",
             avatarURL: "https://avatars.githubusercontent.com/u/44002126?v=4",
-            name: "https://github.com/fummicc1/EasyFirebaseSwift",
-            description: "An Easy Firebase (Auth / Firestore) Library written in Swift.",
+            name: "fummicc1",
+            description: "fummicc1 profile repository",
             isPrivate: false,
-            createDate: "2021/1/1",
-            url: "https://github.com/fummicc1/EasyFirebaseSwift",
+            createDate: "1970/01/01",
+            url: "https://github.com/fummicc1/fummicc1",
             languages: [.stub()],
             mostUsedLangauge: .stub()
         )

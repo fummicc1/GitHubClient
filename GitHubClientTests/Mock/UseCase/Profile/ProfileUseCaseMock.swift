@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 @testable import GitHubClient
 
 class ProfileUseCaseMock: Mock, MockOutput, ProfileUseCaseProtocol {
@@ -13,37 +14,22 @@ class ProfileUseCaseMock: Mock, MockOutput, ProfileUseCaseProtocol {
     var expected: [Function] = []
     var actual: [Function] = []
     
-    var output: ProfileUseCaseOutput!
-    
     var dto: DTO = .init()
     
-    func inject(output: ProfileUseCaseOutput) {
-        self.output = output
-    }
-    
-    func getMe() {
+    func getMe() -> AnyPublisher<MeEntity, Error> {
         let function = Function(action: .getMe)
         registerActual(function)
         
         let response = dto.me
-        switch response {
-        case .success(let me):
-            output.didFind(me: me)
-        case .failure(let error):
-            output.didOccureError(error)
-        }
+        return response.publisher.eraseToAnyPublisher()
     }
     
-    func getMyRepoList() {
-        registerActual(.init(action: .getMyRepoList))
+    func getMyRepoList() -> AnyPublisher<GitHubRepositoryList, Error> {
+        let function = Function(action: .getMyRepoList)
+        registerActual(function)
         
         let response = dto.myRepoList
-        switch response {
-        case .success(let list):
-            output.didFind(repoList: list)
-        case .failure(let error):
-            output.didOccureError(error)
-        }
+        return response.publisher.eraseToAnyPublisher()
     }
 }
 

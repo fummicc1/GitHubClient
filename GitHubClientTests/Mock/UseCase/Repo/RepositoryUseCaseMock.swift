@@ -6,14 +6,13 @@
 //
 
 import Foundation
+import Combine
 @testable import GitHubClient
 
 class RepositoryUseCaseMock: Mock, RepositoryUseCaseProtocol {
     
     var expected: [Function] = []
     var actual: [Function] = []
-    
-    var output: RepositoryUseCaseOutput!
     
     var dto: DTO = .init()
     
@@ -28,44 +27,30 @@ class RepositoryUseCaseMock: Mock, RepositoryUseCaseProtocol {
         }
     }
     
-    func inject(output: RepositoryUseCaseOutput) {
-        self.output = output
+    func search(of owner: GitHubUserLoginID, repoName: String) -> AnyPublisher<GitHubRepository, Error> {
+        let f = Function(
+            action: .searchSpecificRepository(owner: owner, repoName: repoName)
+        )
+        registerActual(f)
+        
+        let response = dto.searchSpecific
+        return response.publisher.eraseToAnyPublisher()
     }
     
-    func search(with query: String, count: Int) {
+    func search(with query: String, count: Int) -> AnyPublisher<GitHubRepositoryList, Error> {
         let f = Function(
             action: .searchWithQuery(query: query, count: count)
         )
         registerActual(f)
         
         let response = dto.searchWithQuery
-        switch response {
-        case .success(let data):
-            output.didCompleteSearch(repositories: data)
-        case .failure(let error):
-            output.didFailToSearch(error: error)
-        }
-    }
-    
-    func search(of owner: GitHubUserLoginID, repoName: String) {
-        let f = Function(
-            action: .searchSpecificRepository(owner: owner, repoName: repoName)
-        )
-        registerActual(f)
-        
-        let response = dto.searchWithQuery
-        switch response {
-        case .success(let data):
-            output.didCompleteSearch(repositories: data)
-        case .failure(let error):
-            output.didFailToSearch(error: error)
-        }
+        return response.publisher.eraseToAnyPublisher()
     }
 }
 
 extension RepositoryUseCaseMock: MockOutput {
     struct DTO {
         var searchWithQuery: Result<GitHubRepositoryList, Error> = .failure(MockError.notConfigured)
-        var searchSpecific: Result<GitHubRepositoryList, Error> = .failure(MockError.notConfigured)
+        var searchSpecific: Result<GitHubRepository, Error> = .failure(MockError.notConfigured)
     }
 }

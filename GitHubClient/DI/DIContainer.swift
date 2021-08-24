@@ -79,10 +79,6 @@ class ViewModelAssembly: Assembly {
     private func repositoryList(container: Container) {
         container.register(RepositoryListViewModel.self) { resolver in
             RepositoryListViewModel(useCase: resolver.resolve(RepositoryUseCaseProtocol.self)!)
-        }.initCompleted { resolver, viewModel in
-            if let interactor = resolver.resolve(RepositoryUseCaseProtocol.self) as? RepositoryInteractor {
-                interactor.inject(output: viewModel)
-            }
         }
     }
     

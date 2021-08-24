@@ -11,19 +11,16 @@ import XCTest
 class ProfileInteractorTests: XCTestCase {
     
     var target: ProfileInteractor!
-    var output: ProfileUseCaseOutputMock!
     var repoGateway: RepositoryGatewayMock!
     var profileGateway: ProfileGatewayMock!
 
     override func setUpWithError() throws {
         profileGateway = ProfileGatewayMock()
         repoGateway = RepositoryGatewayMock()
-        output = ProfileUseCaseOutputMock()
         target = ProfileInteractor(
             userGateway: profileGateway,
             repoGateway: repoGateway
         )
-        target.inject(output: output)
     }
 
     override func tearDownWithError() throws {
@@ -36,44 +33,18 @@ class ProfileInteractorTests: XCTestCase {
         let meStub = MeEntity.stub()
         
         profileGateway.registerExpected(.init(action: .fetchMe))
-        output.registerExpected(.init(action: .didFindMe(meStub)))
         
         profileGateway.set(keyPath: \.me, value: .success(meStub))
         
         // Execute
-        target.getMe()
+        let result = target.getMe()
         
         // Validate
         profileGateway.validate()
-        output.validate()
-    }
-    
-    func test_getMyRepoList_canFail() throws {
         
-        // Configure
-        let me = MeEntity.stub()
-        let myRepoList = GitHubRepositoryList.stub()
+        let (expectation, _) = result.validate(timeout: 2, equals: [meStub])
         
-        let outputError = ProfileInteractor.Error.didNotFoundMe
-        
-        repoGateway.registerExpected(.init(action: .searchRepoListOfUser(userID: me.login)))
-        output.registerExpected(
-            .init(
-                action: .didOccureError(
-                    message: outputError.localizedDescription
-                )
-            )
-        )
-        
-        repoGateway.set(keyPath: \.searchRepoList, value: .success(myRepoList))
-        
-        // Execute
-        target.getMyRepoList()
-        
-        // Validate
-        profileGateway.validate()
-        output.validate()
-        
+        wait(for: [expectation], timeout: 2)
     }
     
     func test_getMyRepoList_canSuccess() throws {
@@ -82,49 +53,21 @@ class ProfileInteractorTests: XCTestCase {
         let me = MeEntity.stub()
         let myRepoList = GitHubRepositoryList.stub()
         
-        let getMeExpectation = XCTestExpectation(description: "Wait for getMe()")
-        
-        profileGateway.registerExpected(
-            .init(
-                action: .fetchMe
-            )
-        )
-        
-        repoGateway.registerExpected(
-            .init(
-                action: .searchRepoListOfUser(userID: me.login)
-            )
-        )
-        
-        output.registerExpected(
-            .init(
-                action: .didFindMe(me)
-            )
-        )
-        output.registerExpected(
-            .init(
-                action: .didFindRepoList(repoList: myRepoList)
-            )
-        )
-        
-        output.relate(exp: getMeExpectation, to: .didFindMe(me))
-        
+        repoGateway.registerExpected(.init(action: .searchRepoListOfUser(userID: me.login)))        
         repoGateway.set(keyPath: \.searchRepoList, value: .success(myRepoList))
+        profileGateway.registerExpected(.init(action: .fetchMe))
         profileGateway.set(keyPath: \.me, value: .success(me))
         
         // Execute
-        target.getMe()
-        
-        wait(for: [getMeExpectation], timeout: 2)
-        
-        target.getMyRepoList()
+        let result = target.getMyRepoList()
         
         // Validate
         profileGateway.validate()
-        output.validate()
         
+        let (exp, _) = result.validate(timeout: 2, equals: [myRepoList])
+        wait(for: [exp], timeout: 2)
     }
-
+    
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
