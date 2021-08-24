@@ -10,27 +10,39 @@ import Swinject
 
 struct RootView: View {
     
-    @State private var selectIndex: Int = 0
-    
     @Environment(\.assembler) var assembler: Assembler
     
+    @ObservedObject var viewModel: AppViewModel
+    
+//    @ViewBuilder
     var body: some View {
-        TabView(selection: $selectIndex,
-                content:  {
-                    RepositoryListScreen(viewModel: assembler.resolver.resolve(RepositoryListViewModel.self)!)
-                    .tabItem { Text("Tab Label 1") }
-                    .tag(1)
-                    
-                    Text("Tab Content 2")
-                        .tabItem { Text("Tab Label 2") }
-                        .tag(2)
-                })
-            .background(Color.clear)
+        
+        if viewModel.isLoggedIn {
+            TabView(selection: $viewModel.selectIndex,
+                    content:  {
+                        RepositoryListScreen(viewModel: assembler.resolver.resolve(RepositoryListViewModel.self)!
+                        )
+                        .tabItem { Text("Home") }
+                        .tag(1)
+                        
+                        MyProfileScreen()
+                            .tabItem { Text("Profile") }
+                            .tag(2)
+                    })
+                .background(Color.clear)
+        } else {
+            Text("ログインしましょう")
+        }
     }
 }
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
+        let client = APIClient.make()
+        let useCase = ProfileInteractor(
+            userGateway: UserGateway(webClient: client),
+            repoGateway: RepositoryGateway(webClient: client)
+        )
+        return RootView(viewModel: AppViewModel(profileUseCase: useCase))
     }
 }

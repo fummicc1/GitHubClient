@@ -16,7 +16,7 @@ class ProfileGatewayMock: Mock, UserGatewayProtocol {
         
         enum Action: Hashable {
             case fetchWithID(GitHubUserLoginID)
-            case fetchMe
+            case fetchMe(followerCount: Int, followeeCount: Int)
         }
     }
     
@@ -30,8 +30,15 @@ class ProfileGatewayMock: Mock, UserGatewayProtocol {
         return dto.withID.publisher.eraseToAnyPublisher()
     }
     
-    func fetchMe() -> AnyPublisher<MeEntity, Error> {
-        registerActual(.init(action: .fetchMe))
+    func fetchMe(followerCount: Int, followeeCount: Int) -> AnyPublisher<MeEntity, Error> {
+        registerActual(
+            .init(
+                action: .fetchMe(
+                    followerCount: followerCount,
+                    followeeCount: followeeCount
+                )
+            )
+        )
         return dto.me.publisher.eraseToAnyPublisher()
     }
 }

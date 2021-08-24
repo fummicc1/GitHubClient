@@ -73,7 +73,9 @@ class UseCaseAssembly: Assembly {
 // MARK: ViewModels
 class ViewModelAssembly: Assembly {
     func assemble(container: Container) {
-        repositoryList(container: container)        
+        app(container: container)
+        repositoryList(container: container)
+        myProfile(container: container)
     }
     
     private func repositoryList(container: Container) {
@@ -83,7 +85,15 @@ class ViewModelAssembly: Assembly {
     }
     
     private func myProfile(container: Container) {
-        fatalError()
+        container.register(ProfileViewModel.self) { resolver in
+            ProfileViewModel(useCase: resolver.resolve(ProfileUseCaseProtocol.self)!)
+        }
+    }
+    
+    private func app(container: Container) {
+        container.register(AppViewModel.self) { resolver in
+            AppViewModel(profileUseCase: resolver.resolve(ProfileUseCaseProtocol.self)!)
+        }
     }
 }
 

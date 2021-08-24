@@ -10,7 +10,7 @@ import Combine
 
 protocol UserGatewayProtocol {
     func fetch(id: GitHubUserLoginID) -> AnyPublisher<GitHubUser, Error>
-    func fetchMe() -> AnyPublisher<MeEntity, Error>
+    func fetchMe(followerCount: Int, followeeCount: Int) -> AnyPublisher<MeEntity, Error>
 }
 
 final class ProfileInteractor {
@@ -39,8 +39,13 @@ extension ProfileInteractor: ProfileUseCaseProtocol {
         case didNotFoundMe
     }
     
+    static let defaultFetchCount: Int = 50
+    
     func getMe() -> AnyPublisher<MeEntity, Swift.Error> {
-        userGateway.fetchMe()
+        userGateway.fetchMe(
+            followerCount: Self.defaultFetchCount,
+            followeeCount: Self.defaultFetchCount
+        )
     }
     
     func getMyRepoList() -> AnyPublisher<GitHubRepositoryList, Swift.Error> {

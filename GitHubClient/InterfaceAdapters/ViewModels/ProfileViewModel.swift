@@ -23,7 +23,7 @@ class ProfileViewModel: ObservableObject, ProfileViewModelProtocol {
     
     private var useCase: ProfileUseCaseProtocol!
     
-    func inject(useCase: ProfileUseCaseProtocol) {
+    init(useCase: ProfileUseCaseProtocol) {
         self.useCase = useCase
     }
     

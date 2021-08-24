@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import Swinject
 
 @main
 struct GitHubClientApp: App {
+    
+    @Environment(\.assembler) var assembler: Assembler
+    
     var body: some Scene {
         WindowGroup {
-            RootView()
+            RootView(viewModel: assembler.resolver.resolve(AppViewModel.self)!)
         }
     }
 }

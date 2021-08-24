@@ -34,12 +34,12 @@ struct MeRequestable: WebClientRequestable {
     typealias Query = MyProfileQuery
     typealias Response = MyProfileQuery.Data.Viewer
     
-    let getFollowerCount: Int?
-    let getFolloweeCount: Int?
+    let getFollowerCount: Int
+    let getFolloweeCount: Int
     
     init(
-        getFollowerCount: Int? = nil,
-        getFolloweeCount: Int? = nil
+        getFollowerCount: Int,
+        getFolloweeCount: Int
     ) {
         self.getFollowerCount = getFollowerCount
         self.getFolloweeCount = getFolloweeCount
@@ -85,8 +85,11 @@ class UserGateway: UserGatewayProtocol {
         .eraseToAnyPublisher()
     }
     
-    func fetchMe() -> AnyPublisher<MeEntity, Error> {
-        let request = MeRequestable()
+    func fetchMe(followerCount: Int, followeeCount: Int) -> AnyPublisher<MeEntity, Error> {
+        let request = MeRequestable(
+            getFollowerCount: followerCount,
+            getFolloweeCount: followeeCount
+        )
         return webClient.request(with: request).compactMap({ data in
             
             let me = data.viewer

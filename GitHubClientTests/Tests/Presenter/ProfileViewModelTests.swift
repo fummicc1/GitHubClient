@@ -15,8 +15,7 @@ class ProfileViewModelTests: XCTestCase {
     
     override func setUpWithError() throws {
         useCase = ProfileUseCaseMock()
-        target = ProfileViewModel()
-        target.inject(useCase: useCase)
+        target = ProfileViewModel(useCase: useCase)
     }
 
     override func tearDownWithError() throws {
