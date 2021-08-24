@@ -42,6 +42,7 @@
 		D3BC9A6326D384CD0063A9F5 /* NetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */; };
 		D3BC9A6626D398C10063A9F5 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC9A6526D398C10063A9F5 /* DIContainer.swift */; };
 		D3BC9A6926D483AB0063A9F5 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = D3BC9A6826D483AB0063A9F5 /* Swinject */; };
+		D3BC9A6D26D4AF020063A9F5 /* SnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC9A6C26D4AF020063A9F5 /* SnackBar.swift */; };
 		D3C460BB26B110CF00DF4B1F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BA26B110CF00DF4B1F /* RootView.swift */; };
 		D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */; };
 		D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */; };
@@ -105,6 +106,7 @@
 		D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImage.swift; sourceTree = "<group>"; };
 		D3BC9A6526D398C10063A9F5 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		D3BC9A6A26D497580063A9F5 /* GitHubClient.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = GitHubClient.xctestplan; path = GitHubClientTests/GitHubClient.xctestplan; sourceTree = SOURCE_ROOT; };
+		D3BC9A6C26D4AF020063A9F5 /* SnackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBar.swift; sourceTree = "<group>"; };
 		D3C460BA26B110CF00DF4B1F /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D3C460BD26B110F900DF4B1F /* RepositoryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListScreen.swift; sourceTree = "<group>"; };
 		D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
@@ -253,8 +255,10 @@
 		D360117126C01ACB008C37FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D3BC9A6B26D4AEC40063A9F5 /* Modifiers */,
 				D360117226C01ADA008C37FD /* RepositoryCardView.swift */,
 				D3EFED6D26CB895200592804 /* NavigationViewWithSearchBar.swift */,
+				D3BC9A6C26D4AF020063A9F5 /* SnackBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -357,6 +361,13 @@
 				D3BC9A6526D398C10063A9F5 /* DIContainer.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		D3BC9A6B26D4AEC40063A9F5 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		D3C460BC26B110E100DF4B1F /* UI */ = {
@@ -583,6 +594,7 @@
 				D33A101926B10E51002DA455 /* APIClient.swift in Sources */,
 				D3F1BAD026CD551600046689 /* MeViewData.swift in Sources */,
 				D33A0FE226B10D62002DA455 /* GitHubClientApp.swift in Sources */,
+				D3BC9A6D26D4AF020063A9F5 /* SnackBar.swift in Sources */,
 				D3EFED6E26CB895200592804 /* NavigationViewWithSearchBar.swift in Sources */,
 				D33A101626B10E51002DA455 /* Me.swift in Sources */,
 				D3F1BABB26CD082200046689 /* GitHubRepositoryViewData.swift in Sources */,

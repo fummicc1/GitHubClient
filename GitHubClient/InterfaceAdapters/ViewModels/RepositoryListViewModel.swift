@@ -21,6 +21,8 @@ final class RepositoryListViewModel: ObservableObject, RepositoryListViewModelPr
     @Published var shouldShowErrorMessage: Bool = false
     @Published var errorMessage: ErrorMessageViewData?
     @Published var query: String = ""
+    @Published var snackBarTitle: String = ""
+    @Published var shouldShowSnackBar: Bool = false
     
     init(useCase: RepositoryUseCaseProtocol) {
         self.useCase = useCase
@@ -58,6 +60,8 @@ extension RepositoryListViewModel: RepositoryUseCaseOutput {
         })
         objectWillChange.send()
         self.repositories = reposViewData
+        self.snackBarTitle = "\(reposViewData.count)件の検索結果"
+        self.shouldShowSnackBar = true
     }
     
     func didFailToSearch(error: Error) {

@@ -11,22 +11,23 @@ import SwiftUIX
 struct RepositoryListScreen: View {
     
     @ObservedObject var viewModel: RepositoryListViewModel
+    @State private var shouldHideSnackBar: Bool = false
     
     var body: some View {
         NavigationView {
             ZStack {
                 RepositoryListView(repositories: $viewModel.repositories)
-                if viewModel.repositories.isEmpty {
-                    VStack {
-                        Spacer()
-                        Text("\(viewModel.repositories.count)の検索結果")
-                            .padding()
-                            .background(Color.systemBackground)
-                            .cornerRadius(8)
-                            .shadow(x: 0, y: 2, blur: 8)
-                        Spacer().frame(height: 24)
+                SnackBar(
+                    text: $viewModel.snackBarTitle,
+                    shouldShow: $viewModel.shouldShowSnackBar
+                )
+                .onChange(of: viewModel.shouldShowSnackBar, perform: { shouldShowSnackBar in
+                    if shouldShowSnackBar {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            viewModel.shouldShowSnackBar = false
+                        }
                     }
-                }
+                })
             }
             .navigationSearchBar({
                 SearchBar(
@@ -63,6 +64,7 @@ struct RepositoryListView: View {
                 RepositoryCardView(repository: repository)
             }
         }
+        .listStyle(InsetGroupedListStyle())
     }
 }
 
