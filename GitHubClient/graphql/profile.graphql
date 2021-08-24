@@ -2,6 +2,7 @@ query Profile($login: String!) {
     user(login: $login) {
         login
         name
+        bio
         avatarUrl(size: 44)
     }
 }

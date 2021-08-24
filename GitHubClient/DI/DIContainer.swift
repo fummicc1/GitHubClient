@@ -85,8 +85,8 @@ class ViewModelAssembly: Assembly {
     }
     
     private func myProfile(container: Container) {
-        container.register(ProfileViewModel.self) { resolver in
-            ProfileViewModel(useCase: resolver.resolve(ProfileUseCaseProtocol.self)!)
+        container.register(MyProfileViewModel.self) { resolver in
+            MyProfileViewModel(useCase: resolver.resolve(ProfileUseCaseProtocol.self)!)
         }
     }
     

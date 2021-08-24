@@ -10,12 +10,12 @@ import XCTest
 
 class ProfileViewModelTests: XCTestCase {
 
-    var target: ProfileViewModel!
+    var target: MyProfileViewModel!
     var useCase: ProfileUseCaseMock!
     
     override func setUpWithError() throws {
         useCase = ProfileUseCaseMock()
-        target = ProfileViewModel(useCase: useCase)
+        target = MyProfileViewModel(useCase: useCase)
     }
 
     override func tearDownWithError() throws {

@@ -7,8 +7,13 @@ query SpecificRepository($owner: String!, $name: String!) {
         isPrivate
         name
         owner {
-            login            
-            avatarUrl(size: 44)
+            ... on User {
+                login
+                email
+                name
+                bio
+                avatarUrl(size: 44)
+            }
         }
         languages(orderBy: {field: SIZE, direction: DESC}, first: 1) {
             edges {
@@ -28,18 +33,25 @@ query Search($query: String!, $type: SearchType!, $count: Int!) {
         ... on User {
           id
           avatarUrl(size: 44)
+          bio
+          name
           login
         }
         ... on Repository {
           id
-          name
+          repoName: name
           createdAt
           description
           isPrivate
           url
           owner {
-            avatarUrl(size: 44)
-            login
+            ... on User {
+              id
+              avatarUrl(size: 44)
+              bio
+              userName: name
+              login
+            }            
           }
           languages(orderBy: {field: SIZE, direction: DESC}, first: 1) {
             edges {

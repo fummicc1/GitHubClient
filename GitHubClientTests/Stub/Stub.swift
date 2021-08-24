@@ -52,14 +52,20 @@ extension GitHubUser: Stub {
     static func stub() -> GitHubUser {
         GitHubUser(
             login: GitHubUserLoginID(id: "fummicc1"),
-            avatarUrl: "https://avatars.githubusercontent.com/u/44002126?v=4"
+            avatarUrl: "https://avatars.githubusercontent.com/u/44002126?v=4",
+            name: "Fumiya Tanaka",
+            bio: "iOS Engineer",
+            detail: nil
         )
     }
     
     static func github() -> GitHubUser {
         GitHubUser(
             login: GitHubUserLoginID(id: "github"),
-            avatarUrl: "https://avatars.githubusercontent.com/u/9919?s=200&v=4"
+            avatarUrl: "https://avatars.githubusercontent.com/u/9919?s=200&v=4",
+            name: "GitHub",
+            bio: nil,
+            detail: nil
         )
     }
 }

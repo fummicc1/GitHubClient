@@ -14,4 +14,19 @@ struct GitHubUserLoginID: Hashable {
 struct GitHubUser: Hashable {
     let login: GitHubUserLoginID
     let avatarUrl: String
+    
+    let name: String?
+    let bio: String?
+    
+    let detail: Detail?
+}
+
+extension GitHubUser {
+    struct Detail: Hashable {
+        let followers: [GitHubUser]
+        let followesCount: Int
+        
+        let followees: [GitHubUser]
+        let followeesCount: Int
+    }
 }

@@ -77,6 +77,8 @@ public final class MyProfileQuery: GraphQLQuery {
             __typename
             avatarUrl(size: 44)
             login
+            name
+            bio
           }
         }
         following(first: $getFolloweeCount) {
@@ -86,6 +88,8 @@ public final class MyProfileQuery: GraphQLQuery {
             __typename
             avatarUrl(size: 44)
             login
+            name
+            bio
           }
         }
       }
@@ -287,6 +291,8 @@ public final class MyProfileQuery: GraphQLQuery {
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
               GraphQLField("avatarUrl", arguments: ["size": 44], type: .nonNull(.scalar(String.self))),
               GraphQLField("login", type: .nonNull(.scalar(String.self))),
+              GraphQLField("name", type: .scalar(String.self)),
+              GraphQLField("bio", type: .scalar(String.self)),
             ]
           }
 
@@ -296,8 +302,8 @@ public final class MyProfileQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(avatarUrl: String, login: String) {
-            self.init(unsafeResultMap: ["__typename": "User", "avatarUrl": avatarUrl, "login": login])
+          public init(avatarUrl: String, login: String, name: String? = nil, bio: String? = nil) {
+            self.init(unsafeResultMap: ["__typename": "User", "avatarUrl": avatarUrl, "login": login, "name": name, "bio": bio])
           }
 
           public var __typename: String {
@@ -326,6 +332,26 @@ public final class MyProfileQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "login")
+            }
+          }
+
+          /// The user's public profile name.
+          public var name: String? {
+            get {
+              return resultMap["name"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          /// The user's public profile bio.
+          public var bio: String? {
+            get {
+              return resultMap["bio"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "bio")
             }
           }
         }
@@ -389,6 +415,8 @@ public final class MyProfileQuery: GraphQLQuery {
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
               GraphQLField("avatarUrl", arguments: ["size": 44], type: .nonNull(.scalar(String.self))),
               GraphQLField("login", type: .nonNull(.scalar(String.self))),
+              GraphQLField("name", type: .scalar(String.self)),
+              GraphQLField("bio", type: .scalar(String.self)),
             ]
           }
 
@@ -398,8 +426,8 @@ public final class MyProfileQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(avatarUrl: String, login: String) {
-            self.init(unsafeResultMap: ["__typename": "User", "avatarUrl": avatarUrl, "login": login])
+          public init(avatarUrl: String, login: String, name: String? = nil, bio: String? = nil) {
+            self.init(unsafeResultMap: ["__typename": "User", "avatarUrl": avatarUrl, "login": login, "name": name, "bio": bio])
           }
 
           public var __typename: String {
@@ -428,6 +456,26 @@ public final class MyProfileQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "login")
+            }
+          }
+
+          /// The user's public profile name.
+          public var name: String? {
+            get {
+              return resultMap["name"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          /// The user's public profile bio.
+          public var bio: String? {
+            get {
+              return resultMap["bio"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "bio")
             }
           }
         }
@@ -953,6 +1001,7 @@ public final class ProfileQuery: GraphQLQuery {
         __typename
         login
         name
+        bio
         avatarUrl(size: 44)
       }
     }
@@ -1007,6 +1056,7 @@ public final class ProfileQuery: GraphQLQuery {
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("login", type: .nonNull(.scalar(String.self))),
           GraphQLField("name", type: .scalar(String.self)),
+          GraphQLField("bio", type: .scalar(String.self)),
           GraphQLField("avatarUrl", arguments: ["size": 44], type: .nonNull(.scalar(String.self))),
         ]
       }
@@ -1017,8 +1067,8 @@ public final class ProfileQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(login: String, name: String? = nil, avatarUrl: String) {
-        self.init(unsafeResultMap: ["__typename": "User", "login": login, "name": name, "avatarUrl": avatarUrl])
+      public init(login: String, name: String? = nil, bio: String? = nil, avatarUrl: String) {
+        self.init(unsafeResultMap: ["__typename": "User", "login": login, "name": name, "bio": bio, "avatarUrl": avatarUrl])
       }
 
       public var __typename: String {
@@ -1050,6 +1100,16 @@ public final class ProfileQuery: GraphQLQuery {
         }
       }
 
+      /// The user's public profile bio.
+      public var bio: String? {
+        get {
+          return resultMap["bio"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "bio")
+        }
+      }
+
       /// A URL pointing to the user's public avatar.
       public var avatarUrl: String {
         get {
@@ -1078,8 +1138,13 @@ public final class SpecificRepositoryQuery: GraphQLQuery {
         name
         owner {
           __typename
-          login
-          avatarUrl(size: 44)
+          ... on User {
+            login
+            email
+            name
+            bio
+            avatarUrl(size: 44)
+          }
         }
         languages(orderBy: {field: SIZE, direction: DESC}, first: 1) {
           __typename
@@ -1259,9 +1324,12 @@ public final class SpecificRepositoryQuery: GraphQLQuery {
 
         public static var selections: [GraphQLSelection] {
           return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("login", type: .nonNull(.scalar(String.self))),
-            GraphQLField("avatarUrl", arguments: ["size": 44], type: .nonNull(.scalar(String.self))),
+            GraphQLTypeCase(
+              variants: ["User": AsUser.selections],
+              default: [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              ]
+            )
           ]
         }
 
@@ -1271,12 +1339,12 @@ public final class SpecificRepositoryQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public static func makeOrganization(login: String, avatarUrl: String) -> Owner {
-          return Owner(unsafeResultMap: ["__typename": "Organization", "login": login, "avatarUrl": avatarUrl])
+        public static func makeOrganization() -> Owner {
+          return Owner(unsafeResultMap: ["__typename": "Organization"])
         }
 
-        public static func makeUser(login: String, avatarUrl: String) -> Owner {
-          return Owner(unsafeResultMap: ["__typename": "User", "login": login, "avatarUrl": avatarUrl])
+        public static func makeUser(login: String, email: String, name: String? = nil, bio: String? = nil, avatarUrl: String) -> Owner {
+          return Owner(unsafeResultMap: ["__typename": "User", "login": login, "email": email, "name": name, "bio": bio, "avatarUrl": avatarUrl])
         }
 
         public var __typename: String {
@@ -1288,23 +1356,98 @@ public final class SpecificRepositoryQuery: GraphQLQuery {
           }
         }
 
-        /// The username used to login.
-        public var login: String {
+        public var asUser: AsUser? {
           get {
-            return resultMap["login"]! as! String
+            if !AsUser.possibleTypes.contains(__typename) { return nil }
+            return AsUser(unsafeResultMap: resultMap)
           }
           set {
-            resultMap.updateValue(newValue, forKey: "login")
+            guard let newValue = newValue else { return }
+            resultMap = newValue.resultMap
           }
         }
 
-        /// A URL pointing to the owner's public avatar.
-        public var avatarUrl: String {
-          get {
-            return resultMap["avatarUrl"]! as! String
+        public struct AsUser: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["User"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("login", type: .nonNull(.scalar(String.self))),
+              GraphQLField("email", type: .nonNull(.scalar(String.self))),
+              GraphQLField("name", type: .scalar(String.self)),
+              GraphQLField("bio", type: .scalar(String.self)),
+              GraphQLField("avatarUrl", arguments: ["size": 44], type: .nonNull(.scalar(String.self))),
+            ]
           }
-          set {
-            resultMap.updateValue(newValue, forKey: "avatarUrl")
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(login: String, email: String, name: String? = nil, bio: String? = nil, avatarUrl: String) {
+            self.init(unsafeResultMap: ["__typename": "User", "login": login, "email": email, "name": name, "bio": bio, "avatarUrl": avatarUrl])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// The username used to login.
+          public var login: String {
+            get {
+              return resultMap["login"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "login")
+            }
+          }
+
+          /// The user's publicly visible profile email.
+          public var email: String {
+            get {
+              return resultMap["email"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "email")
+            }
+          }
+
+          /// The user's public profile name.
+          public var name: String? {
+            get {
+              return resultMap["name"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          /// The user's public profile bio.
+          public var bio: String? {
+            get {
+              return resultMap["bio"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "bio")
+            }
+          }
+
+          /// A URL pointing to the user's public avatar.
+          public var avatarUrl: String {
+            get {
+              return resultMap["avatarUrl"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "avatarUrl")
+            }
           }
         }
       }
@@ -1456,19 +1599,26 @@ public final class SearchQuery: GraphQLQuery {
             ... on User {
               id
               avatarUrl(size: 44)
+              bio
+              name
               login
             }
             ... on Repository {
               id
-              name
+              repoName: name
               createdAt
               description
               isPrivate
               url
               owner {
                 __typename
-                avatarUrl(size: 44)
-                login
+                ... on User {
+                  id
+                  avatarUrl(size: 44)
+                  bio
+                  userName: name
+                  login
+                }
               }
               languages(orderBy: {field: SIZE, direction: DESC}, first: 1) {
                 __typename
@@ -1655,12 +1805,12 @@ public final class SearchQuery: GraphQLQuery {
             return Node(unsafeResultMap: ["__typename": "PullRequest"])
           }
 
-          public static func makeUser(id: GraphQLID, avatarUrl: String, login: String) -> Node {
-            return Node(unsafeResultMap: ["__typename": "User", "id": id, "avatarUrl": avatarUrl, "login": login])
+          public static func makeUser(id: GraphQLID, avatarUrl: String, bio: String? = nil, name: String? = nil, login: String) -> Node {
+            return Node(unsafeResultMap: ["__typename": "User", "id": id, "avatarUrl": avatarUrl, "bio": bio, "name": name, "login": login])
           }
 
-          public static func makeRepository(id: GraphQLID, name: String, createdAt: String, description: String? = nil, isPrivate: Bool, url: String, owner: AsRepository.Owner, languages: AsRepository.Language? = nil) -> Node {
-            return Node(unsafeResultMap: ["__typename": "Repository", "id": id, "name": name, "createdAt": createdAt, "description": description, "isPrivate": isPrivate, "url": url, "owner": owner.resultMap, "languages": languages.flatMap { (value: AsRepository.Language) -> ResultMap in value.resultMap }])
+          public static func makeRepository(id: GraphQLID, repoName: String, createdAt: String, description: String? = nil, isPrivate: Bool, url: String, owner: AsRepository.Owner, languages: AsRepository.Language? = nil) -> Node {
+            return Node(unsafeResultMap: ["__typename": "Repository", "id": id, "repoName": repoName, "createdAt": createdAt, "description": description, "isPrivate": isPrivate, "url": url, "owner": owner.resultMap, "languages": languages.flatMap { (value: AsRepository.Language) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -1691,6 +1841,8 @@ public final class SearchQuery: GraphQLQuery {
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
                 GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                 GraphQLField("avatarUrl", arguments: ["size": 44], type: .nonNull(.scalar(String.self))),
+                GraphQLField("bio", type: .scalar(String.self)),
+                GraphQLField("name", type: .scalar(String.self)),
                 GraphQLField("login", type: .nonNull(.scalar(String.self))),
               ]
             }
@@ -1701,8 +1853,8 @@ public final class SearchQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(id: GraphQLID, avatarUrl: String, login: String) {
-              self.init(unsafeResultMap: ["__typename": "User", "id": id, "avatarUrl": avatarUrl, "login": login])
+            public init(id: GraphQLID, avatarUrl: String, bio: String? = nil, name: String? = nil, login: String) {
+              self.init(unsafeResultMap: ["__typename": "User", "id": id, "avatarUrl": avatarUrl, "bio": bio, "name": name, "login": login])
             }
 
             public var __typename: String {
@@ -1730,6 +1882,26 @@ public final class SearchQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "avatarUrl")
+              }
+            }
+
+            /// The user's public profile bio.
+            public var bio: String? {
+              get {
+                return resultMap["bio"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "bio")
+              }
+            }
+
+            /// The user's public profile name.
+            public var name: String? {
+              get {
+                return resultMap["name"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "name")
               }
             }
 
@@ -1762,7 +1934,7 @@ public final class SearchQuery: GraphQLQuery {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
                 GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-                GraphQLField("name", type: .nonNull(.scalar(String.self))),
+                GraphQLField("name", alias: "repoName", type: .nonNull(.scalar(String.self))),
                 GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
                 GraphQLField("description", type: .scalar(String.self)),
                 GraphQLField("isPrivate", type: .nonNull(.scalar(Bool.self))),
@@ -1778,8 +1950,8 @@ public final class SearchQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(id: GraphQLID, name: String, createdAt: String, description: String? = nil, isPrivate: Bool, url: String, owner: Owner, languages: Language? = nil) {
-              self.init(unsafeResultMap: ["__typename": "Repository", "id": id, "name": name, "createdAt": createdAt, "description": description, "isPrivate": isPrivate, "url": url, "owner": owner.resultMap, "languages": languages.flatMap { (value: Language) -> ResultMap in value.resultMap }])
+            public init(id: GraphQLID, repoName: String, createdAt: String, description: String? = nil, isPrivate: Bool, url: String, owner: Owner, languages: Language? = nil) {
+              self.init(unsafeResultMap: ["__typename": "Repository", "id": id, "repoName": repoName, "createdAt": createdAt, "description": description, "isPrivate": isPrivate, "url": url, "owner": owner.resultMap, "languages": languages.flatMap { (value: Language) -> ResultMap in value.resultMap }])
             }
 
             public var __typename: String {
@@ -1801,12 +1973,12 @@ public final class SearchQuery: GraphQLQuery {
             }
 
             /// The name of the repository.
-            public var name: String {
+            public var repoName: String {
               get {
-                return resultMap["name"]! as! String
+                return resultMap["repoName"]! as! String
               }
               set {
-                resultMap.updateValue(newValue, forKey: "name")
+                resultMap.updateValue(newValue, forKey: "repoName")
               }
             }
 
@@ -1875,9 +2047,12 @@ public final class SearchQuery: GraphQLQuery {
 
               public static var selections: [GraphQLSelection] {
                 return [
-                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                  GraphQLField("avatarUrl", arguments: ["size": 44], type: .nonNull(.scalar(String.self))),
-                  GraphQLField("login", type: .nonNull(.scalar(String.self))),
+                  GraphQLTypeCase(
+                    variants: ["User": AsUser.selections],
+                    default: [
+                      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                    ]
+                  )
                 ]
               }
 
@@ -1887,12 +2062,12 @@ public final class SearchQuery: GraphQLQuery {
                 self.resultMap = unsafeResultMap
               }
 
-              public static func makeOrganization(avatarUrl: String, login: String) -> Owner {
-                return Owner(unsafeResultMap: ["__typename": "Organization", "avatarUrl": avatarUrl, "login": login])
+              public static func makeOrganization() -> Owner {
+                return Owner(unsafeResultMap: ["__typename": "Organization"])
               }
 
-              public static func makeUser(avatarUrl: String, login: String) -> Owner {
-                return Owner(unsafeResultMap: ["__typename": "User", "avatarUrl": avatarUrl, "login": login])
+              public static func makeUser(id: GraphQLID, avatarUrl: String, bio: String? = nil, userName: String? = nil, login: String) -> Owner {
+                return Owner(unsafeResultMap: ["__typename": "User", "id": id, "avatarUrl": avatarUrl, "bio": bio, "userName": userName, "login": login])
               }
 
               public var __typename: String {
@@ -1904,23 +2079,97 @@ public final class SearchQuery: GraphQLQuery {
                 }
               }
 
-              /// A URL pointing to the owner's public avatar.
-              public var avatarUrl: String {
+              public var asUser: AsUser? {
                 get {
-                  return resultMap["avatarUrl"]! as! String
+                  if !AsUser.possibleTypes.contains(__typename) { return nil }
+                  return AsUser(unsafeResultMap: resultMap)
                 }
                 set {
-                  resultMap.updateValue(newValue, forKey: "avatarUrl")
+                  guard let newValue = newValue else { return }
+                  resultMap = newValue.resultMap
                 }
               }
 
-              /// The username used to login.
-              public var login: String {
-                get {
-                  return resultMap["login"]! as! String
+              public struct AsUser: GraphQLSelectionSet {
+                public static let possibleTypes: [String] = ["User"]
+
+                public static var selections: [GraphQLSelection] {
+                  return [
+                    GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                    GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+                    GraphQLField("avatarUrl", arguments: ["size": 44], type: .nonNull(.scalar(String.self))),
+                    GraphQLField("bio", type: .scalar(String.self)),
+                    GraphQLField("name", alias: "userName", type: .scalar(String.self)),
+                    GraphQLField("login", type: .nonNull(.scalar(String.self))),
+                  ]
                 }
-                set {
-                  resultMap.updateValue(newValue, forKey: "login")
+
+                public private(set) var resultMap: ResultMap
+
+                public init(unsafeResultMap: ResultMap) {
+                  self.resultMap = unsafeResultMap
+                }
+
+                public init(id: GraphQLID, avatarUrl: String, bio: String? = nil, userName: String? = nil, login: String) {
+                  self.init(unsafeResultMap: ["__typename": "User", "id": id, "avatarUrl": avatarUrl, "bio": bio, "userName": userName, "login": login])
+                }
+
+                public var __typename: String {
+                  get {
+                    return resultMap["__typename"]! as! String
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "__typename")
+                  }
+                }
+
+                public var id: GraphQLID {
+                  get {
+                    return resultMap["id"]! as! GraphQLID
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "id")
+                  }
+                }
+
+                /// A URL pointing to the user's public avatar.
+                public var avatarUrl: String {
+                  get {
+                    return resultMap["avatarUrl"]! as! String
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "avatarUrl")
+                  }
+                }
+
+                /// The user's public profile bio.
+                public var bio: String? {
+                  get {
+                    return resultMap["bio"] as? String
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "bio")
+                  }
+                }
+
+                /// The user's public profile name.
+                public var userName: String? {
+                  get {
+                    return resultMap["userName"] as? String
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "userName")
+                  }
+                }
+
+                /// The username used to login.
+                public var login: String {
+                  get {
+                    return resultMap["login"]! as! String
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "login")
+                  }
                 }
               }
             }

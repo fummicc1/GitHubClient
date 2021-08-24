@@ -41,6 +41,10 @@ struct SpecificRepositoryRequestable: WebClientRequestable {
     
 }
 
+enum RepositoryGatewayError: Swift.Error {
+    case failedToParse(data: [String: Any])
+}
+
 class RepositoryGateway: RepositoryGatewayProtocol {
     
     private var webClient: WebClientProtocol!
@@ -126,16 +130,24 @@ extension RepositoryGateway {
             .map({ edge in
                 GitHubRepository.Language(name: edge.node.name, colorCode: edge.node.color)
             }) ?? []
+        
+        guard let owner = repository.owner.asUser else {
+            throw RepositoryGatewayError.failedToParse(data: repository.owner.jsonObject)
+        }
+        
         let entity = try GitHubRepository.makeWithISO8601DateFormatter(
             id: GitHubRepositoryID(id: repository.id),
             url: repository.url,
             createdAt: repository.createdAt,
             description: repository.description,
             isPrivate: repository.isPrivate,
-            name: repository.name,
+            name: repository.repoName,
             owner: GitHubUser(
-                login: GitHubUserLoginID(id: repository.owner.login),
-                avatarUrl: repository.owner.avatarUrl
+                login: GitHubUserLoginID(id: owner.login),
+                avatarUrl: owner.avatarUrl,
+                name: owner.userName,
+                bio: owner.bio,
+                detail: nil
             ),
             languages: languages
         )
@@ -146,8 +158,16 @@ extension RepositoryGateway {
         let languages = repository.languages?.edges?
             .compactMap({ $0 })
             .map({ edge in
-                GitHubRepository.Language(name: edge.node.name, colorCode: edge.node.color)
+                GitHubRepository.Language(
+                    name: edge.node.name,
+                    colorCode: edge.node.color
+                )
             }) ?? []
+        
+        guard let owner = repository.owner.asUser else {
+            throw RepositoryGatewayError.failedToParse(data: repository.owner.jsonObject)
+        }
+        
         let entity = try GitHubRepository.makeWithISO8601DateFormatter(
             id: GitHubRepositoryID(id: repository.id),
             url: repository.url,
@@ -156,8 +176,11 @@ extension RepositoryGateway {
             isPrivate: repository.isPrivate,
             name: repository.name,
             owner: GitHubUser(
-                login: GitHubUserLoginID(id: repository.owner.login),
-                avatarUrl: repository.owner.avatarUrl
+                login: GitHubUserLoginID(id: owner.login),
+                avatarUrl: owner.avatarUrl,
+                name: owner.name,
+                bio: owner.bio,
+                detail: nil
             ),
             languages: languages
         )

@@ -9,6 +9,8 @@ query MyProfile($getFollowerCount: Int, $getFolloweeCount: Int) {
             nodes {
                 avatarUrl(size: 44)
                 login
+                name
+                bio
             }
         }
         following(first: $getFolloweeCount) {
@@ -16,6 +18,8 @@ query MyProfile($getFollowerCount: Int, $getFolloweeCount: Int) {
             nodes {
                 avatarUrl(size: 44)
                 login
+                name
+                bio
             }  
         }
     }

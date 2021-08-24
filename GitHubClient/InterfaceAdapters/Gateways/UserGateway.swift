@@ -77,7 +77,10 @@ class UserGateway: UserGatewayProtocol {
                     login: GitHubUserLoginID(
                         id: queryUser.login
                     ),
-                    avatarUrl: queryUser.avatarUrl
+                    avatarUrl: queryUser.avatarUrl,
+                    name: queryUser.name,
+                    bio: queryUser.bio,
+                    detail: nil
                 )
                 promise(.success(githubUser))
             }
@@ -99,7 +102,10 @@ class UserGateway: UserGatewayProtocol {
                 .map({ node in
                         GitHubUser(
                             login: GitHubUserLoginID(id: node.login),
-                            avatarUrl: node.avatarUrl
+                            avatarUrl: node.avatarUrl,
+                            name: node.name,
+                            bio: node.bio,
+                            detail: nil
                         )
                 }) ?? []
             
@@ -108,7 +114,10 @@ class UserGateway: UserGatewayProtocol {
                 .map({ node in
                     GitHubUser(
                         login: GitHubUserLoginID(id: node.login),
-                        avatarUrl: node.avatarUrl
+                        avatarUrl: node.avatarUrl,
+                        name: node.name,
+                        bio: node.bio,
+                        detail: nil
                     )
                 }) ?? []
             
