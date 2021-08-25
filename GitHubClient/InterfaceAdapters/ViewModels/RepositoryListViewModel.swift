@@ -56,7 +56,7 @@ extension RepositoryListViewModel {
             
             return GitHubRepositoryViewData(
                 id: repo.id.id,
-                userName: repo.owner.login.id,
+                userName: repo.owner.loginID,
                 avatarURL: repo.owner.avatarUrl,
                 name: repo.name,
                 description: repo.description,

@@ -131,8 +131,24 @@ extension RepositoryGateway {
                 GitHubRepository.Language(name: edge.node.name, colorCode: edge.node.color)
             }) ?? []
         
-        guard let owner = repository.owner.asUser else {
-            throw RepositoryGatewayError.failedToParse(data: repository.owner.jsonObject)
+        
+        var user: GitHubUser?
+        var org: GitHubOrganization?
+        
+        handleNonNil(value: repository.owner.asUser) { asUser in
+            user = GitHubUser(
+                login: GitHubUserLoginID(
+                    id: asUser.login
+                ),
+                avatarUrl: asUser.avatarUrl
+            )
+        }
+        
+        handleNonNil(value: repository.owner.asOrganization) { asOrg in
+            org = GitHubOrganization(
+                login: GitHubOrganizationLogin(value: asOrg.login),
+                avatarUrl: asOrg.avatarUrl
+            )
         }
         
         let entity = try GitHubRepository.makeWithISO8601DateFormatter(
@@ -142,13 +158,8 @@ extension RepositoryGateway {
             description: repository.description,
             isPrivate: repository.isPrivate,
             name: repository.repoName,
-            owner: GitHubUser(
-                login: GitHubUserLoginID(id: owner.login),
-                avatarUrl: owner.avatarUrl,
-                name: owner.userName,
-                bio: owner.bio,
-                detail: nil
-            ),
+            org: org,
+            user: user,
             languages: languages
         )
         return entity
@@ -164,8 +175,23 @@ extension RepositoryGateway {
                 )
             }) ?? []
         
-        guard let owner = repository.owner.asUser else {
-            throw RepositoryGatewayError.failedToParse(data: repository.owner.jsonObject)
+        var user: GitHubUser?
+        var org: GitHubOrganization?
+        
+        handleNonNil(value: repository.owner.asUser) { asUser in
+            user = GitHubUser(
+                login: GitHubUserLoginID(
+                    id: asUser.login
+                ),
+                avatarUrl: asUser.avatarUrl
+            )
+        }
+        
+        handleNonNil(value: repository.owner.asOrganization) { asOrg in
+            org = GitHubOrganization(
+                login: GitHubOrganizationLogin(value: asOrg.login),
+                avatarUrl: asOrg.avatarUrl
+            )
         }
         
         let entity = try GitHubRepository.makeWithISO8601DateFormatter(
@@ -175,13 +201,8 @@ extension RepositoryGateway {
             description: repository.description,
             isPrivate: repository.isPrivate,
             name: repository.name,
-            owner: GitHubUser(
-                login: GitHubUserLoginID(id: owner.login),
-                avatarUrl: owner.avatarUrl,
-                name: owner.name,
-                bio: owner.bio,
-                detail: nil
-            ),
+            org: org,
+            user: user,
             languages: languages
         )
         return entity

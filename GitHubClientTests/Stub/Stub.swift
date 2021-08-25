@@ -22,14 +22,15 @@ extension Date: Stub {
 // MARK: Entities
 extension GitHubRepository: Stub {
     static func stub() -> GitHubRepository {
-        let entity = GitHubRepository(
+        let entity = try! GitHubRepository(
             id: GitHubRepositoryID(id: "MDEwOlJlcG9zaXRvcnkyODM2OTQ5MDA="),
             url: "https://github.com/fummicc1/fummicc1",
             createdAt: Date.stub(),
             description: "fummicc1 profile repository",
             isPrivate: false,
             name: "fummicc1",
-            owner: GitHubUser.stub(),
+            org: nil,
+            user: GitHubUser.stub(),
             languages: [.stub()]
         )
         return entity
@@ -48,14 +49,22 @@ extension GitHubRepositoryList: Stub {
     }
 }
 
+extension GitHubOrganization: Stub {
+    static func stub() -> GitHubOrganization {
+        GitHubOrganization(
+            login: GitHubOrganizationLogin(value: "github"),
+            avatarUrl: "https://avatars.githubusercontent.com/u/9919?s=200&v=4"
+        )
+    }
+}
+
 extension GitHubUser: Stub {
     static func stub() -> GitHubUser {
         GitHubUser(
             login: GitHubUserLoginID(id: "fummicc1"),
             avatarUrl: "https://avatars.githubusercontent.com/u/44002126?v=4",
             name: "Fumiya Tanaka",
-            bio: "iOS Engineer",
-            detail: nil
+            bio: "iOS Engineer"
         )
     }
     
@@ -63,9 +72,7 @@ extension GitHubUser: Stub {
         GitHubUser(
             login: GitHubUserLoginID(id: "github"),
             avatarUrl: "https://avatars.githubusercontent.com/u/9919?s=200&v=4",
-            name: "GitHub",
-            bio: nil,
-            detail: nil
+            name: "GitHub"
         )
     }
 }

@@ -66,7 +66,7 @@ extension MyProfileViewModel {
         let repoViewList = repoList.repositories.map({ repo in
             GitHubRepositoryViewData(
                 id: repo.id.id,
-                userName: repo.owner.login.id,
+                userName: repo.owner.loginID,
                 avatarURL: repo.owner.avatarUrl,
                 name: repo.name,
                 description: repo.description,

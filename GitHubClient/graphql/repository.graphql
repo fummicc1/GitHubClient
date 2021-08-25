@@ -8,11 +8,12 @@ query SpecificRepository($owner: String!, $name: String!) {
         name
         owner {
             ... on User {
-                login
-                email
-                name
-                bio
+                login                
                 avatarUrl(size: 44)
+            }
+            ... on Organization {
+                login
+                avatarUrl
             }
         }
         languages(orderBy: {field: SIZE, direction: DESC}, first: 1) {
@@ -46,12 +47,13 @@ query Search($query: String!, $type: SearchType!, $count: Int!) {
           url
           owner {
             ... on User {
-              id
-              avatarUrl(size: 44)
-              bio
-              userName: name
+              avatarUrl(size: 44)              
               login
-            }            
+            }           
+            ... on Organization {
+                login
+                avatarUrl
+            } 
           }
           languages(orderBy: {field: SIZE, direction: DESC}, first: 1) {
             edges {

@@ -20,6 +20,8 @@
 		D33A101626B10E51002DA455 /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100B26B10E51002DA455 /* Me.swift */; };
 		D33A101726B10E51002DA455 /* ApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100D26B10E51002DA455 /* ApiErrors.swift */; };
 		D33A101926B10E51002DA455 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A100F26B10E51002DA455 /* APIClient.swift */; };
+		D33F721D26D63BCD008CCBAC /* GitHubOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33F721C26D63BCD008CCBAC /* GitHubOrganization.swift */; };
+		D33F722026D640E7008CCBAC /* chExist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33F721F26D640E7008CCBAC /* chExist.swift */; };
 		D34D20A226CE640A006B86EF /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D34D20A126CE640A006B86EF /* SwiftUIX */; };
 		D360117326C01ADA008C37FD /* RepositoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D360117226C01ADA008C37FD /* RepositoryCardView.swift */; };
 		D365EAC226CF76F9001F9332 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAC126CF76F9001F9332 /* Mock.swift */; };
@@ -90,6 +92,8 @@
 		D33A100B26B10E51002DA455 /* Me.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		D33A100D26B10E51002DA455 /* ApiErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiErrors.swift; sourceTree = "<group>"; };
 		D33A100F26B10E51002DA455 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		D33F721C26D63BCD008CCBAC /* GitHubOrganization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubOrganization.swift; sourceTree = "<group>"; };
+		D33F721F26D640E7008CCBAC /* chExist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chExist.swift; sourceTree = "<group>"; };
 		D360117226C01ADA008C37FD /* RepositoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCardView.swift; sourceTree = "<group>"; };
 		D365EAC126CF76F9001F9332 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		D365EAC426CF771D001F9332 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 		D33A0FE026B10D62002DA455 /* GitHubClient */ = {
 			isa = PBXGroup;
 			children = (
+				D33F721E26D640BC008CCBAC /* Util */,
 				D3BC9A6426D398B70063A9F5 /* DI */,
 				D33A0FEA26B10D63002DA455 /* Info.plist */,
 				D33A0FE126B10D62002DA455 /* GitHubClientApp.swift */,
@@ -256,6 +261,14 @@
 				D33A100F26B10E51002DA455 /* APIClient.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		D33F721E26D640BC008CCBAC /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				D33F721F26D640E7008CCBAC /* chExist.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		D360117126C01ACB008C37FD /* Views */ = {
@@ -401,6 +414,7 @@
 				D33A100A26B10E51002DA455 /* GitHubUser.swift */,
 				D33A100B26B10E51002DA455 /* Me.swift */,
 				D3C460C126B1119A00DF4B1F /* GitHubRepository.swift */,
+				D33F721C26D63BCD008CCBAC /* GitHubOrganization.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -595,6 +609,7 @@
 				D33A101726B10E51002DA455 /* ApiErrors.swift in Sources */,
 				D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */,
 				D3F1BACB26CD478700046689 /* MyProfileViewModel.swift in Sources */,
+				D33F721D26D63BCD008CCBAC /* GitHubOrganization.swift in Sources */,
 				D33A101126B10E51002DA455 /* ProfileUseCase.swift in Sources */,
 				D3F1BAB526CCF72B00046689 /* UserGateway.swift in Sources */,
 				D3BC9A6326D384CD0063A9F5 /* NetworkImage.swift in Sources */,
@@ -619,6 +634,7 @@
 				D3C460BB26B110CF00DF4B1F /* RootView.swift in Sources */,
 				D3C460CB26B1214A00DF4B1F /* RepositoryInteractor.swift in Sources */,
 				D33A101326B10E51002DA455 /* API.swift in Sources */,
+				D33F722026D640E7008CCBAC /* chExist.swift in Sources */,
 				D33A101426B10E51002DA455 /* PrivateKey.swift in Sources */,
 				D3BC9A6F26D4B9EA0063A9F5 /* MyProfileScreen.swift in Sources */,
 				D360117326C01ADA008C37FD /* RepositoryCardView.swift in Sources */,

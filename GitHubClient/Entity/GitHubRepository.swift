@@ -8,6 +8,17 @@
 import Foundation
 import Apollo
 
+struct GitHubRepositoryOwner: Hashable {
+    let loginID: String
+    let avatarUrl: String
+    let type: OwnerType
+    
+    enum OwnerType: String, Hashable {
+        case org
+        case user
+    }
+}
+
 struct GitHubRepository {
     
     let id: GitHubRepositoryID
@@ -16,8 +27,27 @@ struct GitHubRepository {
     let description: String?
     let isPrivate: Bool
     let name: String
-    let owner: GitHubUser
+    let org: GitHubOrganization?
+    let user: GitHubUser?
     let languages: [Language]
+    
+    var owner: GitHubRepositoryOwner {
+        if let org = org {
+            return GitHubRepositoryOwner(
+                loginID: org.login.value,
+                avatarUrl: org.avatarUrl,
+                type: .org
+            )
+        }
+        if let user = user {
+            return GitHubRepositoryOwner(
+                loginID: user.login.id,
+                avatarUrl: user.avatarUrl,
+                type: .user
+            )
+        }
+        fatalError()
+    }
     
     init(
         id: GitHubRepositoryID,
@@ -26,16 +56,23 @@ struct GitHubRepository {
         description: String?,
         isPrivate: Bool,
         name: String,
-        owner: GitHubUser,
+        org: GitHubOrganization?,
+        user: GitHubUser?,
         languages: [Language]
-    ) {
+    ) throws {
+        
+        if user == nil && org == nil {
+            throw Error.ownerNotFound
+        }
+        
         self.id = id
         self.url = url
         self.createdAt = createdAt
         self.description = description
         self.isPrivate = isPrivate
         self.name = name
-        self.owner = owner
+        self.org = org
+        self.user = user
         self.languages = languages
     }
     
@@ -46,7 +83,8 @@ struct GitHubRepository {
         description: String?,
         isPrivate: Bool,
         name: String,
-        owner: GitHubUser,
+        org: GitHubOrganization?,
+        user: GitHubUser?,
         languages: [Language]
     ) throws -> GitHubRepository {
         
@@ -56,23 +94,24 @@ struct GitHubRepository {
             throw error
         }
         
-        return GitHubRepository(
+        return try GitHubRepository(
             id: id,
             url: url,
             createdAt: createdAt,
             description: description,
             isPrivate: isPrivate,
             name: name,
-            owner: owner,
+            org: org,
+            user: user,
             languages: languages
         )
-        
     }
 }
 
 extension GitHubRepository {
     enum Error: Swift.Error {
         case failedToFormatDate(text: String)
+        case ownerNotFound
     }
 }
 

@@ -12,21 +12,37 @@ struct GitHubUserLoginID: Hashable {
 }
 
 struct GitHubUser: Hashable {
+    
     let login: GitHubUserLoginID
     let avatarUrl: String
     
     let name: String?
     let bio: String?
     
-    let detail: Detail?
-}
-
-extension GitHubUser {
-    struct Detail: Hashable {
-        let followers: [GitHubUser]
-        let followesCount: Int
-        
-        let followees: [GitHubUser]
-        let followeesCount: Int
+    let followers: [GitHubUser]?
+    let followesCount: Int?
+    
+    let followees: [GitHubUser]?
+    let followeesCount: Int?
+    
+    internal init(
+        login: GitHubUserLoginID,
+        avatarUrl: String,
+        name: String? = nil,
+        bio: String? = nil,
+        followers: [GitHubUser]? = nil,
+        followesCount: Int? = nil,
+        followees: [GitHubUser]? = nil,
+        followeesCount: Int? = nil
+    ) {
+        self.login = login
+        self.avatarUrl = avatarUrl
+        self.name = name
+        self.bio = bio
+        self.followers = followers
+        self.followesCount = followesCount
+        self.followees = followees
+        self.followeesCount = followeesCount
     }
+    
 }
