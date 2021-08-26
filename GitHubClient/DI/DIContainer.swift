@@ -17,8 +17,8 @@ class APIClientAssembly: Assembly {
     }
     
     private func assembleWebAPI(container: Container) {
-        container.register(WebClientProtocol.self) { _ in
-            APIClient.make()
+        container.register(GraphQLClientProtocol.self) { _ in
+            APIClient()
         }
     }
 }
@@ -32,14 +32,14 @@ class GatewayAssembly: Assembly {
     
     private func userAssemble(container: Container) {
         container.register(UserGatewayProtocol.self) { resolver in
-            let webClient = resolver.resolve(WebClientProtocol.self)!
+            let webClient = resolver.resolve(GraphQLClientProtocol.self)!
             return UserGateway(webClient: webClient)
         }
     }
     
     private func repositoryAssemble(container: Container) {
         container.register(RepositoryGatewayProtocol.self) { resolver in
-            let webClient = resolver.resolve(WebClientProtocol.self)!
+            let webClient = resolver.resolve(GraphQLClientProtocol.self)!
             return RepositoryGateway(webClient: webClient)
         }
     }

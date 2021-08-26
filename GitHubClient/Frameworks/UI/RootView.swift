@@ -38,7 +38,7 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        let client = APIClient.make()
+        let client = APIClient()
         let useCase = ProfileInteractor(
             userGateway: UserGateway(webClient: client),
             repoGateway: RepositoryGateway(webClient: client)

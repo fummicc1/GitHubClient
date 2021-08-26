@@ -38,6 +38,9 @@
 		D3ABFFEE26D106960048875B /* DelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFED26D106960048875B /* DelegateMock.swift */; };
 		D3B4D24826D24513008BBFC4 /* PublisherValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */; };
 		D3B4D24A26D24A2A008BBFC4 /* MockOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4D24926D24A2A008BBFC4 /* MockOutput.swift */; };
+		D3BA478A26D77C4400C1F5B5 /* AuthGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA478926D77C4400C1F5B5 /* AuthGateway.swift */; };
+		D3BA478C26D795EA00C1F5B5 /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA478B26D795EA00C1F5B5 /* AuthClient.swift */; };
+		D3BA478F26D7962300C1F5B5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D3BA478E26D7962300C1F5B5 /* Alamofire */; };
 		D3BC9A6026D3849C0063A9F5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D3BC9A5F26D3849C0063A9F5 /* Kingfisher */; };
 		D3BC9A6326D384CD0063A9F5 /* NetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */; };
 		D3BC9A6626D398C10063A9F5 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC9A6526D398C10063A9F5 /* DIContainer.swift */; };
@@ -108,6 +111,8 @@
 		D3ABFFED26D106960048875B /* DelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateMock.swift; sourceTree = "<group>"; };
 		D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherValidation.swift; sourceTree = "<group>"; };
 		D3B4D24926D24A2A008BBFC4 /* MockOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOutput.swift; sourceTree = "<group>"; };
+		D3BA478926D77C4400C1F5B5 /* AuthGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGateway.swift; sourceTree = "<group>"; };
+		D3BA478B26D795EA00C1F5B5 /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
 		D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImage.swift; sourceTree = "<group>"; };
 		D3BC9A6526D398C10063A9F5 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		D3BC9A6A26D497580063A9F5 /* GitHubClient.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = GitHubClient.xctestplan; path = GitHubClientTests/GitHubClient.xctestplan; sourceTree = SOURCE_ROOT; };
@@ -140,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3BA478F26D7962300C1F5B5 /* Alamofire in Frameworks */,
 				D3BC9A6026D3849C0063A9F5 /* Kingfisher in Frameworks */,
 				D33A100026B10DE7002DA455 /* Apollo in Frameworks */,
 				D34D20A226CE640A006B86EF /* SwiftUIX in Frameworks */,
@@ -259,6 +265,7 @@
 				D33A100526B10E51002DA455 /* API */,
 				D33A100D26B10E51002DA455 /* ApiErrors.swift */,
 				D33A100F26B10E51002DA455 /* APIClient.swift */,
+				D3BA478B26D795EA00C1F5B5 /* AuthClient.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -453,6 +460,7 @@
 			children = (
 				D3F1BAB426CCF72B00046689 /* UserGateway.swift */,
 				D3F1BAC326CD361400046689 /* RepositoryGateway.swift */,
+				D3BA478926D77C4400C1F5B5 /* AuthGateway.swift */,
 			);
 			path = Gateways;
 			sourceTree = "<group>";
@@ -490,6 +498,7 @@
 				D34D20A126CE640A006B86EF /* SwiftUIX */,
 				D3BC9A5F26D3849C0063A9F5 /* Kingfisher */,
 				D3BC9A6826D483AB0063A9F5 /* Swinject */,
+				D3BA478E26D7962300C1F5B5 /* Alamofire */,
 			);
 			productName = GitHubClient;
 			productReference = D33A0FDE26B10D62002DA455 /* GitHubClient.app */;
@@ -548,6 +557,7 @@
 				D34D20A026CE640A006B86EF /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 				D3BC9A5E26D3849C0063A9F5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				D3BC9A6726D483AA0063A9F5 /* XCRemoteSwiftPackageReference "Swinject" */,
+				D3BA478D26D7962300C1F5B5 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = D33A0FDF26B10D62002DA455 /* Products */;
 			projectDirPath = "";
@@ -624,10 +634,12 @@
 				D33A101626B10E51002DA455 /* Me.swift in Sources */,
 				D3F1BABB26CD082200046689 /* GitHubRepositoryViewData.swift in Sources */,
 				D3BC9A9C26D52E550063A9F5 /* ProfileViewModel.swift in Sources */,
+				D3BA478C26D795EA00C1F5B5 /* AuthClient.swift in Sources */,
 				D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */,
 				D3C460C926B120E800DF4B1F /* RepositoryUseCase.swift in Sources */,
 				D3C460C526B1183200DF4B1F /* String+Ex.swift in Sources */,
 				D3C460C226B1119A00DF4B1F /* GitHubRepository.swift in Sources */,
+				D3BA478A26D77C4400C1F5B5 /* AuthGateway.swift in Sources */,
 				D3F1BAC426CD361400046689 /* RepositoryGateway.swift in Sources */,
 				D3F1BABE26CD114400046689 /* ErrorMessageViewData.swift in Sources */,
 				D3BC9A9A26D52D290063A9F5 /* ProfileView.swift in Sources */,
@@ -928,6 +940,14 @@
 				minimumVersion = 0.0.8;
 			};
 		};
+		D3BA478D26D7962300C1F5B5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.3;
+			};
+		};
 		D3BC9A5E26D3849C0063A9F5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -972,6 +992,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D34D20A026CE640A006B86EF /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
+		};
+		D3BA478E26D7962300C1F5B5 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3BA478D26D7962300C1F5B5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		D3BC9A5F26D3849C0063A9F5 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

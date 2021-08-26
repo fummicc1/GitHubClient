@@ -71,7 +71,9 @@ struct RepositoryListView: View {
 struct RepositoryListScreen_Previews: PreviewProvider {
     static var previews: some View {
         
-        let useCase = RepositoryInteractor(repositoryGateway: RepositoryGateway(webClient: APIClient.make()))
+        let useCase = RepositoryInteractor(
+            repositoryGateway: RepositoryGateway(webClient: APIClient())
+        )
         
         let viewModel = RepositoryListViewModel(useCase: useCase)
         

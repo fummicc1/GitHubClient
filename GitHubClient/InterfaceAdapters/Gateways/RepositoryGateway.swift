@@ -47,9 +47,9 @@ enum RepositoryGatewayError: Swift.Error {
 
 class RepositoryGateway: RepositoryGatewayProtocol {
     
-    private var webClient: WebClientProtocol!
+    private var webClient: GraphQLClientProtocol!
     
-    internal init(webClient: WebClientProtocol) {
+    internal init(webClient: GraphQLClientProtocol) {
         self.webClient = webClient
     }
     
