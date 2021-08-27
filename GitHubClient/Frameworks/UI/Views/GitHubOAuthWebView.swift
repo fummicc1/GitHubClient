@@ -7,20 +7,20 @@
 
 import Foundation
 import SwiftUI
-import WebKit
+import SafariServices
 
-struct GitHubOAuthWebView: UIViewRepresentable {
+struct GitHubOAuthWebView: UIViewControllerRepresentable {
     
     @Binding var code: String?
+    private let url: URL = AuthClientConst.url
     
-    func makeUIView(context: Context) -> WKWebView {
-        let view = WKWebView()
-        view.load(URLRequest(url: AuthClientConst.url))
-        view.navigationDelegate = context.coordinator
-        return view
+    func makeUIViewController(context: Context) -> SFSafariViewController {
+        let vc = SFSafariViewController(url: url)
+        vc.delegate = context.coordinator
+        return vc
     }
     
-    func updateUIView(_ uiView: WKWebView, context: Context) {        
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {        
     }
     
     func makeCoordinator() -> Coordinator {
@@ -39,14 +39,12 @@ struct GitHubOAuthWebView: UIViewRepresentable {
     
 }
 
-extension GitHubOAuthWebView.Coordinator: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        guard let url = navigationAction.request.url else {
-            decisionHandler(.cancel)
-            return
-        }
-        
+extension GitHubOAuthWebView.Coordinator: SFSafariViewControllerDelegate {
+    
+    func safariViewController(_ controller: SFSafariViewController, initialLoadDidRedirectTo URL: URL) {
         let callbackURL = AuthClientConst.callbackURL
+        
+        let url = URL
         
         if url.host == callbackURL.host && url.path == callbackURL.path {
             
@@ -56,6 +54,5 @@ extension GitHubOAuthWebView.Coordinator: WKNavigationDelegate {
                 self.code = code
             }
         }
-        decisionHandler(.allow)
     }
 }
