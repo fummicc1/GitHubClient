@@ -15,7 +15,9 @@ struct GitHubClientApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootView(viewModel: assembler.resolver.resolve(AppViewModel.self)!)
+            RootView(
+                viewModel: assembler.resolver.resolve(AppViewModel.self)!
+            )
         }
     }
 }

@@ -14,10 +14,8 @@ struct RootView: View {
     
     @ObservedObject var viewModel: AppViewModel
     
-//    @ViewBuilder
     var body: some View {
-        
-        if viewModel.isLoggedIn {
+        if viewModel.accessToken != nil {
             TabView(selection: $viewModel.selectIndex,
                     content:  {
                         RepositoryListScreen(viewModel: assembler.resolver.resolve(RepositoryListViewModel.self)!
@@ -31,7 +29,9 @@ struct RootView: View {
                     })
                 .background(Color.clear)
         } else {
-            Text("ログインしましょう")
+            WelcomeScreen(
+                viewModel: assembler.resolver.resolve(WelcomeViewModel.self)!
+            )
         }
     }
 }
@@ -43,6 +43,17 @@ struct RootView_Previews: PreviewProvider {
             userGateway: UserGateway(webClient: client),
             repoGateway: RepositoryGateway(webClient: client)
         )
-        return RootView(viewModel: AppViewModel(profileUseCase: useCase))
+        let authInteractor = GitHubOAuthInteractor(
+            authGateway: AuthGateway(
+                authClient: AuthClient(),
+                dataStore: DataStore()
+            )
+        )
+        return RootView(
+            viewModel: AppViewModel(
+                profileUseCase: useCase,
+                authUseCase: authInteractor
+            )
+        )
     }
 }

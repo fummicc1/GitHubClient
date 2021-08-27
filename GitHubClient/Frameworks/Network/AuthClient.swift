@@ -10,7 +10,9 @@ import Alamofire
 import Combine
 
 enum AuthClientConst {
-    static var url: String = "https://github.com/login/oauth/authorize"
+    static var accessTokenURL: URL = URL(string: "https://github.com/login/oauth/access_token")!
+    static var url: URL = URL(string: "https://github.com/login/oauth/authorize?client_id=\(PrivateKey.githubClientID)")!
+    static var callbackURL: URL = URL(string: "https://github.com/fummicc1/GitHubClient")!
 }
 
 enum AuthError: Error {
@@ -24,12 +26,12 @@ class AuthClient: AuthClientProtocol {
         let tokenType: String
     }
     
-    func requestAccessToken(clientID: String, clientSecret: String, code: String) -> AnyPublisher<String, Error> {
+    func requestAccessToken(with code: String) -> AnyPublisher<String, Error> {
         
-        guard let url = URL(string: AuthClientConst.url) else {
-            return Fail(error: AuthError.invalidURL(url: AuthClientConst.url))
-                .eraseToAnyPublisher()
-        }
+        let clientID = PrivateKey.githubClientID
+        let clientSecret = PrivateKey.githubClientSecret
+        
+        let url = AuthClientConst.accessTokenURL
         
         let method = HTTPMethod.post
         let params: [String: Any] = [
@@ -38,16 +40,22 @@ class AuthClient: AuthClientProtocol {
             "code": code
         ]
         
-        return AF.request(url, method: method, parameters: params)
-            .publishData()
-            .value()
-            .compactMap({ $0 })
-            .compactMap { data in
-                try? JSONDecoder().decode(AccessToken.self, from: data)
-            }
+        let headers = HTTPHeaders([
+            .accept("application/json")
+        ])
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        return AF.request(url, method: method, parameters: params, headers: headers)
+            .publishDecodable(type: AccessToken.self, decoder: decoder)
+            .handleEvents(receiveOutput: { accessToken in
+                dump(accessToken)
+            })
+            .compactMap({ $0.value })
             .map(\.accessToken)
-            .mapError({ afError in
-                ApiErrors.errors([afError])
+            .mapError({ error in
+                ApiErrors.errors([error])
             })
             .eraseToAnyPublisher()
     }
