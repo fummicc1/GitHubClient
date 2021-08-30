@@ -20,7 +20,7 @@ struct GitHubOAuthWebView: UIViewControllerRepresentable {
         return vc
     }
     
-    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {        
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {
     }
     
     func makeCoordinator() -> Coordinator {
