@@ -13,7 +13,7 @@ func chNonNil<V>(base: inout Optional<V>, value: Optional<V>) {
     }
 }
 
-func handleNonNil<V>(value: Optional<V>, handler: @escaping (V) -> Void) {
+func ensureNonNil<V>(value: Optional<V>, handler: @escaping (V) -> Void) {
     if let value = value {
         handler(value)
     }

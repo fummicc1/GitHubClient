@@ -11,7 +11,7 @@ import Combine
 
 enum AuthClientConst {
     static var accessTokenURL: URL = URL(string: "https://github.com/login/oauth/access_token")!
-    static var url: URL = URL(string: "https://github.com/login/oauth/authorize?client_id=\(PrivateKey.githubClientID)")!
+    static var authorizeURL: URL = URL(string: "https://github.com/login/oauth/authorize?client_id=\(PrivateKey.githubClientID)")!
     static var callbackURL: URL = URL(string: "https://github.com/fummicc1/GitHubClient")!
 }
 

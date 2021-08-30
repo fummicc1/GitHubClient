@@ -11,8 +11,8 @@ import SafariServices
 
 struct GitHubOAuthWebView: UIViewControllerRepresentable {
     
-    @Binding var code: String?
-    private let url: URL = AuthClientConst.url
+    @Binding var codeFromAuth: String?
+    private let url: URL = AuthClientConst.authorizeURL
     
     func makeUIViewController(context: Context) -> SFSafariViewController {
         let vc = SFSafariViewController(url: url)
@@ -24,15 +24,15 @@ struct GitHubOAuthWebView: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        let coordinator = Coordinator(code: self.$code)
+        let coordinator = Coordinator(codeFromAuth: self.$codeFromAuth)
         return coordinator
     }
     
     class Coordinator: NSObject {
-        @Binding var code: String?
+        @Binding var codeFromAuth: String?
         
-        init(code: Binding<String?>) {
-            self._code = code
+        init(codeFromAuth: Binding<String?>) {
+            self._codeFromAuth = codeFromAuth
             super.init()
         }
     }
@@ -51,7 +51,7 @@ extension GitHubOAuthWebView.Coordinator: SFSafariViewControllerDelegate {
             let components = URLComponents(string: url.absoluteString)
             
             if let code = components?.queryItems?.last(where: { $0.name == "code" })?.value {
-                self.code = code
+                self.codeFromAuth = code
             }
         }
     }

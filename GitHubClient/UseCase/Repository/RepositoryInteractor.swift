@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol RepositoryGatewayProtocol {
+protocol RepositoryGatewayProtocol: AutoMockable {
     func search(of owner: GitHubUserLoginID, repoName: String) -> AnyPublisher<GitHubRepository, Error>
     func search(with query: String, count: Int) -> AnyPublisher<GitHubRepositoryList, Error>
     func searchRepoList(of id: GitHubUserLoginID) -> AnyPublisher<GitHubRepositoryList, Error>

@@ -20,14 +20,14 @@ class AppViewModel: ObservableObject {
         self.profileUseCase = profileUseCase
         self.authUseCase = authUseCase
         
-        authUseCase.onAccessToken()
+        authUseCase.onReceiveAccessToken()
             .map({ $0 as String? })
             .replaceError(with: nil)
             .assign(to: &$accessToken)
     }
     
     private func updateAccessTokenStatus() {
-        authUseCase.getAccessToken()
+        authUseCase.findAccessToken()
             .replaceError(with: nil)
             .assign(to: &$accessToken)
     }

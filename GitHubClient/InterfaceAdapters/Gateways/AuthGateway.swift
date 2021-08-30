@@ -22,15 +22,26 @@ class AuthGateway: AuthGatewayProtocol {
         self.dataStore = dataStore
     }
     
-    func requestAccessToken(with code: String) -> AnyPublisher<Void, Error> {
-        return authClient.requestAccessToken(with: code)
-            .tryMap({ accessToken in
+    func persistAccessToken(_ accessToken: String) -> AnyPublisher<Void, Error> {
+        Future { [weak self] promise in
+            guard let self = self else {
+                return
+            }
+            do {
                 try self.dataStore.save(accessToken, key: "github_access_token")
-            })
-            .eraseToAnyPublisher()
+                promise(.success(()))
+            }
+            catch {
+                promise(.failure(error))
+            }
+        }.eraseToAnyPublisher()
     }
     
-    func getAccessToken() -> AnyPublisher<String?, Error> {
+    func requestAccessToken(with code: String) -> AnyPublisher<String, Error> {
+        return authClient.requestAccessToken(with: code).eraseToAnyPublisher()
+    }
+    
+    func findAccessToken() -> AnyPublisher<String?, Error> {
         Future { [weak self] promise in
             guard let self = self else {
                 return

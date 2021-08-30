@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol RepositoryUseCaseProtocol: AnyObject {
+protocol RepositoryUseCaseProtocol: AnyObject, AutoMockable {
     func search(of owner: GitHubUserLoginID, repoName: String) -> AnyPublisher<GitHubRepository, Error>
     func search(with query: String, count: Int) -> AnyPublisher<GitHubRepositoryList, Error>
 }

@@ -18,7 +18,7 @@ struct WelcomeScreen: View {
             .navigationBarTitle(Text("Welcome"), displayMode: .inline)
         }
         .sheet(isPresented: $viewModel.code.isNil(), content: {
-            GitHubOAuthWebView(code: $viewModel.code)
+            GitHubOAuthWebView(codeFromAuth: $viewModel.code)
         })
     }
 }

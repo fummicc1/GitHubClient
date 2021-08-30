@@ -8,10 +8,11 @@
 import Foundation
 import Combine
 
-protocol AuthGatewayProtocol {
+protocol AuthGatewayProtocol: AutoMockable {
+    func persistAccessToken(_ accessToken: String) -> AnyPublisher<Void, Error>
     func onAccessTokenChanged() -> AnyPublisher<String, Error>
-    func getAccessToken() -> AnyPublisher<String?, Error>
-    func requestAccessToken(with code: String) -> AnyPublisher<Void, Error>
+    func findAccessToken() -> AnyPublisher<String?, Error>
+    func requestAccessToken(with code: String) -> AnyPublisher<String, Error>
 }
 
 class GitHubOAuthInteractor {
@@ -28,21 +29,25 @@ class GitHubOAuthInteractor {
 extension GitHubOAuthInteractor: GitHubOAuthIUseCaseProtocol {
     
     func checkHasAccessToken() -> AnyPublisher<Bool, Error> {
-        authGateway.getAccessToken()
+        authGateway.findAccessToken()
             .map({ $0 != nil })
             .eraseToAnyPublisher()
     }
     
-    func getAccessToken() -> AnyPublisher<String?, Error> {
-        authGateway.getAccessToken()
+    func findAccessToken() -> AnyPublisher<String?, Error> {
+        authGateway.findAccessToken()
             .eraseToAnyPublisher()
     }
     
-    func onAccessToken() -> AnyPublisher<String, Error> {
+    func onReceiveAccessToken() -> AnyPublisher<String, Error> {
         authGateway.onAccessTokenChanged()
     }
     
     func updateCode(_ code: String) -> AnyPublisher<Void, Error> {
         authGateway.requestAccessToken(with: code)
+            .flatMap { accessToken in
+                self.authGateway.persistAccessToken(accessToken)
+            }
+            .eraseToAnyPublisher()
     }
 }

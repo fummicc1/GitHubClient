@@ -8,9 +8,9 @@
 import Foundation
 import Combine
 
-protocol GitHubOAuthIUseCaseProtocol {
-    func onAccessToken() -> AnyPublisher<String, Error>
-    func getAccessToken() -> AnyPublisher<String?, Error>
+protocol GitHubOAuthIUseCaseProtocol: AutoMockable {
+    func onReceiveAccessToken() -> AnyPublisher<String, Error>
+    func findAccessToken() -> AnyPublisher<String?, Error>
     func checkHasAccessToken() -> AnyPublisher<Bool, Error>
     
     func updateCode(_ code: String) -> AnyPublisher<Void, Error>

@@ -17,7 +17,7 @@ class APIClient {
 }
 
 extension APIClient {
-    private func build(accessToken: String) {
+    private func _configure(with accessToken: String) {
         let store = ApolloStore(cache: InMemoryNormalizedCache())
         let transport = RequestChainNetworkTransport(
             interceptorProvider: DefaultInterceptorProvider(store: store),
@@ -40,7 +40,7 @@ extension APIClient: GraphQLClientProtocol {
     
     func configure(accessToken: String?) {
         if let token = accessToken {
-            build(accessToken: token)
+            _configure(with: token)
         } else {
             apollo = nil
         }

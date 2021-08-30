@@ -6,15 +6,16 @@
 //
 
 import XCTest
+import Combine
 @testable import GitHubClient
 
 class ProfileViewModelTests: XCTestCase {
 
     var target: MyProfileViewModel!
-    var useCase: ProfileUseCaseMock!
+    var useCase: ProfileUseCaseProtocolMock!
     
     override func setUpWithError() throws {
-        useCase = ProfileUseCaseMock()
+        useCase = ProfileUseCaseProtocolMock()
         target = MyProfileViewModel(useCase: useCase)
     }
 
@@ -27,31 +28,35 @@ class ProfileViewModelTests: XCTestCase {
         // Config
         let viewData = [GitHubRepositoryViewData.stub()]
         let data = GitHubRepositoryList.stub()
-        useCase.set(keyPath: \.myRepoList, value: .success(data))
-        useCase.registerExpected(.init(action: .getMyRepoList))
+        
+        useCase.getMyRepoListReturnValue = Just(data).setFailureType(to: Error.self).eraseToAnyPublisher()
         
         // Execute
         target.findMyRepoList()
         
         // Validate
+        
+        XCTAssertEqual(useCase.getMyRepoListCallsCount, 1)
+        
         let result = target.$myRepoList
         let (exp, _) = result.validate(timeout: 2, equals: [viewData])
         
         wait(for: [exp], timeout: 2)
-        useCase.validate()
     }
     
     func test_findMe_canSuccess() throws {
         let viewData = MeViewData.stub()
         let data = MeEntity.stub()
         
-        useCase.registerExpected(.init(action: .getMe))
-        useCase.set(keyPath: \.me, value: .success(data))
+        useCase.getMeReturnValue = Just(data).setFailureType(to: Error.self).eraseToAnyPublisher()
         
         // Execute
         target.findMe()
         
         // Validate
+        
+        XCTAssertEqual(useCase.getMeCallsCount, 1)
+        
         let me = target.$me
         let (exp, _) = me.validateNotNil(
             type: MeViewData.self,
