@@ -15,10 +15,12 @@ protocol AuthClientProtocol {
 class AuthGateway: AuthGatewayProtocol {
     
     private let authClient: AuthClientProtocol
+    private let graphQLClient: GraphQLClientProtocol
     private let dataStore: DataStoreProtocol
     
-    internal init(authClient: AuthClientProtocol, dataStore: DataStoreProtocol) {
+    internal init(authClient: AuthClientProtocol, graphQLClient: GraphQLClientProtocol, dataStore: DataStoreProtocol) {
         self.authClient = authClient
+        self.graphQLClient = graphQLClient
         self.dataStore = dataStore
     }
     
@@ -34,6 +36,16 @@ class AuthGateway: AuthGatewayProtocol {
             catch {
                 promise(.failure(error))
             }
+        }.eraseToAnyPublisher()
+    }
+    
+    func registerAccessToken(_ accessToken: String) -> AnyPublisher<Void, Error> {
+        Future { [weak self] promise in
+            guard let self = self else {
+                return
+            }
+            self.graphQLClient.configure(accessToken: accessToken)
+            promise(.success(()))
         }.eraseToAnyPublisher()
     }
     

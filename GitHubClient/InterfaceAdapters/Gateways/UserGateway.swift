@@ -14,7 +14,7 @@ protocol WebClientRequestable {
     func build() -> Query
 }
 
-protocol GraphQLClientProtocol: AnyObject {
+protocol GraphQLClientProtocol: AnyObject, AutoMockable {
     func request<Request: WebClientRequestable>(with request: Request) -> AnyPublisher<Request.Query.Data, Error>
     func configure(accessToken: String?)
 }

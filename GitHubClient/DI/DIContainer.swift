@@ -52,6 +52,7 @@ class GatewayAssembly: Assembly {
         container.register(AuthGatewayProtocol.self) { resolver in
             AuthGateway(
                 authClient: resolver.resolve(AuthClientProtocol.self)!,
+                graphQLClient: resolver.resolve(GraphQLClientProtocol.self)!,
                 dataStore: resolver.resolve(DataStoreProtocol.self)!
             )
         }

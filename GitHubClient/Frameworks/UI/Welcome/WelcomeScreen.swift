@@ -30,6 +30,7 @@ struct WelcomeScreen_Previews: PreviewProvider {
                 authUseCase: GitHubOAuthInteractor(
                     authGateway: AuthGateway(
                         authClient: AuthClient(),
+                        graphQLClient: APIClient(),
                         dataStore: DataStore()
                     )
                 )

@@ -61,7 +61,7 @@ class RepositoryInteractorTests: XCTestCase {
         XCTAssertEqual(gateway.searchOfRepoNameReceivedArguments?.owner, owner)
         XCTAssertEqual(gateway.searchOfRepoNameReceivedArguments?.repoName, repoName)
         
-        let (exp, _) = result.validate(timeout: 2, equals: [repo])
+        let (exp, _) = result.validate(equals: [repo])
         wait(for: [exp], timeout: 2)
     }
     

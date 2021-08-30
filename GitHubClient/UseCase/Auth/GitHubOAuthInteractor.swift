@@ -10,6 +10,7 @@ import Combine
 
 protocol AuthGatewayProtocol: AutoMockable {
     func persistAccessToken(_ accessToken: String) -> AnyPublisher<Void, Error>
+    func registerAccessToken(_ accessToken: String) -> AnyPublisher<Void, Error>
     func onAccessTokenChanged() -> AnyPublisher<String, Error>
     func findAccessToken() -> AnyPublisher<String?, Error>
     func requestAccessToken(with code: String) -> AnyPublisher<String, Error>
@@ -41,6 +42,11 @@ extension GitHubOAuthInteractor: GitHubOAuthIUseCaseProtocol {
     
     func onReceiveAccessToken() -> AnyPublisher<String, Error> {
         authGateway.onAccessTokenChanged()
+            .flatMap({ accessToken in
+                self.authGateway.registerAccessToken(accessToken)
+                    .map({ _ in accessToken })
+            })
+            .eraseToAnyPublisher()
     }
     
     func updateCode(_ code: String) -> AnyPublisher<Void, Error> {

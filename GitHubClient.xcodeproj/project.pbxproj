@@ -40,10 +40,11 @@
 		D3BA479C26D7D08400C1F5B5 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = D3BA479B26D7D08400C1F5B5 /* KeychainAccess */; };
 		D3BA47A126D7D0A200C1F5B5 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA47A026D7D0A200C1F5B5 /* DataStore.swift */; };
 		D3BA47A626D7D36500C1F5B5 /* GitHubOAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA47A526D7D36500C1F5B5 /* GitHubOAuthUseCase.swift */; };
-		D3BAC3F626DCB72400B6548C /* AppViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAC3F526DCB72400B6548C /* AppViewModelTests.swift */; };
 		D3BAC3FB26DCCAC000B6548C /* AutoMockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAC3FA26DCCAC000B6548C /* AutoMockable.swift */; };
 		D3BAC3FC26DCCAC400B6548C /* AutoMockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAC3FA26DCCAC000B6548C /* AutoMockable.swift */; };
 		D3BAC40026DCD13700B6548C /* GeneratedMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAC3FF26DCD13700B6548C /* GeneratedMock.swift */; };
+		D3BAC40226DCE11700B6548C /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAC40126DCE11700B6548C /* MockError.swift */; };
+		D3BAC40626DCE22700B6548C /* AuthInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAC40526DCE22700B6548C /* AuthInteractorTests.swift */; };
 		D3BC9A6026D3849C0063A9F5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D3BC9A5F26D3849C0063A9F5 /* Kingfisher */; };
 		D3BC9A6326D384CD0063A9F5 /* NetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */; };
 		D3BC9A6626D398C10063A9F5 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC9A6526D398C10063A9F5 /* DIContainer.swift */; };
@@ -115,9 +116,10 @@
 		D3BA479826D7B62700C1F5B5 /* GitHubOAuthWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubOAuthWebView.swift; sourceTree = "<group>"; };
 		D3BA47A026D7D0A200C1F5B5 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		D3BA47A526D7D36500C1F5B5 /* GitHubOAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubOAuthUseCase.swift; sourceTree = "<group>"; };
-		D3BAC3F526DCB72400B6548C /* AppViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModelTests.swift; sourceTree = "<group>"; };
 		D3BAC3FA26DCCAC000B6548C /* AutoMockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoMockable.swift; sourceTree = "<group>"; };
 		D3BAC3FF26DCD13700B6548C /* GeneratedMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMock.swift; sourceTree = "<group>"; };
+		D3BAC40126DCE11700B6548C /* MockError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
+		D3BAC40526DCE22700B6548C /* AuthInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractorTests.swift; sourceTree = "<group>"; };
 		D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImage.swift; sourceTree = "<group>"; };
 		D3BC9A6526D398C10063A9F5 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		D3BC9A6A26D497580063A9F5 /* GitHubClient.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = GitHubClient.xctestplan; path = GitHubClientTests/GitHubClient.xctestplan; sourceTree = SOURCE_ROOT; };
@@ -298,6 +300,7 @@
 		D365EAC026CF7668001F9332 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				D3BAC40126DCE11700B6548C /* MockError.swift */,
 				D3BAC3FF26DCD13700B6548C /* GeneratedMock.swift */,
 				D3BAC3FA26DCCAC000B6548C /* AutoMockable.swift */,
 			);
@@ -326,6 +329,7 @@
 			children = (
 				D365EAD526CFB82F001F9332 /* ProfileInteractorTests.swift */,
 				D3ABFFE726D0E9690048875B /* RepositoryInteractorTests.swift */,
+				D3BAC40526DCE22700B6548C /* AuthInteractorTests.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -335,7 +339,6 @@
 			children = (
 				D37F2CA226D2029E00C453BA /* RepositoryListViewModelTests.swift */,
 				D3BC9A7026D4BB5C0063A9F5 /* ProfileViewModelTests.swift */,
-				D3BAC3F526DCB72400B6548C /* AppViewModelTests.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -681,11 +684,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3BAC40226DCE11700B6548C /* MockError.swift in Sources */,
 				D37F2CA326D2029E00C453BA /* RepositoryListViewModelTests.swift in Sources */,
 				D33A0FF726B10D75002DA455 /* GitHubClientTests.swift in Sources */,
-				D3BAC3F626DCB72400B6548C /* AppViewModelTests.swift in Sources */,
 				D365EAD626CFB82F001F9332 /* ProfileInteractorTests.swift in Sources */,
 				D3BAC3FB26DCCAC000B6548C /* AutoMockable.swift in Sources */,
+				D3BAC40626DCE22700B6548C /* AuthInteractorTests.swift in Sources */,
 				D3BAC40026DCD13700B6548C /* GeneratedMock.swift in Sources */,
 				D365EAC526CF771D001F9332 /* Stub.swift in Sources */,
 				D3ABFFE826D0E9690048875B /* RepositoryInteractorTests.swift in Sources */,

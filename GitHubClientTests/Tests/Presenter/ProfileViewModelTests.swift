@@ -39,7 +39,7 @@ class ProfileViewModelTests: XCTestCase {
         XCTAssertEqual(useCase.getMyRepoListCallsCount, 1)
         
         let result = target.$myRepoList
-        let (exp, _) = result.validate(timeout: 2, equals: [viewData])
+        let (exp, _) = result.validate(equals: [viewData])
         
         wait(for: [exp], timeout: 2)
     }
@@ -63,7 +63,7 @@ class ProfileViewModelTests: XCTestCase {
             streamCount: 1
         )
         let (exp2, _) = me.compactMap({ $0 })
-            .validate(timeout: 2, equals: [viewData])
+            .validate(equals: [viewData])
         wait(for: [exp, exp2], timeout: 2)
     }
 

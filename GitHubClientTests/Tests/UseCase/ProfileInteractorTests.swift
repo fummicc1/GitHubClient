@@ -39,7 +39,7 @@ class ProfileInteractorTests: XCTestCase {
         let result = target.getMe()
         
         // Validate
-        let (expectation, _) = result.validate(timeout: 2, equals: [meStub])
+        let (expectation, _) = result.validate(equals: [meStub])
         
         XCTAssertTrue(profileGateway.fetchMeFollowerCountFolloweeCountCalled)
         XCTAssertEqual(profileGateway.fetchMeFollowerCountFolloweeCountReceivedArguments?.followeeCount, ProfileInteractor.defaultFetchCount)
@@ -61,7 +61,7 @@ class ProfileInteractorTests: XCTestCase {
         let result = target.getMyRepoList()
         
         // Validate
-        let (exp, _) = result.validate(timeout: 2, equals: [myRepoList]) // ここでSinkしているので検証処理の最初に実行する必要がある
+        let (exp, _) = result.validate(equals: [myRepoList]) // ここでSinkしているので検証処理の最初に実行する必要がある
         
         XCTAssertEqual(profileGateway.fetchMeFollowerCountFolloweeCountReceivedArguments?.followeeCount, ProfileInteractor.defaultFetchCount)
         XCTAssertEqual(profileGateway.fetchMeFollowerCountFolloweeCountReceivedArguments?.followerCount, ProfileInteractor.defaultFetchCount)

@@ -64,8 +64,7 @@ class RepositoryListViewModelTests: XCTestCase {
         XCTAssertEqual(useCase.searchWithCountReceivedArguments?.query, query)
         XCTAssertEqual(useCase.searchWithCountReceivedArguments?.count, count)
         
-        let (exp, _) = target.$repositories.validate(
-            timeout: 2, equals: [viewDataList])
+        let (exp, _) = target.$repositories.validate(equals: [viewDataList])
         wait(for: [exp], timeout: 2)
     }
 }

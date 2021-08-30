@@ -46,6 +46,7 @@ struct RootView_Previews: PreviewProvider {
         let authInteractor = GitHubOAuthInteractor(
             authGateway: AuthGateway(
                 authClient: AuthClient(),
+                graphQLClient: APIClient(),
                 dataStore: DataStore()
             )
         )

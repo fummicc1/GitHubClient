@@ -48,6 +48,24 @@ class AuthGatewayProtocolMock: AuthGatewayProtocol {
         return persistAccessTokenClosure.map({ $0(accessToken) }) ?? persistAccessTokenReturnValue
     }
 
+    //MARK: - registerAccessToken
+
+    var registerAccessTokenCallsCount = 0
+    var registerAccessTokenCalled: Bool {
+        return registerAccessTokenCallsCount > 0
+    }
+    var registerAccessTokenReceivedAccessToken: String?
+    var registerAccessTokenReceivedInvocations: [String] = []
+    var registerAccessTokenReturnValue: AnyPublisher<Void, Error>!
+    var registerAccessTokenClosure: ((String) -> AnyPublisher<Void, Error>)?
+
+    func registerAccessToken(_ accessToken: String) -> AnyPublisher<Void, Error> {
+        registerAccessTokenCallsCount += 1
+        registerAccessTokenReceivedAccessToken = accessToken
+        registerAccessTokenReceivedInvocations.append(accessToken)
+        return registerAccessTokenClosure.map({ $0(accessToken) }) ?? registerAccessTokenReturnValue
+    }
+
     //MARK: - onAccessTokenChanged
 
     var onAccessTokenChangedCallsCount = 0
