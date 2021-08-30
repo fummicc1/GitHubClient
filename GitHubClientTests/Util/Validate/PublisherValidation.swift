@@ -14,8 +14,7 @@ typealias CompletionResult = (expectation: XCTestExpectation,
 
 extension Publisher where Self.Output: Equatable {
     
-    func validate(
-        timeout: TimeInterval,
+    func validate(        
         file: StaticString = #file,
         line: UInt = #line,
         equals: [Self.Output]
@@ -48,6 +47,23 @@ extension Publisher {
         let cancellable = sink { _ in
         } receiveValue: { output in
             XCTAssertNotNil(output)
+            leftCount -= 1
+            if leftCount == 0 {
+                expectation.fulfill()
+            }
+        }
+        return (expectation, cancellable)
+    }
+    
+    func validateCount(
+        streamCount: Int,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> CompletionResult {
+        var leftCount: Int = streamCount
+        let expectation = XCTestExpectation(description: "Publisher: \(String(describing: self))")
+        let cancellable = sink { _ in
+        } receiveValue: { _ in            
             leftCount -= 1
             if leftCount == 0 {
                 expectation.fulfill()

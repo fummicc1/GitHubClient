@@ -6,17 +6,18 @@
 //
 
 import XCTest
+import Combine
 @testable import GitHubClient
 
 class ProfileInteractorTests: XCTestCase {
     
     var target: ProfileInteractor!
-    var repoGateway: RepositoryGatewayMock!
-    var profileGateway: ProfileGatewayMock!
+    var repoGateway: RepositoryGatewayProtocolMock!
+    var profileGateway: UserGatewayProtocolMock!
 
     override func setUpWithError() throws {
-        profileGateway = ProfileGatewayMock()
-        repoGateway = RepositoryGatewayMock()
+        profileGateway = UserGatewayProtocolMock()
+        repoGateway = RepositoryGatewayProtocolMock()
         target = ProfileInteractor(
             userGateway: profileGateway,
             repoGateway: repoGateway
@@ -32,24 +33,17 @@ class ProfileInteractorTests: XCTestCase {
         // Configure
         let meStub = MeEntity.stub()
         
-        profileGateway.registerExpected(
-            .init(
-                action: .fetchMe(
-                    followerCount: ProfileInteractor.defaultFetchCount,
-                    followeeCount: ProfileInteractor.defaultFetchCount
-                )
-            )
-        )
-        
-        profileGateway.set(keyPath: \.me, value: .success(meStub))
+        profileGateway.fetchMeFollowerCountFolloweeCountReturnValue = Just(meStub).setFailureType(to: Error.self).eraseToAnyPublisher()
         
         // Execute
         let result = target.getMe()
         
         // Validate
-        profileGateway.validate()
+        let (expectation, _) = result.validate(equals: [meStub])
         
-        let (expectation, _) = result.validate(timeout: 2, equals: [meStub])
+        XCTAssertTrue(profileGateway.fetchMeFollowerCountFolloweeCountCalled)
+        XCTAssertEqual(profileGateway.fetchMeFollowerCountFolloweeCountReceivedArguments?.followeeCount, ProfileInteractor.defaultFetchCount)
+        XCTAssertEqual(profileGateway.fetchMeFollowerCountFolloweeCountReceivedArguments?.followerCount, ProfileInteractor.defaultFetchCount)
         
         wait(for: [expectation], timeout: 2)
     }
@@ -60,25 +54,19 @@ class ProfileInteractorTests: XCTestCase {
         let me = MeEntity.stub()
         let myRepoList = GitHubRepositoryList.stub()
         
-        repoGateway.registerExpected(.init(action: .searchRepoListOfUser(userID: me.login)))        
-        repoGateway.set(keyPath: \.searchRepoList, value: .success(myRepoList))
-        profileGateway.registerExpected(
-            .init(
-                action: .fetchMe(
-                    followerCount: ProfileInteractor.defaultFetchCount,
-                    followeeCount: ProfileInteractor.defaultFetchCount
-                )
-            )
-        )
-        profileGateway.set(keyPath: \.me, value: .success(me))
+        profileGateway.fetchMeFollowerCountFolloweeCountReturnValue = Just(me).setFailureType(to: Error.self).eraseToAnyPublisher()
+        repoGateway.searchRepoListOfReturnValue = Just(myRepoList).setFailureType(to: Error.self).eraseToAnyPublisher()
         
         // Execute
         let result = target.getMyRepoList()
         
         // Validate
-        profileGateway.validate()
+        let (exp, _) = result.validate(equals: [myRepoList]) // ここでSinkしているので検証処理の最初に実行する必要がある
         
-        let (exp, _) = result.validate(timeout: 2, equals: [myRepoList])
+        XCTAssertEqual(profileGateway.fetchMeFollowerCountFolloweeCountReceivedArguments?.followeeCount, ProfileInteractor.defaultFetchCount)
+        XCTAssertEqual(profileGateway.fetchMeFollowerCountFolloweeCountReceivedArguments?.followerCount, ProfileInteractor.defaultFetchCount)
+        XCTAssertEqual(repoGateway.searchRepoListOfReceivedId, me.login)
+        
         wait(for: [exp], timeout: 2)
     }
     

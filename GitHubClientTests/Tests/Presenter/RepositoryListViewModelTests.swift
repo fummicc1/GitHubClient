@@ -6,15 +6,16 @@
 //
 
 import XCTest
+import Combine
 @testable import GitHubClient
 
 class RepositoryListViewModelTests: XCTestCase {
 
     var target: RepositoryListViewModel!
-    var useCase: RepositoryUseCaseMock!
+    var useCase: RepositoryUseCaseProtocolMock!
     
     override func setUpWithError() throws {
-        useCase = RepositoryUseCaseMock()
+        useCase = RepositoryUseCaseProtocolMock()
         target = RepositoryListViewModel(useCase: useCase)
     }
 
@@ -47,18 +48,23 @@ class RepositoryListViewModelTests: XCTestCase {
             mostUsedLangauge: .stub()
         )
         let viewDataList = [viewData]
-        target.query = "fummicc1"
         
-        useCase.registerExpected(.init(action: RepositoryUseCaseMock.Function.Action.searchWithQuery(query: "fummicc1")))
-        useCase.set(keyPath: \.searchWithQuery, value: .success(repositoryList))
+        let query = "fummicc1"
+        let count = 10
+        
+        target.query = query
+        
+        useCase.searchWithCountReturnValue = Just(repositoryList).setFailureType(to: Error.self).eraseToAnyPublisher()
         
         // Execute
-        target.fetch()
+        target.fetch(count: count)
         
         // Validate
-        useCase.validate()
-        let (exp, _) = target.$repositories.validate(
-            timeout: 2, equals: [viewDataList])
+        XCTAssertTrue(useCase.searchWithCountCalled)
+        XCTAssertEqual(useCase.searchWithCountReceivedArguments?.query, query)
+        XCTAssertEqual(useCase.searchWithCountReceivedArguments?.count, count)
+        
+        let (exp, _) = target.$repositories.validate(equals: [viewDataList])
         wait(for: [exp], timeout: 2)
     }
 }

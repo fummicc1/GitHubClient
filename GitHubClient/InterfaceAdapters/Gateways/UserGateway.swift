@@ -14,8 +14,9 @@ protocol WebClientRequestable {
     func build() -> Query
 }
 
-protocol WebClientProtocol: AnyObject {
+protocol GraphQLClientProtocol: AnyObject, AutoMockable {
     func request<Request: WebClientRequestable>(with request: Request) -> AnyPublisher<Request.Query.Data, Error>
+    func configure(accessToken: String?)
 }
 
 struct UserRequestable: WebClientRequestable {
@@ -59,9 +60,9 @@ enum GatewayGenericError: Swift.Error {
 
 class UserGateway: UserGatewayProtocol {
     
-    private var webClient: WebClientProtocol!
+    private var webClient: GraphQLClientProtocol!
     
-    internal init(webClient: WebClientProtocol) {
+    internal init(webClient: GraphQLClientProtocol) {
         self.webClient = webClient
     }
     

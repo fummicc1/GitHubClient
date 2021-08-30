@@ -13,13 +13,30 @@ import SwiftUI
 // MARK: APIClient
 class APIClientAssembly: Assembly {
     func assemble(container: Container) {
-        assembleWebAPI(container: container)
+        webAPI(container: container)
+        auth(container: container)
+        dataStore(container: container)
     }
     
-    private func assembleWebAPI(container: Container) {
-        container.register(WebClientProtocol.self) { _ in
-            APIClient.make()
+    private func webAPI(container: Container) {
+        container.register(GraphQLClientProtocol.self) { _ in
+            APIClient()
         }
+        .inObjectScope(.container)
+    }
+    
+    func auth(container: Container) {
+        container.register(AuthClientProtocol.self) { _ in
+            AuthClient()
+        }
+        .inObjectScope(.container)
+    }
+    
+    func dataStore(container: Container) {
+        container.register(DataStoreProtocol.self) { _ in
+            DataStore()
+        }
+        .inObjectScope(.container)
     }
 }
 
@@ -28,18 +45,29 @@ class GatewayAssembly: Assembly {
     func assemble(container: Container) {
         userAssemble(container: container)
         repositoryAssemble(container: container)
+        authAssemble(container: container)
+    }
+    
+    private func authAssemble(container: Container) {
+        container.register(AuthGatewayProtocol.self) { resolver in
+            AuthGateway(
+                authClient: resolver.resolve(AuthClientProtocol.self)!,
+                graphQLClient: resolver.resolve(GraphQLClientProtocol.self)!,
+                dataStore: resolver.resolve(DataStoreProtocol.self)!
+            )
+        }
     }
     
     private func userAssemble(container: Container) {
         container.register(UserGatewayProtocol.self) { resolver in
-            let webClient = resolver.resolve(WebClientProtocol.self)!
+            let webClient = resolver.resolve(GraphQLClientProtocol.self)!
             return UserGateway(webClient: webClient)
         }
     }
     
     private func repositoryAssemble(container: Container) {
         container.register(RepositoryGatewayProtocol.self) { resolver in
-            let webClient = resolver.resolve(WebClientProtocol.self)!
+            let webClient = resolver.resolve(GraphQLClientProtocol.self)!
             return RepositoryGateway(webClient: webClient)
         }
     }
@@ -50,6 +78,7 @@ class UseCaseAssembly: Assembly {
     func assemble(container: Container) {
         profileUseCase(container: container)
         repoUseCase(container: container)
+        authUseCase(contaienr: container)
     }
     
     private func profileUseCase(container: Container) {
@@ -68,12 +97,19 @@ class UseCaseAssembly: Assembly {
             )
         }
     }
+    
+    private func authUseCase(contaienr: Container) {
+        contaienr.register(GitHubOAuthIUseCaseProtocol.self) { resolver in
+            GitHubOAuthInteractor(authGateway: resolver.resolve(AuthGatewayProtocol.self)!)
+        }
+    }
 }
 
 // MARK: ViewModels
 class ViewModelAssembly: Assembly {
     func assemble(container: Container) {
         app(container: container)
+        welcome(container: container)
         repositoryList(container: container)
         myProfile(container: container)
     }
@@ -90,9 +126,18 @@ class ViewModelAssembly: Assembly {
         }
     }
     
+    private func welcome(container: Container) {
+        container.register(WelcomeViewModel.self) { resolver in
+            WelcomeViewModel(authUseCase: resolver.resolve(GitHubOAuthIUseCaseProtocol.self)!)
+        }
+    }
+    
     private func app(container: Container) {
         container.register(AppViewModel.self) { resolver in
-            AppViewModel(profileUseCase: resolver.resolve(ProfileUseCaseProtocol.self)!)
+            AppViewModel(
+                profileUseCase: resolver.resolve(ProfileUseCaseProtocol.self)!,
+                authUseCase: resolver.resolve(GitHubOAuthIUseCaseProtocol.self)!
+            )
         }
     }
 }

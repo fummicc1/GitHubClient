@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol ProfileUseCaseProtocol: AnyObject {
+protocol ProfileUseCaseProtocol: AnyObject, AutoMockable {
     func getMe() -> AnyPublisher<MeEntity, Error>
     func getMyRepoList() -> AnyPublisher<GitHubRepositoryList, Error>
 }

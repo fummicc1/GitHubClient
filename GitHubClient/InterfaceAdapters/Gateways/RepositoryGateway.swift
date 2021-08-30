@@ -47,9 +47,9 @@ enum RepositoryGatewayError: Swift.Error {
 
 class RepositoryGateway: RepositoryGatewayProtocol {
     
-    private var webClient: WebClientProtocol!
+    private var webClient: GraphQLClientProtocol!
     
-    internal init(webClient: WebClientProtocol) {
+    internal init(webClient: GraphQLClientProtocol) {
         self.webClient = webClient
     }
     
@@ -135,7 +135,7 @@ extension RepositoryGateway {
         var user: GitHubUser?
         var org: GitHubOrganization?
         
-        handleNonNil(value: repository.owner.asUser) { asUser in
+        ensureNonNil(value: repository.owner.asUser) { asUser in
             user = GitHubUser(
                 login: GitHubUserLoginID(
                     id: asUser.login
@@ -144,7 +144,7 @@ extension RepositoryGateway {
             )
         }
         
-        handleNonNil(value: repository.owner.asOrganization) { asOrg in
+        ensureNonNil(value: repository.owner.asOrganization) { asOrg in
             org = GitHubOrganization(
                 login: GitHubOrganizationLogin(value: asOrg.login),
                 avatarUrl: asOrg.avatarUrl
@@ -178,7 +178,7 @@ extension RepositoryGateway {
         var user: GitHubUser?
         var org: GitHubOrganization?
         
-        handleNonNil(value: repository.owner.asUser) { asUser in
+        ensureNonNil(value: repository.owner.asUser) { asUser in
             user = GitHubUser(
                 login: GitHubUserLoginID(
                     id: asUser.login
@@ -187,7 +187,7 @@ extension RepositoryGateway {
             )
         }
         
-        handleNonNil(value: repository.owner.asOrganization) { asOrg in
+        ensureNonNil(value: repository.owner.asOrganization) { asOrg in
             org = GitHubOrganization(
                 login: GitHubOrganizationLogin(value: asOrg.login),
                 avatarUrl: asOrg.avatarUrl

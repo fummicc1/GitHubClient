@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol UserGatewayProtocol {
+protocol UserGatewayProtocol: AutoMockable {
     func fetch(id: GitHubUserLoginID) -> AnyPublisher<GitHubUser, Error>
     func fetchMe(followerCount: Int, followeeCount: Int) -> AnyPublisher<MeEntity, Error>
 }

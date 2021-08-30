@@ -6,15 +6,16 @@
 //
 
 import XCTest
+import Combine
 @testable import GitHubClient
 
 class RepositoryInteractorTests: XCTestCase {
     
     var target: RepositoryInteractor!
-    var gateway: RepositoryGatewayMock!
+    var gateway: RepositoryGatewayProtocolMock!
     
     override func setUpWithError() throws {
-        gateway = RepositoryGatewayMock()
+        gateway = RepositoryGatewayProtocolMock()
         target = RepositoryInteractor(repositoryGateway: gateway)
     }
 
@@ -30,14 +31,13 @@ class RepositoryInteractorTests: XCTestCase {
         
         let count = 10
         
-        gateway.registerExpected(
-            .init(action: .searchWithQuery(query: query, count: count))
-        )
-        gateway.set(keyPath: \.searchWithQuery, value: .success(repoList))
+        gateway.searchWithCountReturnValue = Just(repoList).setFailureType(to: Error.self).eraseToAnyPublisher()
         
         let result = target.search(with: query, count: count)
                 
-        gateway.validate()
+        XCTAssertTrue(gateway.searchWithCountCalled)
+        XCTAssertEqual(gateway.searchWithCountReceivedArguments?.query, query)
+        XCTAssertEqual(gateway.searchWithCountReceivedArguments?.count, count)
         
         let (exp, _) = result.validate(timeout: 2, equals: [repoList])
         wait(for: [exp], timeout: 2)
@@ -51,19 +51,17 @@ class RepositoryInteractorTests: XCTestCase {
         
         let repoName = "fummicc1"
         
-        gateway.registerExpected(
-            .init(action: .searchSpecificRepository(owner: owner, repoName: repoName))
-        )
-        
-        gateway.set(keyPath: \.searchSpecific, value: .success(repo))
+        gateway.searchOfRepoNameReturnValue = Just(repo).setFailureType(to: Error.self).eraseToAnyPublisher()
         
         // Execute
         let result = target.search(of: owner, repoName: repoName)
                   
         // Validate
-        gateway.validate()
+        XCTAssertTrue(gateway.searchOfRepoNameCalled)
+        XCTAssertEqual(gateway.searchOfRepoNameReceivedArguments?.owner, owner)
+        XCTAssertEqual(gateway.searchOfRepoNameReceivedArguments?.repoName, repoName)
         
-        let (exp, _) = result.validate(timeout: 2, equals: [repo])
+        let (exp, _) = result.validate(equals: [repo])
         wait(for: [exp], timeout: 2)
     }
     

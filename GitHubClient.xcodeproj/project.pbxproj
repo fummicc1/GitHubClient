@@ -24,20 +24,27 @@
 		D33F722026D640E7008CCBAC /* chExist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33F721F26D640E7008CCBAC /* chExist.swift */; };
 		D34D20A226CE640A006B86EF /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D34D20A126CE640A006B86EF /* SwiftUIX */; };
 		D360117326C01ADA008C37FD /* RepositoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D360117226C01ADA008C37FD /* RepositoryCardView.swift */; };
-		D365EAC226CF76F9001F9332 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAC126CF76F9001F9332 /* Mock.swift */; };
 		D365EAC526CF771D001F9332 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAC426CF771D001F9332 /* Stub.swift */; };
-		D365EAC626CF78C5001F9332 /* ProfileUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1BAC726CD474B00046689 /* ProfileUseCaseMock.swift */; };
-		D365EAC826CF7FD1001F9332 /* RepositoryUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAC726CF7FD1001F9332 /* RepositoryUseCaseMock.swift */; };
-		D365EACC26CFA2A5001F9332 /* RepositoryGatewayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EACB26CFA2A5001F9332 /* RepositoryGatewayMock.swift */; };
-		D365EACE26CFACC6001F9332 /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EACD26CFACC6001F9332 /* MockError.swift */; };
 		D365EAD626CFB82F001F9332 /* ProfileInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAD526CFB82F001F9332 /* ProfileInteractorTests.swift */; };
-		D365EAD826CFB9F7001F9332 /* ProfileGatewayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365EAD726CFB9F7001F9332 /* ProfileGatewayMock.swift */; };
 		D37F2CA326D2029E00C453BA /* RepositoryListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37F2CA226D2029E00C453BA /* RepositoryListViewModelTests.swift */; };
 		D3ABFFE826D0E9690048875B /* RepositoryInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFE726D0E9690048875B /* RepositoryInteractorTests.swift */; };
 		D3ABFFEC26D0FAA20048875B /* Publisher+DelegateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFEB26D0FAA20048875B /* Publisher+DelegateError.swift */; };
-		D3ABFFEE26D106960048875B /* DelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFED26D106960048875B /* DelegateMock.swift */; };
+		D3B4BF9726D8A5A1001DA3B8 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4BF9626D8A5A1001DA3B8 /* WelcomeViewModel.swift */; };
 		D3B4D24826D24513008BBFC4 /* PublisherValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */; };
-		D3B4D24A26D24A2A008BBFC4 /* MockOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4D24926D24A2A008BBFC4 /* MockOutput.swift */; };
+		D3BA478A26D77C4400C1F5B5 /* AuthGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA478926D77C4400C1F5B5 /* AuthGateway.swift */; };
+		D3BA478C26D795EA00C1F5B5 /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA478B26D795EA00C1F5B5 /* AuthClient.swift */; };
+		D3BA478F26D7962300C1F5B5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D3BA478E26D7962300C1F5B5 /* Alamofire */; };
+		D3BA479526D79D0500C1F5B5 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA479426D79D0500C1F5B5 /* WelcomeScreen.swift */; };
+		D3BA479726D7A12000C1F5B5 /* GitHubOAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA479626D7A12000C1F5B5 /* GitHubOAuthInteractor.swift */; };
+		D3BA479926D7B62700C1F5B5 /* GitHubOAuthWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA479826D7B62700C1F5B5 /* GitHubOAuthWebView.swift */; };
+		D3BA479C26D7D08400C1F5B5 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = D3BA479B26D7D08400C1F5B5 /* KeychainAccess */; };
+		D3BA47A126D7D0A200C1F5B5 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA47A026D7D0A200C1F5B5 /* DataStore.swift */; };
+		D3BA47A626D7D36500C1F5B5 /* GitHubOAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA47A526D7D36500C1F5B5 /* GitHubOAuthUseCase.swift */; };
+		D3BAC3FB26DCCAC000B6548C /* AutoMockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAC3FA26DCCAC000B6548C /* AutoMockable.swift */; };
+		D3BAC3FC26DCCAC400B6548C /* AutoMockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAC3FA26DCCAC000B6548C /* AutoMockable.swift */; };
+		D3BAC40026DCD13700B6548C /* GeneratedMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAC3FF26DCD13700B6548C /* GeneratedMock.swift */; };
+		D3BAC40226DCE11700B6548C /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAC40126DCE11700B6548C /* MockError.swift */; };
+		D3BAC40626DCE22700B6548C /* AuthInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAC40526DCE22700B6548C /* AuthInteractorTests.swift */; };
 		D3BC9A6026D3849C0063A9F5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D3BC9A5F26D3849C0063A9F5 /* Kingfisher */; };
 		D3BC9A6326D384CD0063A9F5 /* NetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */; };
 		D3BC9A6626D398C10063A9F5 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC9A6526D398C10063A9F5 /* DIContainer.swift */; };
@@ -95,19 +102,24 @@
 		D33F721C26D63BCD008CCBAC /* GitHubOrganization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubOrganization.swift; sourceTree = "<group>"; };
 		D33F721F26D640E7008CCBAC /* chExist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chExist.swift; sourceTree = "<group>"; };
 		D360117226C01ADA008C37FD /* RepositoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCardView.swift; sourceTree = "<group>"; };
-		D365EAC126CF76F9001F9332 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		D365EAC426CF771D001F9332 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
-		D365EAC726CF7FD1001F9332 /* RepositoryUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryUseCaseMock.swift; sourceTree = "<group>"; };
-		D365EACB26CFA2A5001F9332 /* RepositoryGatewayMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryGatewayMock.swift; sourceTree = "<group>"; };
-		D365EACD26CFACC6001F9332 /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
 		D365EAD526CFB82F001F9332 /* ProfileInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractorTests.swift; sourceTree = "<group>"; };
-		D365EAD726CFB9F7001F9332 /* ProfileGatewayMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGatewayMock.swift; sourceTree = "<group>"; };
 		D37F2CA226D2029E00C453BA /* RepositoryListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModelTests.swift; sourceTree = "<group>"; };
 		D3ABFFE726D0E9690048875B /* RepositoryInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInteractorTests.swift; sourceTree = "<group>"; };
 		D3ABFFEB26D0FAA20048875B /* Publisher+DelegateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+DelegateError.swift"; sourceTree = "<group>"; };
-		D3ABFFED26D106960048875B /* DelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateMock.swift; sourceTree = "<group>"; };
+		D3B4BF9626D8A5A1001DA3B8 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherValidation.swift; sourceTree = "<group>"; };
-		D3B4D24926D24A2A008BBFC4 /* MockOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOutput.swift; sourceTree = "<group>"; };
+		D3BA478926D77C4400C1F5B5 /* AuthGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGateway.swift; sourceTree = "<group>"; };
+		D3BA478B26D795EA00C1F5B5 /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
+		D3BA479426D79D0500C1F5B5 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
+		D3BA479626D7A12000C1F5B5 /* GitHubOAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubOAuthInteractor.swift; sourceTree = "<group>"; };
+		D3BA479826D7B62700C1F5B5 /* GitHubOAuthWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubOAuthWebView.swift; sourceTree = "<group>"; };
+		D3BA47A026D7D0A200C1F5B5 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		D3BA47A526D7D36500C1F5B5 /* GitHubOAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubOAuthUseCase.swift; sourceTree = "<group>"; };
+		D3BAC3FA26DCCAC000B6548C /* AutoMockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoMockable.swift; sourceTree = "<group>"; };
+		D3BAC3FF26DCD13700B6548C /* GeneratedMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMock.swift; sourceTree = "<group>"; };
+		D3BAC40126DCE11700B6548C /* MockError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
+		D3BAC40526DCE22700B6548C /* AuthInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractorTests.swift; sourceTree = "<group>"; };
 		D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImage.swift; sourceTree = "<group>"; };
 		D3BC9A6526D398C10063A9F5 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		D3BC9A6A26D497580063A9F5 /* GitHubClient.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = GitHubClient.xctestplan; path = GitHubClientTests/GitHubClient.xctestplan; sourceTree = SOURCE_ROOT; };
@@ -130,7 +142,6 @@
 		D3F1BABA26CD082200046689 /* GitHubRepositoryViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepositoryViewData.swift; sourceTree = "<group>"; };
 		D3F1BABD26CD114400046689 /* ErrorMessageViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageViewData.swift; sourceTree = "<group>"; };
 		D3F1BAC326CD361400046689 /* RepositoryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryGateway.swift; sourceTree = "<group>"; };
-		D3F1BAC726CD474B00046689 /* ProfileUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCaseMock.swift; sourceTree = "<group>"; };
 		D3F1BACA26CD478700046689 /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
 		D3F1BACF26CD551600046689 /* MeViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,7 +151,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3BA478F26D7962300C1F5B5 /* Alamofire in Frameworks */,
 				D3BC9A6026D3849C0063A9F5 /* Kingfisher in Frameworks */,
+				D3BA479C26D7D08400C1F5B5 /* KeychainAccess in Frameworks */,
 				D33A100026B10DE7002DA455 /* Apollo in Frameworks */,
 				D34D20A226CE640A006B86EF /* SwiftUIX in Frameworks */,
 				D3BC9A6926D483AB0063A9F5 /* Swinject in Frameworks */,
@@ -205,12 +218,13 @@
 		D33A0FF526B10D75002DA455 /* GitHubClientTests */ = {
 			isa = PBXGroup;
 			children = (
-				D3BC9A6A26D497580063A9F5 /* GitHubClient.xctestplan */,
-				D365EAD126CFB803001F9332 /* Tests */,
-				D365EAC326CF7715001F9332 /* Stub */,
-				D365EAC026CF7668001F9332 /* Mock */,
-				D33A0FF626B10D75002DA455 /* GitHubClientTests.swift */,
 				D33A0FF826B10D75002DA455 /* Info.plist */,
+				D33A0FF626B10D75002DA455 /* GitHubClientTests.swift */,
+				D3BC9A6A26D497580063A9F5 /* GitHubClient.xctestplan */,
+				D365EAC026CF7668001F9332 /* Mock */,
+				D365EAC326CF7715001F9332 /* Stub */,
+				D365EAD126CFB803001F9332 /* Tests */,
+				D3BAC3F226DCB6F000B6548C /* Util */,
 			);
 			path = GitHubClientTests;
 			sourceTree = "<group>";
@@ -218,10 +232,9 @@
 		D33A100226B10E51002DA455 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				D33A100326B10E51002DA455 /* ProfileUseCase.swift */,
-				D33A100426B10E51002DA455 /* ProfileInteractor.swift */,
-				D3C460C826B120E800DF4B1F /* RepositoryUseCase.swift */,
-				D3C460CA26B1214A00DF4B1F /* RepositoryInteractor.swift */,
+				D3BA47A426D7D35100C1F5B5 /* Auth */,
+				D3BA47A326D7D34A00C1F5B5 /* Repository */,
+				D3BA47A226D7D34400C1F5B5 /* Profile */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -259,6 +272,7 @@
 				D33A100526B10E51002DA455 /* API */,
 				D33A100D26B10E51002DA455 /* ApiErrors.swift */,
 				D33A100F26B10E51002DA455 /* APIClient.swift */,
+				D3BA478B26D795EA00C1F5B5 /* AuthClient.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -274,11 +288,11 @@
 		D360117126C01ACB008C37FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D3BC9A6B26D4AEC40063A9F5 /* Modifiers */,
 				D360117226C01ADA008C37FD /* RepositoryCardView.swift */,
 				D3EFED6D26CB895200592804 /* NavigationViewWithSearchBar.swift */,
 				D3BC9A6C26D4AF020063A9F5 /* SnackBar.swift */,
 				D3BC9A9926D52D290063A9F5 /* ProfileView.swift */,
+				D3BA479826D7B62700C1F5B5 /* GitHubOAuthWebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,11 +300,9 @@
 		D365EAC026CF7668001F9332 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				D365EACA26CFA290001F9332 /* Gateway */,
-				D365EAC926CFA287001F9332 /* UseCase */,
-				D365EAC126CF76F9001F9332 /* Mock.swift */,
-				D3ABFFED26D106960048875B /* DelegateMock.swift */,
-				D3B4D24926D24A2A008BBFC4 /* MockOutput.swift */,
+				D3BAC40126DCE11700B6548C /* MockError.swift */,
+				D3BAC3FF26DCD13700B6548C /* GeneratedMock.swift */,
+				D3BAC3FA26DCCAC000B6548C /* AutoMockable.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -303,29 +315,9 @@
 			path = Stub;
 			sourceTree = "<group>";
 		};
-		D365EAC926CFA287001F9332 /* UseCase */ = {
-			isa = PBXGroup;
-			children = (
-				D3ABFFE426D0E6760048875B /* Repo */,
-				D3ABFFE226D0E6680048875B /* Profile */,
-			);
-			path = UseCase;
-			sourceTree = "<group>";
-		};
-		D365EACA26CFA290001F9332 /* Gateway */ = {
-			isa = PBXGroup;
-			children = (
-				D365EACB26CFA2A5001F9332 /* RepositoryGatewayMock.swift */,
-				D365EACD26CFACC6001F9332 /* MockError.swift */,
-				D365EAD726CFB9F7001F9332 /* ProfileGatewayMock.swift */,
-			);
-			path = Gateway;
-			sourceTree = "<group>";
-		};
 		D365EAD126CFB803001F9332 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D3B4D24626D24502008BBFC4 /* Validate */,
 				D37F2CA126D2027500C453BA /* Presenter */,
 				D365EAD426CFB81A001F9332 /* UseCase */,
 			);
@@ -337,6 +329,7 @@
 			children = (
 				D365EAD526CFB82F001F9332 /* ProfileInteractorTests.swift */,
 				D3ABFFE726D0E9690048875B /* RepositoryInteractorTests.swift */,
+				D3BAC40526DCE22700B6548C /* AuthInteractorTests.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -350,28 +343,63 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		D3ABFFE226D0E6680048875B /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				D3F1BAC726CD474B00046689 /* ProfileUseCaseMock.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		D3ABFFE426D0E6760048875B /* Repo */ = {
-			isa = PBXGroup;
-			children = (
-				D365EAC726CF7FD1001F9332 /* RepositoryUseCaseMock.swift */,
-			);
-			path = Repo;
-			sourceTree = "<group>";
-		};
 		D3B4D24626D24502008BBFC4 /* Validate */ = {
 			isa = PBXGroup;
 			children = (
 				D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */,
 			);
 			path = Validate;
+			sourceTree = "<group>";
+		};
+		D3BA479326D79CF500C1F5B5 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				D3BA479426D79D0500C1F5B5 /* WelcomeScreen.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		D3BA479D26D7D08F00C1F5B5 /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				D3BA47A026D7D0A200C1F5B5 /* DataStore.swift */,
+			);
+			path = DataStore;
+			sourceTree = "<group>";
+		};
+		D3BA47A226D7D34400C1F5B5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D33A100326B10E51002DA455 /* ProfileUseCase.swift */,
+				D33A100426B10E51002DA455 /* ProfileInteractor.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		D3BA47A326D7D34A00C1F5B5 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D3C460C826B120E800DF4B1F /* RepositoryUseCase.swift */,
+				D3C460CA26B1214A00DF4B1F /* RepositoryInteractor.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		D3BA47A426D7D35100C1F5B5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				D3BA479626D7A12000C1F5B5 /* GitHubOAuthInteractor.swift */,
+				D3BA47A526D7D36500C1F5B5 /* GitHubOAuthUseCase.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		D3BAC3F226DCB6F000B6548C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				D3B4D24626D24502008BBFC4 /* Validate */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		D3BC9A6426D398B70063A9F5 /* DI */ = {
@@ -382,16 +410,10 @@
 			path = DI;
 			sourceTree = "<group>";
 		};
-		D3BC9A6B26D4AEC40063A9F5 /* Modifiers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Modifiers;
-			sourceTree = "<group>";
-		};
 		D3C460BC26B110E100DF4B1F /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D3BA479326D79CF500C1F5B5 /* Welcome */,
 				D3C460BA26B110CF00DF4B1F /* RootView.swift */,
 				D3F1BAB226CCC4B900046689 /* Pages */,
 				D360117126C01ACB008C37FD /* Views */,
@@ -422,6 +444,7 @@
 		D3F1BAB026CCC46200046689 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3BA479D26D7D08F00C1F5B5 /* DataStore */,
 				D3C460BC26B110E100DF4B1F /* UI */,
 				D33A100C26B10E51002DA455 /* Network */,
 				D3BC9A6226D384CD0063A9F5 /* NetworkImage.swift */,
@@ -453,6 +476,7 @@
 			children = (
 				D3F1BAB426CCF72B00046689 /* UserGateway.swift */,
 				D3F1BAC326CD361400046689 /* RepositoryGateway.swift */,
+				D3BA478926D77C4400C1F5B5 /* AuthGateway.swift */,
 			);
 			path = Gateways;
 			sourceTree = "<group>";
@@ -464,6 +488,7 @@
 				D3C460BF26B1110E00DF4B1F /* RepositoryListViewModel.swift */,
 				D3BC9A7226D4BC160063A9F5 /* AppViewModel.swift */,
 				D3BC9A9B26D52E550063A9F5 /* ProfileViewModel.swift */,
+				D3B4BF9626D8A5A1001DA3B8 /* WelcomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -490,6 +515,8 @@
 				D34D20A126CE640A006B86EF /* SwiftUIX */,
 				D3BC9A5F26D3849C0063A9F5 /* Kingfisher */,
 				D3BC9A6826D483AB0063A9F5 /* Swinject */,
+				D3BA478E26D7962300C1F5B5 /* Alamofire */,
+				D3BA479B26D7D08400C1F5B5 /* KeychainAccess */,
 			);
 			productName = GitHubClient;
 			productReference = D33A0FDE26B10D62002DA455 /* GitHubClient.app */;
@@ -548,6 +575,8 @@
 				D34D20A026CE640A006B86EF /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 				D3BC9A5E26D3849C0063A9F5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				D3BC9A6726D483AA0063A9F5 /* XCRemoteSwiftPackageReference "Swinject" */,
+				D3BA478D26D7962300C1F5B5 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D3BA479A26D7D08400C1F5B5 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = D33A0FDF26B10D62002DA455 /* Products */;
 			projectDirPath = "";
@@ -604,16 +633,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3BAC3FC26DCCAC400B6548C /* AutoMockable.swift in Sources */,
 				D3BC9A6626D398C10063A9F5 /* DIContainer.swift in Sources */,
+				D3BA479926D7B62700C1F5B5 /* GitHubOAuthWebView.swift in Sources */,
 				D33A101526B10E51002DA455 /* GitHubUser.swift in Sources */,
 				D33A101726B10E51002DA455 /* ApiErrors.swift in Sources */,
+				D3B4BF9726D8A5A1001DA3B8 /* WelcomeViewModel.swift in Sources */,
 				D3C460BE26B110F900DF4B1F /* RepositoryListScreen.swift in Sources */,
 				D3F1BACB26CD478700046689 /* MyProfileViewModel.swift in Sources */,
 				D33F721D26D63BCD008CCBAC /* GitHubOrganization.swift in Sources */,
+				D3BA47A126D7D0A200C1F5B5 /* DataStore.swift in Sources */,
 				D33A101126B10E51002DA455 /* ProfileUseCase.swift in Sources */,
 				D3F1BAB526CCF72B00046689 /* UserGateway.swift in Sources */,
 				D3BC9A6326D384CD0063A9F5 /* NetworkImage.swift in Sources */,
 				D33A101226B10E51002DA455 /* ProfileInteractor.swift in Sources */,
+				D3BA479726D7A12000C1F5B5 /* GitHubOAuthInteractor.swift in Sources */,
 				D3ABFFEC26D0FAA20048875B /* Publisher+DelegateError.swift in Sources */,
 				D33A101926B10E51002DA455 /* APIClient.swift in Sources */,
 				D3BC9A7326D4BC160063A9F5 /* AppViewModel.swift in Sources */,
@@ -621,13 +655,17 @@
 				D33A0FE226B10D62002DA455 /* GitHubClientApp.swift in Sources */,
 				D3BC9A6D26D4AF020063A9F5 /* SnackBar.swift in Sources */,
 				D3EFED6E26CB895200592804 /* NavigationViewWithSearchBar.swift in Sources */,
+				D3BA479526D79D0500C1F5B5 /* WelcomeScreen.swift in Sources */,
 				D33A101626B10E51002DA455 /* Me.swift in Sources */,
 				D3F1BABB26CD082200046689 /* GitHubRepositoryViewData.swift in Sources */,
 				D3BC9A9C26D52E550063A9F5 /* ProfileViewModel.swift in Sources */,
+				D3BA478C26D795EA00C1F5B5 /* AuthClient.swift in Sources */,
 				D3C460C026B1110E00DF4B1F /* RepositoryListViewModel.swift in Sources */,
 				D3C460C926B120E800DF4B1F /* RepositoryUseCase.swift in Sources */,
 				D3C460C526B1183200DF4B1F /* String+Ex.swift in Sources */,
+				D3BA47A626D7D36500C1F5B5 /* GitHubOAuthUseCase.swift in Sources */,
 				D3C460C226B1119A00DF4B1F /* GitHubRepository.swift in Sources */,
+				D3BA478A26D77C4400C1F5B5 /* AuthGateway.swift in Sources */,
 				D3F1BAC426CD361400046689 /* RepositoryGateway.swift in Sources */,
 				D3F1BABE26CD114400046689 /* ErrorMessageViewData.swift in Sources */,
 				D3BC9A9A26D52D290063A9F5 /* ProfileView.swift in Sources */,
@@ -646,21 +684,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3BAC40226DCE11700B6548C /* MockError.swift in Sources */,
 				D37F2CA326D2029E00C453BA /* RepositoryListViewModelTests.swift in Sources */,
 				D33A0FF726B10D75002DA455 /* GitHubClientTests.swift in Sources */,
 				D365EAD626CFB82F001F9332 /* ProfileInteractorTests.swift in Sources */,
-				D365EACE26CFACC6001F9332 /* MockError.swift in Sources */,
+				D3BAC3FB26DCCAC000B6548C /* AutoMockable.swift in Sources */,
+				D3BAC40626DCE22700B6548C /* AuthInteractorTests.swift in Sources */,
+				D3BAC40026DCD13700B6548C /* GeneratedMock.swift in Sources */,
 				D365EAC526CF771D001F9332 /* Stub.swift in Sources */,
-				D3B4D24A26D24A2A008BBFC4 /* MockOutput.swift in Sources */,
-				D365EAC826CF7FD1001F9332 /* RepositoryUseCaseMock.swift in Sources */,
 				D3ABFFE826D0E9690048875B /* RepositoryInteractorTests.swift in Sources */,
-				D365EAC226CF76F9001F9332 /* Mock.swift in Sources */,
 				D3BC9A7126D4BB5C0063A9F5 /* ProfileViewModelTests.swift in Sources */,
 				D3B4D24826D24513008BBFC4 /* PublisherValidation.swift in Sources */,
-				D365EACC26CFA2A5001F9332 /* RepositoryGatewayMock.swift in Sources */,
-				D365EAC626CF78C5001F9332 /* ProfileUseCaseMock.swift in Sources */,
-				D365EAD826CFB9F7001F9332 /* ProfileGatewayMock.swift in Sources */,
-				D3ABFFEE26D106960048875B /* DelegateMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,6 +962,22 @@
 				minimumVersion = 0.0.8;
 			};
 		};
+		D3BA478D26D7962300C1F5B5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.3;
+			};
+		};
+		D3BA479A26D7D08400C1F5B5 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
 		D3BC9A5E26D3849C0063A9F5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -972,6 +1022,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D34D20A026CE640A006B86EF /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
+		};
+		D3BA478E26D7962300C1F5B5 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3BA478D26D7962300C1F5B5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		D3BA479B26D7D08400C1F5B5 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3BA479A26D7D08400C1F5B5 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 		D3BC9A5F26D3849C0063A9F5 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

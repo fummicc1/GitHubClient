@@ -1,0 +1,11 @@
+sources:
+  - ./GitHubClient/UseCase
+templates:
+  - ./templates/AutoMockable.stencil
+output:
+  path: ./GitHubClientTests/Mock/GeneratedMock.swift
+
+args:
+  autoMockableTestableImports:
+    - GitHubClient
+  useCombine: true
