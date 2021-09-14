@@ -29,6 +29,7 @@
 		D37F2CA326D2029E00C453BA /* RepositoryListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37F2CA226D2029E00C453BA /* RepositoryListViewModelTests.swift */; };
 		D3ABFFE826D0E9690048875B /* RepositoryInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFE726D0E9690048875B /* RepositoryInteractorTests.swift */; };
 		D3ABFFEC26D0FAA20048875B /* Publisher+DelegateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABFFEB26D0FAA20048875B /* Publisher+DelegateError.swift */; };
+		D3B41A6326F0E71F00B4C8B7 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B41A6226F0E71F00B4C8B7 /* Wireframe.swift */; };
 		D3B4BF9726D8A5A1001DA3B8 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4BF9626D8A5A1001DA3B8 /* WelcomeViewModel.swift */; };
 		D3B4D24826D24513008BBFC4 /* PublisherValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */; };
 		D3BA478A26D77C4400C1F5B5 /* AuthGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA478926D77C4400C1F5B5 /* AuthGateway.swift */; };
@@ -107,6 +108,7 @@
 		D37F2CA226D2029E00C453BA /* RepositoryListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModelTests.swift; sourceTree = "<group>"; };
 		D3ABFFE726D0E9690048875B /* RepositoryInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInteractorTests.swift; sourceTree = "<group>"; };
 		D3ABFFEB26D0FAA20048875B /* Publisher+DelegateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+DelegateError.swift"; sourceTree = "<group>"; };
+		D3B41A6226F0E71F00B4C8B7 /* Wireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wireframe.swift; sourceTree = "<group>"; };
 		D3B4BF9626D8A5A1001DA3B8 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		D3B4D24726D24513008BBFC4 /* PublisherValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherValidation.swift; sourceTree = "<group>"; };
 		D3BA478926D77C4400C1F5B5 /* AuthGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGateway.swift; sourceTree = "<group>"; };
@@ -343,6 +345,14 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		D3B41A5F26F0E3A300B4C8B7 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				D3B41A6226F0E71F00B4C8B7 /* Wireframe.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		D3B4D24626D24502008BBFC4 /* Validate */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +454,7 @@
 		D3F1BAB026CCC46200046689 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3B41A5F26F0E3A300B4C8B7 /* Router */,
 				D3BA479D26D7D08F00C1F5B5 /* DataStore */,
 				D3C460BC26B110E100DF4B1F /* UI */,
 				D33A100C26B10E51002DA455 /* Network */,
@@ -654,6 +665,7 @@
 				D3F1BAD026CD551600046689 /* MeViewData.swift in Sources */,
 				D33A0FE226B10D62002DA455 /* GitHubClientApp.swift in Sources */,
 				D3BC9A6D26D4AF020063A9F5 /* SnackBar.swift in Sources */,
+				D3B41A6326F0E71F00B4C8B7 /* Wireframe.swift in Sources */,
 				D3EFED6E26CB895200592804 /* NavigationViewWithSearchBar.swift in Sources */,
 				D3BA479526D79D0500C1F5B5 /* WelcomeScreen.swift in Sources */,
 				D33A101626B10E51002DA455 /* Me.swift in Sources */,
