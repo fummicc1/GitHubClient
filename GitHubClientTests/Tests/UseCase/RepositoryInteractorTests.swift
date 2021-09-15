@@ -39,7 +39,7 @@ class RepositoryInteractorTests: XCTestCase {
         XCTAssertEqual(gateway.searchWithCountReceivedArguments?.query, query)
         XCTAssertEqual(gateway.searchWithCountReceivedArguments?.count, count)
         
-        let (exp, _) = result.validate(timeout: 2, equals: [repoList])
+        let (exp, _) = result.validate(equals: [repoList])
         wait(for: [exp], timeout: 2)
     }
     
